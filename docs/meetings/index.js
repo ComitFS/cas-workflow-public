@@ -1,3 +1,5 @@
+let callId = null;
+
 window.addEventListener("unload", () => {
 	console.debug("unload");
 });
@@ -5,7 +7,20 @@ window.addEventListener("unload", () => {
 window.addEventListener("load", async () =>  {
 	console.debug("window.load", window.location.hostname, window.location.origin);
 
-	calendarEl = document.querySelector('#full_calendar');
+	const hangUp = document.querySelector('#terminate');
+
+	hangUp.addEventListener('click', async () => {
+		if (callId) {
+			const phone = urlParam("p");			
+			const authorization = urlParam("t");	
+			const url = urlParam("u") + "/teams/api/openlink/workflow/meeting/" + phone;	
+			console.log("hangup", phone);
+			
+			const response = await fetch(url, {method: "DELETE", headers: {authorization}, body: callId});
+		}			
+	});
+	
+	const calendarEl = document.querySelector('#full_calendar');
 	
 	const config =  {
 		selectable: true,				
@@ -58,6 +73,8 @@ async function joinMeeting(body, title, start) {
 	console.log("joinMeeting", phone, url, title, start);
 	
 	const response = await fetch(url, {method: "POST", headers: {authorization}, body});
+	const json = await response.json();	
+	callId = json.resourceUrl;
 	alert("Joining Call");
-	console.debug("joinMeeting - response", response);	
+	console.debug("joinMeeting - response", response, callId);	
 }
