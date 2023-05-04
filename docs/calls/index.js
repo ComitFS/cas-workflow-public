@@ -51,7 +51,7 @@ var cas_contactsi_api = (function(api)
 		const pickerButton = document.getElementById("contacts_picker");
 		
 		pickerButton.addEventListener("click", (ev) => {
-			openContactPicker();
+			openContactPicker(username, password, host);
 		});
 	}
 
@@ -280,27 +280,34 @@ var cas_contactsi_api = (function(api)
     //
     //-------------------------------------------------------	
 		
-    function openContactPicker() {
+    async function openContactPicker(username, password, host) {
+	  const cred = JSON.parse(password);
+	  const authorization = creds.credentials[0].github_token;		
       const supported = "contacts" in navigator && "ContactsManager" in window;
+	  console.debug("openContactPicker", username, cred, authorization, host);
 
       if (supported) {
-        getContacts();
+		  const props = ["name", "email", "tel", "address", "icon"];
+		  const opts = { multiple: false };
+
+		  try {
+			const contacts = await navigator.contacts.select(props, opts);
+			
+			if (contacts.length > 0 && contacts[0].tel.length > 0) {
+				const destination = contacts[0].tel[0].replace(/\s+/g, '');
+				const callstatus = document.getElementById("callstatus");
+				callstatus.innerHTML = "Calling " + contacts[0].name.join(" ") + " - " + destination;
+
+				const url = host + "/teams/api/openlink/workflow/makecall/" + destination;	
+				const response = await fetch(url, {method: "POST", headers: {authorization}});				
+			}
+		  } catch (err) {
+			alert(err);
+		  }
       } else {
-        alert("Contact list API not supported!. Only for android mobile chrome and chrome version > 80");
+		alert("Contact list API not supported!. Only for android mobile chrome and chrome version > 80");
       }
     }
-	
-    async function getContacts() {
-      const props = ["name", "email", "tel"];
-      const opts = { multiple: true };
-
-      try {
-        const contacts = await navigator.contacts.select(props, opts);
-        alert(JSON.stringify(contacts));
-      } catch (err) {
-        alert(err);
-      }
-    }	
 
     //-------------------------------------------------------
     //
