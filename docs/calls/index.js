@@ -46,7 +46,13 @@ var cas_contactsi_api = (function(api)
 	
 	async function handleCredentials(username, password) {
 		const host = localStorage.getItem("cas.host");		
-		console.debug("", username, password);
+		console.debug("handleCredentials", host, username, password);
+		
+		const pickerButton = document.getElementById("contacts_picker");
+		
+		pickerButton.addEventListener("click", (ev) => {
+			openContactPicker();
+		});
 	}
 
     function loadJS(name) {
@@ -157,8 +163,7 @@ var cas_contactsi_api = (function(api)
 		}
 	}	
 	
-	function createUserCredentials(username, token) 
-	{
+	function createUserCredentials(username, token) 	{
 		if (!username || username.trim() === "" || !token || token.trim() === "") {
 			//location.href = "/";
 		}
@@ -275,7 +280,27 @@ var cas_contactsi_api = (function(api)
     //
     //-------------------------------------------------------	
 		
-		
+    function openContactPicker() {
+      const supported = "contacts" in navigator && "ContactsManager" in window;
+
+      if (supported) {
+        getContacts();
+      } else {
+        alert("Contact list API not supported!. Only for android mobile chrome and chrome version > 80");
+      }
+    }
+	
+    async function getContacts() {
+      const props = ["name", "email", "tel"];
+      const opts = { multiple: true };
+
+      try {
+        const contacts = await navigator.contacts.select(props, opts);
+        alert(JSON.stringify(contacts));
+      } catch (err) {
+        alert(err);
+      }
+    }	
 
     //-------------------------------------------------------
     //
