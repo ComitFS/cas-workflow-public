@@ -45,7 +45,8 @@ var cas_contactsi_api = (function(api)
 	}
 	
 	async function handleCredentials(username, password) {
-		const host = localStorage.getItem("cas.host");		
+		let host = urlParam("h");	
+		if (!host) host = localStorage.getItem("cas.host");		
 		console.debug("handleCredentials", host, username, password);
 		
 		const pickerButton = document.getElementById("contacts_picker");
@@ -284,6 +285,7 @@ var cas_contactsi_api = (function(api)
 	  const creds = JSON.parse(password);
 	  const authorization = creds.credentials[0].github_token;		
       const supported = "contacts" in navigator && "ContactsManager" in window;
+	  
 	  console.debug("openContactPicker", username, creds, authorization, host);
 
       if (supported) {
