@@ -281,10 +281,10 @@ var cas_contactsi_api = (function(api)
     //-------------------------------------------------------	
 		
     async function openContactPicker(username, password, host) {
-	  const cred = JSON.parse(password);
+	  const creds = JSON.parse(password);
 	  const authorization = creds.credentials[0].github_token;		
       const supported = "contacts" in navigator && "ContactsManager" in window;
-	  console.debug("openContactPicker", username, cred, authorization, host);
+	  console.debug("openContactPicker", username, creds, authorization, host);
 
       if (supported) {
 		  const props = ["name", "email", "tel", "address", "icon"];
