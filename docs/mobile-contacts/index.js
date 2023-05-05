@@ -1,6 +1,6 @@
 let loginModal, customerData;
 	
-var cas_contactsi_api = (function(api)
+var cas_contacts_api = (function(api)
 {
 	const nickColors = {};
 	
