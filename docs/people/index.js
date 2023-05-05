@@ -46,6 +46,12 @@ window.addEventListener("load", async () =>  {
 		for (let peoplePickerElement of peoplePickerElements) {
 			new fabric.PeoplePicker(peoplePickerElement);
 		}
+		
+		const selectionButton = document.querySelector("#selectionButton");
+		
+		selectionButton.addEventListener("click", (ev) => {
+			
+		});
 	}
 });
 
