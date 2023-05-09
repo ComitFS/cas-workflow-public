@@ -17,28 +17,40 @@ window.addEventListener("load", async () =>  {
 		const resultGroup = document.querySelector(".ms-PeoplePicker-resultGroup");
 
 		for (let person of people) {
-			if (person.phones.length == 0) continue;
+			let accum = "";
+			
+			for (let phone of person.phones) {
+				const numberObjEvt = libphonenumber.parsePhoneNumber(phone.number, "US");				
 
-			const ele = document.createElement("div");
-			resultGroup.appendChild(ele);
-			ele.outerHTML = `
-			  <div class="ms-PeoplePicker-result" tabindex="1">
-				<div class="ms-Persona ms-Persona--sm">
-				  <div class="ms-Persona-imageArea">
-					<div class="ms-Persona-initials ms-Persona-initials--blue">${getInitials(person.displayName)}</div>
-				  </div>
-				  <div class="ms-Persona-presence">
-				  </div>
-				  <div class="ms-Persona-details">
-					<div class="ms-Persona-primaryText">${person.displayName}</div>
-					<div class="ms-Persona-secondaryText">${person.phones.reduce((accum, b) => {return accum + " " + b.number}, "")}</div>
-				  </div>
-				</div>
-				<button class="ms-PeoplePicker-resultAction">
-				  <i class="ms-Icon ms-Icon--Clear"></i>
-				</button>
-			  </div>			
-			`;			
+				if (numberObjEvt.isValid()) {				
+					const phoneNumber = numberObjEvt.format('E.164');		
+					const formattedPhoneNumber = numberObjEvt.format('IDD', {fromCountry: 'GB'});
+					accum += (phoneNumber + " ");					
+				}
+			}
+
+			if (accum.length > 0) {
+				const ele = document.createElement("div");
+				resultGroup.appendChild(ele);
+				ele.outerHTML = `
+				  <div class="ms-PeoplePicker-result" tabindex="1">
+					<div class="ms-Persona ms-Persona--sm">
+					  <div class="ms-Persona-imageArea">
+						<div class="ms-Persona-initials ms-Persona-initials--blue">${getInitials(person.displayName)}</div>
+					  </div>
+					  <div class="ms-Persona-presence">
+					  </div>
+					  <div class="ms-Persona-details">
+						<div class="ms-Persona-primaryText">${person.displayName}</div>
+						<div class="ms-Persona-secondaryText">${accum}</div>
+					  </div>
+					</div>
+					<button class="ms-PeoplePicker-resultAction">
+					  <i class="ms-Icon ms-Icon--Clear"></i>
+					</button>
+				  </div>			
+				`;	
+			}				
 		}
 		
 		const peoplePickerElements = document.querySelectorAll(".ms-PeoplePicker");
@@ -49,8 +61,22 @@ window.addEventListener("load", async () =>  {
 		
 		const selectionButton = document.querySelector("#selectionButton");
 		
-		selectionButton.addEventListener("click", (ev) => {
+		selectionButton.addEventListener("click", async (ev) => {
+			const selectedElements = document.querySelectorAll(".ms-Persona-secondaryText");
+			const authorization = urlParam("t");			
 			
+			for (let selectedElement of selectedElements) {
+				const telNumbers = selectedElement.innerHTML.trim();
+				
+				for (let telNumber of telNumbers.split(" ")) {
+					const url = urlParam("u") + "/teams/api/openlink/workflow/call/" + telNumber;						
+					const response =  await fetch(url, {method: "POST", headers: {authorization}});
+					
+					const resultAction = selectedElement.parentNode.parentNode.parentNode.querySelector(".ms-PeoplePicker-resultAction .ms-Icon");
+					console.debug("Adding participant ", telNumber, response.ok, resultAction);
+					resultAction.classList.replace("ms-Icon--Cancel", response.ok ? "ms-Icon--Accept" : "ms-Icon--Error");
+				}					
+			}			
 		});
 	}
 });
