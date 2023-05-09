@@ -75,6 +75,7 @@ window.addEventListener("load", async () =>  {
 					const resultAction = selectedElement.parentNode.parentNode.parentNode.querySelector(".ms-PeoplePicker-resultAction .ms-Icon");
 					console.debug("Adding participant ", telNumber, response.ok, resultAction);
 					resultAction.classList.replace("ms-Icon--Cancel", response.ok ? "ms-Icon--Accept" : "ms-Icon--Error");
+					resultAction.style = response.ok ? "color: green;" : "color: red;";					
 				}					
 			}			
 		});

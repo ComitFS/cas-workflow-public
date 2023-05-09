@@ -32,7 +32,7 @@ window.addEventListener("load", async () =>  {
 				resultGroup.appendChild(ele);
 				ele.outerHTML = `
 				  <div class="ms-PeoplePicker-result" tabindex="1">
-					<div class="ms-Persona ms-Persona--sm">
+					<div class="ms-Persona ms-Persona">
 					  <div class="ms-Persona-imageArea">
 						<div class="ms-Persona-initials ms-Persona-initials--blue">${getInitials(person.displayName)}</div>
 					  </div>
@@ -73,6 +73,7 @@ window.addEventListener("load", async () =>  {
 					const resultAction = selectedElement.parentNode.parentNode.parentNode.querySelector(".ms-PeoplePicker-resultAction .ms-Icon");
 					console.debug("Adding participant ", telNumber, response.ok, resultAction);
 					resultAction.classList.replace("ms-Icon--Cancel", response.ok ? "ms-Icon--Accept" : "ms-Icon--Error");
+					resultAction.style = response.ok ? "color: green;" : "color: red;";					
 				}					
 			}			
 		});
