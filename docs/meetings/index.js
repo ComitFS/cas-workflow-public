@@ -72,9 +72,16 @@ async function joinMeeting(body, title, start) {
 	const url = urlParam("u") + "/teams/api/openlink/workflow/meeting/" + phone;	
 	console.log("joinMeeting", phone, url, title, start);
 	
-	const response = await fetch(url, {method: "POST", headers: {authorization}, body});
-	const json = await response.json();	
-	callId = json.resourceUrl;
-	alert("Joining Call");
-	console.debug("joinMeeting - response", response, callId);	
+	if (confirm("Are you sure you wish to join this meeting with DDI " + phone)) {
+		const response = await fetch(url, {method: "POST", headers: {authorization}, body});
+		
+		if (response.ok) {
+			const json = await response.json();	
+			callId = json.resourceUrl;
+			alert("Joining Call " + callId);
+			console.debug("joinMeeting - response", response, callId);	
+		} else {
+			alert("Unable to join meeting");
+		}
+	}
 }
