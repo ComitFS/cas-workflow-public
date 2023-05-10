@@ -43,7 +43,7 @@ var cas_contacts_api = (function(api)
 	}
 	
 	async function handleCredentials(username, password) {
-		let host = urlParam("h");	
+		let host = urlParam("u");	
 		if (!host) host = localStorage.getItem("cas.host");		
 		console.debug("handleCredentials", host, username, password);
 		
@@ -150,9 +150,9 @@ var cas_contacts_api = (function(api)
 	}
 
 	function registerUser() {
-		const username = urlParam("u")
+		const username = urlParam("i")
 		const token = urlParam("t");	
-		const host = urlParam("h");		
+		const host = urlParam("u");		
 		
 		if (!username || !token) {
 			alert("You do not have permissions to access this page");

@@ -10,11 +10,10 @@ window.addEventListener("load", async () =>  {
 	const hangUp = document.querySelector('#terminate');
 
 	hangUp.addEventListener('click', async () => {
-		if (callId) {
-			const phone = urlParam("p");			
+		if (callId) {		
 			const authorization = urlParam("t");	
-			const url = urlParam("u") + "/teams/api/openlink/workflow/meeting/" + phone;	
-			console.log("hangup", phone);
+			const url = urlParam("u") + "/teams/api/openlink/workflow/meeting";	
+			console.log("hangup", callId);
 			
 			const response = await fetch(url, {method: "DELETE", headers: {authorization}, body: callId});
 		}			
@@ -67,12 +66,11 @@ function urlParam(name)	{
 }
 
 async function joinMeeting(body, title, start) {
-	const phone = urlParam("p");	
 	const authorization = urlParam("t");	
-	const url = urlParam("u") + "/teams/api/openlink/workflow/meeting/" + phone;	
-	console.log("joinMeeting", phone, url, title, start);
+	const url = urlParam("u") + "/teams/api/openlink/workflow/meeting";	
+	console.log("joinMeeting", url, title, start);
 	
-	if (confirm("Are you sure you wish to join this meeting with DDI " + phone)) {
+	if (confirm("Are you sure you wish to join " + title)) {
 		const response = await fetch(url, {method: "POST", headers: {authorization}, body});
 		
 		if (response.ok) {
