@@ -7,6 +7,12 @@ window.addEventListener("unload", () => {
 window.addEventListener("load", async () =>  {
 	console.debug("window.load", window.location.hostname, window.location.origin);
 
+	const refreshCalendar = document.querySelector('#refresh');
+
+	refreshCalendar.addEventListener('click', async () => {
+		location.reload();
+	});
+	
 	const hangUp = document.querySelector('#terminate');
 
 	hangUp.addEventListener('click', async () => {
