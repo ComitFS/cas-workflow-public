@@ -1,4 +1,4 @@
-let callId = null;
+let callId = sessionStorage.getItem("callId");
 
 window.addEventListener("unload", () => {
 	console.debug("unload");
@@ -84,6 +84,7 @@ async function joinMeeting(body, title, start) {
 			callId = json.resourceUrl;
 			alert("Joining Call " + callId);
 			console.debug("joinMeeting - response", response, callId);	
+			sessionStorage.setItem("callId", callId);
 		} else {
 			alert("Unable to join meeting");
 		}
