@@ -78,4 +78,4 @@ services:
         logo: "assets/tools/sample2.png"
         subtitle: "Configure CAS Workflow App"
         tag: "task"
-        url: "javascript:cas_omni_api.configure()"     
+        url: "javascript:cas_workflow_api.configure()"     
