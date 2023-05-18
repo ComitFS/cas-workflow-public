@@ -303,6 +303,7 @@ var cas_workflow_api = (function(api)
 	
 	api.configure = function() {
 		if (configData) {
+			configData.cas_server_url = localStorage.getItem("cas.workflow.url");
 			chrome.runtime.sendMessage('ahmnkjfekoeoekkbgmpbgcanjiambfhc', configData);
 		} else {
 			alert("You are not authorizsed to do this");
