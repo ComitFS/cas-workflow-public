@@ -83,13 +83,28 @@ window.addEventListener("load", async () =>  {
 });
 
 function urlParam(name)	{
-	var value = localStorage.getItem("cas.workflow.meeting." + name);
-	if (value) return value;
+	let value = null;
+	let results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
 	
-	var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
-	if (!results) { return undefined; }
-	value = unescape(results[1] || undefined);
-	localStorage.setItem("cas.workflow.meeting." + name, value);
+	if (results) {
+		value = unescape(results[1] || undefined);
+		console.debug("urlParam get", name, value);	
+	}
+	
+	if (!value) {
+		value = localStorage.getItem("cas.workflow.people." + name);
+		console.debug("urlParam get", name, value);	
+	}		
+	
+	if (!value) {
+		const label = (name == "u" ? "CAS Server Url" : (name == "t" ? "Access Token" : (name == "i" ? "Username" : name)))
+		value = prompt(label)
+	}
+	
+	if (value) {
+		localStorage.setItem("cas.workflow.people." + name, value);
+		console.debug("urlParam set", name, value);		
+	}
 	return value;
 }
 
