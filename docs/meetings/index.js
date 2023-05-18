@@ -6,6 +6,19 @@ window.addEventListener("unload", () => {
 
 window.addEventListener("load", async () =>  {
 	console.debug("window.load", window.location.hostname, window.location.origin);
+	
+    microsoftTeams.initialize();
+    microsoftTeams.appInitialization.notifyAppLoaded();
+
+    microsoftTeams.getContext(async context => {
+        microsoftTeams.appInitialization.notifySuccess();
+        userId = context?.userPrincipalName?.replace("@", "_");		
+        console.log("cas workflow meetings logged in user", userId, context.userPrincipalName, context);
+    });
+
+    microsoftTeams.registerOnThemeChangeHandler(function (theme) {
+        console.log("change theme", theme);
+    });	
 
 	const refreshCalendar = document.querySelector('#refresh');
 
