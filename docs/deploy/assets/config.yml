@@ -1,0 +1,81 @@
+---
+# Homepage configuration
+# See https://fontawesome.com/v5/search for icons options
+
+title: "CAS Workflow User Dashboard"
+subtitle: "comitFS"
+logo: "logo.png"
+# icon: "fas fa-skull-crossbones" # Optional icon
+
+header: true
+footer: '<a href="#">COPYRIGHT comitFS</a>'
+
+# Optional theme customization
+theme: default
+colors:
+  light:
+    highlight-primary: "#3367d6"
+    highlight-secondary: "#4285f4"
+    highlight-hover: "#5a95f5"
+    background: "#f5f5f5"
+    card-background: "#ffffff"
+    text: "#363636"
+    text-header: "#ffffff"
+    text-title: "#303030"
+    text-subtitle: "#424242"
+    card-shadow: rgba(0, 0, 0, 0.1)
+    link: "#3273dc"
+    link-hover: "#363636"
+  dark:
+    highlight-primary: "#3367d6"
+    highlight-secondary: "#4285f4"
+    highlight-hover: "#5a95f5"
+    background: "#131313"
+    card-background: "#2b2b2b"
+    text: "#eaeaea"
+    text-header: "#ffffff"
+    text-title: "#fafafa"
+    text-subtitle: "#f5f5f5"
+    card-shadow: rgba(0, 0, 0, 0.4)
+    link: "#3273dc"
+    link-hover: "#ffdd57"
+
+# Optional message
+message:
+  style: "is-dark" # See https://bulma.io/documentation/components/message/#colors for styling options.
+  title: "News !!!"
+  icon: "fa fa-grin"
+  content: "Welcome to your CAS Workflow user dashboard"
+
+# Optional navbar
+# links: [] # Allows for navbar (dark mode, layout, and search) without any links
+links:
+  - name: "Issues"
+    icon: "fab fa-github"
+    url: "https://github.com/ComitFS/cas-omni/issues"
+  - name: "Documentation"
+    icon: "fas fa-book"
+    url: "https://github.com/ComitFS/cas-omni/wiki"
+  - name: "Discussions"
+    icon: "fas fa-comment"
+    url: "https://github.com/ComitFS/cas-omni/discussions"    
+
+# Services
+# First level array represent a group.
+# Leave only a "items" key if not using group (group name, icon & tagstyle are optional, section separation will not be displayed).
+services:
+  - name: "Activities"
+    icon: "fas fa-cloud"
+    items:
+      - name: "Install"
+        logo: "assets/tools/sample.png"
+        subtitle: "Goto Chrome/Edge App Store"
+        tag: "task"
+        keywords: "install browser extension"
+        url: "https://chrome.google.com/webstore/detail/cas-teams/ipjgdgminhljknfeenooeejheanahokn"
+        target: "_blank" # optional html a tag target attribute
+      - name: "Configure"
+        logo: "assets/tools/sample2.png"
+        subtitle: "Configure CAS Workflow App"
+        tag: "task"
+        url: "javascript:cas_omni_api.configure()"     
