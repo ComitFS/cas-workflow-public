@@ -62,8 +62,7 @@ var cas_workflow_api = (function(api)
 			const property = await response.json();	
 			console.log("User properties", property);		
 
-			const payload = {action: 'config', config, property};
-			configData.cas_server_url = host;
+			const payload = {action: 'config', config, property, host};
 			configData = JSON.stringify(payload);
 
 			console.debug("handleCredentials", username, password, configData);		
