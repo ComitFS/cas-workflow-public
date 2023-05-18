@@ -95,9 +95,14 @@ function formatPhoneNumber(phone) {
 }
 
 function urlParam(name)	{
+	var value = localStorage.getItem("cas.workflow.meeting." + name);
+	if (value) return value;
+	
 	var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
 	if (!results) { return undefined; }
-	return unescape(results[1] || undefined);
+	value = unescape(results[1] || undefined);
+	localStorage.setItem("cas.workflow.meeting." + name, value);
+	return value;
 }
 
 function getInitials(nickname) {
