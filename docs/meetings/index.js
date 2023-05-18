@@ -1,4 +1,5 @@
 let callId = sessionStorage.getItem("callId");
+let dialogComponent;
 
 window.addEventListener("unload", () => {
 	console.debug("unload");
@@ -14,24 +15,61 @@ window.addEventListener("load", () =>  {
 		microsoftTeams.getContext(async context => {
 			microsoftTeams.appInitialization.notifySuccess();	
 			console.log("cas workflow meetings logged in user", context.userPrincipalName, context);
-			setupApp();
+			setupDialog();
 		});
 
 		microsoftTeams.registerOnThemeChangeHandler(function (theme) {
 			console.log("change theme", theme);
 		});	
 	} else {
-		setupApp();
+		setupDialog();
 	}
 });
 
-async function setupApp()	{
+function actionHandler(event) {
+	const url = document.querySelector("#server_url").value;
+	const token = document.querySelector("#access_token").value;	
+	
+	if (url && url.length > 0 && token && token.length > 0) {
+		localStorage.setItem("cas.workflow.meeting.u", url);
+		localStorage.setItem("cas.workflow.meeting.t", token);
+		
+		console.debug("actionHandler", url, token);
+		setupApp();
+	}
+}
+
+function setupDialog() {
 	const refreshCalendar = document.querySelector('#refresh');
 
 	refreshCalendar.addEventListener('click', async () => {
 		location.reload();
 	});
 	
+    const example = document.querySelector(".docs-DialogExample-close");
+    const dialog = example.querySelector(".ms-Dialog");
+
+    const textFieldsElements = example.querySelectorAll(".ms-TextField");
+    const actionButtonElements = example.querySelectorAll(".ms-Dialog-action");
+
+    dialogComponent = new fabric.Dialog(dialog);
+
+    for (let textFieldsElement of textFieldsElements) {
+      new fabric.TextField(textFieldsElement);
+    }
+
+    for (let actionButtonElement of actionButtonElements) {
+      new fabric.Button(actionButtonElement, actionHandler);
+    }
+
+	if (!urlParam("t") || !urlParam("u")) {
+		dialogComponent.open();
+	} else {
+		setupApp();
+	}
+}
+
+async function setupApp()	{	
 	const hangUp = document.querySelector('#terminate');
 
 	hangUp.addEventListener('click', async () => {
@@ -72,7 +110,7 @@ async function setupApp()	{
 	
 	if (meetings && meetings.length > 0) {
 
-		for (var meeting of meetings) {
+		for (let meeting of meetings) {
 			const title =  meeting.subject;
 			const start = meeting.start;			
 			const url = `javascript:joinMeeting('${meeting.url}', '${title}', '${start}')`;
@@ -97,12 +135,7 @@ function urlParam(name)	{
 		value = localStorage.getItem("cas.workflow.meeting." + name);
 		console.debug("urlParam get", name, value);	
 	}		
-	
-	if (!value) {
-		const label = (name == "u" ? "CAS Server Url" : (name == "t" ? "Access Token" : (name == "i" ? "Username" : name)))
-		value = prompt(label)
-	}
-	
+		
 	if (value) {
 		localStorage.setItem("cas.workflow.meeting." + name, value);
 		console.debug("urlParam set", name, value);		

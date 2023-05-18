@@ -6,14 +6,43 @@
     <title>CAS Workflow - Online Meetings</title>		
     <link id="favicon" rel="shortcut icon" href="../common/img/comitfs-32.png" type="image/png" />
     <link rel="stylesheet" href="../common/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../common/css/bootstrap-icons.css">		
+    <link rel="stylesheet" href="../common/css/bootstrap-icons.css">
+    <link rel="stylesheet" href="../common/css/fabric.min.css">
+    <link rel="stylesheet" href="../common/css/fabric.components.min.css">		
+    <script src='../common/js/fabric.min.js'></script> 		
     <script src='../common/js/calendar.min.js'></script> 		
     <script src='../common/js/ms-teams.min.js'></script> 	
     <script src='index.js'></script> 	
   </head>
   <body>
-	<button id="refresh">Refresh Calendar</button> 
-	<button id="terminate">Leave Meeting</button>	
+	<button class="ms-Button" id="refresh">Refresh Calendar</button> 
+	<button class="ms-Button" id="terminate">Leave Meeting</button>	
 	<div id='full_calendar' style='width: 100%;color:black; background-color:white;'></div>
+	<div class="docs-DialogExample-close">
+	  <div class="ms-Dialog ms-Dialog--close">
+		<button class="ms-Dialog-button ms-Dialog-buttonClose">
+		  <i class="ms-Icon ms-Icon--Cancel"></i>
+		</button>
+		<div class="ms-Dialog-title">Configure Meeting Application</div>
+		<div class="ms-Dialog-content">
+			<div class="ms-TextField">
+			  <label class="ms-Label">Server URL</label>
+			  <input class="ms-TextField-field" type="text" value="" placeholder="" id="server_url">
+			</div>
+			<div class="ms-TextField">
+			  <label class="ms-Label">Access Token</label>
+			  <input class="ms-TextField-field" type="text" value="" placeholder="" id="access_token">
+			</div>			
+		</div>
+		<div class="ms-Dialog-actions">
+		  <button class="ms-Button ms-Dialog-action ms-Button--primary">
+			<span class="ms-Button-label">Save</span> 
+		  </button>
+		  <button class="ms-Button ms-Dialog-action">
+			<span class="ms-Button-label">Cancel</span> 
+		  </button>
+		</div>
+	  </div>
+	</div>	
   </body>
 </html>
