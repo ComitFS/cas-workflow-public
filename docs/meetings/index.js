@@ -4,22 +4,28 @@ window.addEventListener("unload", () => {
 	console.debug("unload");
 });
 
-window.addEventListener("load", async () =>  {
+window.addEventListener("load", () =>  {
 	console.debug("window.load", window.location.hostname, window.location.origin);
 	
-    microsoftTeams.initialize();
-    microsoftTeams.appInitialization.notifyAppLoaded();
+	if (microsoftTeams in window) {
+		microsoftTeams.initialize();
+		microsoftTeams.appInitialization.notifyAppLoaded();
 
-    microsoftTeams.getContext(async context => {
-        microsoftTeams.appInitialization.notifySuccess();
-        userId = context?.userPrincipalName?.replace("@", "_");		
-        console.log("cas workflow meetings logged in user", userId, context.userPrincipalName, context);
-    });
+		microsoftTeams.getContext(async context => {
+			microsoftTeams.appInitialization.notifySuccess();	
+			console.log("cas workflow meetings logged in user", context.userPrincipalName, context);
+			setupApp();
+		});
 
-    microsoftTeams.registerOnThemeChangeHandler(function (theme) {
-        console.log("change theme", theme);
-    });	
+		microsoftTeams.registerOnThemeChangeHandler(function (theme) {
+			console.log("change theme", theme);
+		});	
+	} else {
+		setupApp();
+	}
+});
 
+async function setupApp()	{
 	const refreshCalendar = document.querySelector('#refresh');
 
 	refreshCalendar.addEventListener('click', async () => {
@@ -76,16 +82,18 @@ window.addEventListener("load", async () =>  {
 		calendar = new FullCalendar.Calendar(calendarEl, config);
 		calendar.render();
 	}
-});
+}
 
 function urlParam(name)	{
 	var value = localStorage.getItem("cas.workflow.meeting." + name);
+	console.debug("urlParam get", name, value);	
 	if (value) return value;
 	
 	var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
 	if (!results) { return undefined; }
 	value = unescape(results[1] || undefined);
 	localStorage.setItem("cas.workflow.meeting." + name, value);
+	console.debug("urlParam set", name, value);		
 	return value;
 }
 
