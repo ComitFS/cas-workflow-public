@@ -8,43 +8,70 @@
     <link rel="stylesheet" href="../common/css/fabric.min.css">
     <link rel="stylesheet" href="../common/css/fabric.components.min.css">		
     <script src='../common/js/fabric.min.js'></script> 		
-    <script src='../common/js/libphonenumber-max.js'></script> 		
+    <script src='../common/js/libphonenumber-max.js'></script> 	
+    <script src='../common/js/ms-teams.min.js'></script> 		
     <script src='index.js'></script> 	
   </head>
   <body>
-<div class="ms-PeoplePicker ms-PeoplePicker--facePile">
-  <div class="ms-PeoplePicker-searchBox">
-    <div class="ms-TextField ms-TextField--textFieldUnderlined">
-      <input class="ms-TextField-field" type="button" value="Click to select a person" placeholder="Select or enter an option">
-    </div>
-  </div>
-  <div class="ms-PeoplePicker-results ms-PeoplePicker-results--facePile">
-    <div class="ms-PeoplePicker-resultGroup">
-      <div class="ms-PeoplePicker-resultGroupTitle">
-        Contacts
-      </div>
-    </div>
-    <button class="ms-PeoplePicker-searchMore">
-      <div class="ms-PeoplePicker-searchMoreIcon">
-        <i class="ms-Icon ms-Icon--Search"></i>
-      </div>
-      <div class="ms-PeoplePicker-searchMoreText">
-        Search my groups
-      </div>
-    </button>
-  </div>
-  <div class="ms-PeoplePicker-selected is-active">
-    <div class="ms-PeoplePicker-selectedHeader">
-      <span class="ms-PeoplePicker-selectedCount">No</span>  participants<span class="ms-PeoplePicker-selectedCountPlural">s selected</span> 
-    </div>
-    <ul class="ms-PeoplePicker-selectedPeople">
-    </ul>
-  </div>
-  <div>
-    <div class="ms-TextField ms-TextField--textFieldUnderlined">
-      <input id="selectionButton" class="ms-TextField-field" type="button" value="Click to add select participants to current call" placeholder="Select or enter an option">
-    </div>
-  </div>  
-</div>
+	<div class="ms-PeoplePicker ms-PeoplePicker--facePile">
+	  <div class="ms-PeoplePicker-searchBox">
+		<div class="ms-TextField ms-TextField--textFieldUnderlined">
+		  <input class="ms-TextField-field" type="button" value="Click to select a person" placeholder="Select or enter an option">
+		</div>
+	  </div>
+	  <div class="ms-PeoplePicker-results ms-PeoplePicker-results--facePile">
+		<div class="ms-PeoplePicker-resultGroup">
+		  <div class="ms-PeoplePicker-resultGroupTitle">
+			Contacts
+		  </div>
+		</div>
+		<button class="ms-PeoplePicker-searchMore">
+		  <div class="ms-PeoplePicker-searchMoreIcon">
+			<i class="ms-Icon ms-Icon--Search"></i>
+		  </div>
+		  <div class="ms-PeoplePicker-searchMoreText">
+			Search my groups
+		  </div>
+		</button>
+	  </div>
+	  <div class="ms-PeoplePicker-selected is-active">
+		<div class="ms-PeoplePicker-selectedHeader">
+		  <span class="ms-PeoplePicker-selectedCount">No</span>  participants<span class="ms-PeoplePicker-selectedCountPlural">s selected</span> 
+		</div>
+		<ul class="ms-PeoplePicker-selectedPeople">
+		</ul>
+	  </div>
+	  <div>
+		<div class="ms-TextField ms-TextField--textFieldUnderlined">
+		  <input id="selectionButton" class="ms-TextField-field" type="button" value="Click to add select participants to current call" placeholder="Select or enter an option">
+		</div>
+	  </div>  
+	</div>
+	<div class="docs-DialogExample-close">
+	  <div class="ms-Dialog ms-Dialog--close">
+		<button class="ms-Dialog-button ms-Dialog-buttonClose">
+		  <i class="ms-Icon ms-Icon--Cancel"></i>
+		</button>
+		<div class="ms-Dialog-title">Configure Contacts Application</div>
+		<div class="ms-Dialog-content">
+			<div class="ms-TextField">
+			  <label class="ms-Label">Server URL</label>
+			  <input class="ms-TextField-field" type="text" value="" placeholder="" id="server_url">
+			</div>
+			<div class="ms-TextField">
+			  <label class="ms-Label">Access Token</label>
+			  <input class="ms-TextField-field" type="text" value="" placeholder="" id="access_token">
+			</div>			
+		</div>
+		<div class="ms-Dialog-actions">
+		  <button class="ms-Button ms-Dialog-action ms-Button--primary">
+			<span class="ms-Button-label">Save</span> 
+		  </button>
+		  <button class="ms-Button ms-Dialog-action">
+			<span class="ms-Button-label">Cancel</span> 
+		  </button>
+		</div>
+	  </div>
+	</div>		
   </body>
 </html>

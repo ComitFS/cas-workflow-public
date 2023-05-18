@@ -6,6 +6,62 @@ window.addEventListener("unload", () => {
 window.addEventListener("load", async () =>  {
 	console.debug("window.load", window.location.hostname, window.location.origin);	
 
+	if (microsoftTeams in window) {
+		microsoftTeams.initialize();
+		microsoftTeams.appInitialization.notifyAppLoaded();
+
+		microsoftTeams.getContext(async context => {
+			microsoftTeams.appInitialization.notifySuccess();	
+			console.log("cas workflow contacts logged in user", context.userPrincipalName, context);
+			setupDialog();
+		});
+
+		microsoftTeams.registerOnThemeChangeHandler(function (theme) {
+			console.log("change theme", theme);
+		});	
+	} else {
+		setupDialog();
+	}	
+});	
+
+function actionHandler(event) {
+	const url = document.querySelector("#server_url").value;
+	const token = document.querySelector("#access_token").value;	
+	
+	if (url && url.length > 0 && token && token.length > 0) {
+		localStorage.setItem("cas.workflow.config.u", url);
+		localStorage.setItem("cas.workflow.config.t", token);
+		
+		console.debug("actionHandler", url, token);
+		setupApp();
+	}
+}
+
+function setupDialog() {
+    const example = document.querySelector(".docs-DialogExample-close");
+    const dialog = example.querySelector(".ms-Dialog");
+
+    const textFieldsElements = example.querySelectorAll(".ms-TextField");
+    const actionButtonElements = example.querySelectorAll(".ms-Dialog-action");
+
+    dialogComponent = new fabric.Dialog(dialog);
+
+    for (let textFieldsElement of textFieldsElements) {
+      new fabric.TextField(textFieldsElement);
+    }
+
+    for (let actionButtonElement of actionButtonElements) {
+      new fabric.Button(actionButtonElement, actionHandler);
+    }
+
+	if (!urlParam("t") || !urlParam("u")) {
+		dialogComponent.open();
+	} else {
+		setupApp();
+	}
+}
+
+async function setupApp()	{		
 	const authorization = urlParam("t");
 	const url = urlParam("u") + "/teams/api/openlink/workflow/colleagues";
 			
@@ -98,7 +154,7 @@ window.addEventListener("load", async () =>  {
 			}			
 		});		
 	}
-});
+};
 
 function formatPhoneNumber(phone) {
 	let phoneNumber = "";
@@ -124,17 +180,12 @@ function urlParam(name)	{
 	}
 	
 	if (!value) {
-		value = localStorage.getItem("cas.workflow.colleagues." + name);
+		value = localStorage.getItem("cas.workflow.config." + name);
 		console.debug("urlParam get", name, value);	
 	}		
-	
-	if (!value) {
-		const label = (name == "u" ? "CAS Server Url" : (name == "t" ? "Access Token" : (name == "i" ? "Username" : name)))
-		value = prompt(label)
-	}
-	
+		
 	if (value) {
-		localStorage.setItem("cas.workflow.colleagues." + name, value);
+		localStorage.setItem("cas.workflow.config." + name, value);
 		console.debug("urlParam set", name, value);		
 	}
 	return value;

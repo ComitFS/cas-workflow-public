@@ -31,8 +31,8 @@ function actionHandler(event) {
 	const token = document.querySelector("#access_token").value;	
 	
 	if (url && url.length > 0 && token && token.length > 0) {
-		localStorage.setItem("cas.workflow.meeting.u", url);
-		localStorage.setItem("cas.workflow.meeting.t", token);
+		localStorage.setItem("cas.workflow.config.u", url);
+		localStorage.setItem("cas.workflow.config.t", token);
 		
 		console.debug("actionHandler", url, token);
 		setupApp();
@@ -132,12 +132,12 @@ function urlParam(name)	{
 	}
 	
 	if (!value) {
-		value = localStorage.getItem("cas.workflow.meeting." + name);
+		value = localStorage.getItem("cas.workflow.config." + name);
 		console.debug("urlParam get", name, value);	
 	}		
 		
 	if (value) {
-		localStorage.setItem("cas.workflow.meeting." + name, value);
+		localStorage.setItem("cas.workflow.config." + name, value);
 		console.debug("urlParam set", name, value);		
 	}
 	return value;
