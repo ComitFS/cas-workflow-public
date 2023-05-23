@@ -1,3 +1,4 @@
+let dialogComponent;
 
 window.addEventListener("unload", () => {
 	console.debug("unload");
@@ -13,14 +14,14 @@ window.addEventListener("load", async () =>  {
 		microsoftTeams.getContext(async context => {
 			microsoftTeams.appInitialization.notifySuccess();	
 			console.log("cas workflow contacts logged in user", context.userPrincipalName, context);
-			setupDialog();
+			setupUI();
 		});
 
 		microsoftTeams.registerOnThemeChangeHandler(function (theme) {
 			console.log("change theme", theme);
 		});	
 	} else {
-		setupDialog();
+		setupUI();
 	}	
 });	
 
@@ -33,8 +34,28 @@ function actionHandler(event) {
 		localStorage.setItem("cas.workflow.config.t", token);
 		
 		console.debug("actionHandler", url, token);
-		setupApp();
+		location.reload();
 	}
+}
+
+function setupUI() {
+	const settingsButton = document.querySelector('#settings');
+
+	settingsButton.addEventListener('click', async () => {
+		openDialog();
+	});	
+	
+	setupDialog();	
+}
+
+function openDialog() {
+	const url = localStorage.getItem("cas.workflow.config.u");
+	const token = localStorage.getItem("cas.workflow.config.t");
+	
+	document.querySelector("#server_url").value = url ? url : "";
+	document.querySelector("#access_token").value = token ? token : "";	
+
+	dialogComponent.open();	
 }
 
 function setupDialog() {
@@ -55,7 +76,7 @@ function setupDialog() {
     }
 
 	if (!urlParam("t") || !urlParam("u")) {
-		dialogComponent.open();
+		openDialog();
 	} else {
 		setupApp();
 	}

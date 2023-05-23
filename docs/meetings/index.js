@@ -15,14 +15,14 @@ window.addEventListener("load", () =>  {
 		microsoftTeams.getContext(async context => {
 			microsoftTeams.appInitialization.notifySuccess();	
 			console.log("cas workflow meetings logged in user", context.userPrincipalName, context);
-			setupDialog();
+			setupUI();
 		});
 
 		microsoftTeams.registerOnThemeChangeHandler(function (theme) {
 			console.log("change theme", theme);
 		});	
 	} else {
-		setupDialog();
+		setupUI();
 	}
 });
 
@@ -35,17 +35,37 @@ function actionHandler(event) {
 		localStorage.setItem("cas.workflow.config.t", token);
 		
 		console.debug("actionHandler", url, token);
-		setupApp();
+		location.reload();
 	}
 }
 
-function setupDialog() {
+function setupUI() {
 	const refreshCalendar = document.querySelector('#refresh');
 
 	refreshCalendar.addEventListener('click', async () => {
 		location.reload();
 	});
 	
+	const settingsButton = document.querySelector('#settings');
+
+	settingsButton.addEventListener('click', async () => {
+		openDialog();
+	});	
+	
+	setupDialog();	
+}
+
+function openDialog() {
+	const url = localStorage.getItem("cas.workflow.config.u");
+	const token = localStorage.getItem("cas.workflow.config.t");
+	
+	document.querySelector("#server_url").value = url ? url : "";
+	document.querySelector("#access_token").value = token ? token : "";	
+
+	dialogComponent.open();	
+}
+
+function setupDialog() {
     const example = document.querySelector(".docs-DialogExample-close");
     const dialog = example.querySelector(".ms-Dialog");
 
@@ -63,7 +83,7 @@ function setupDialog() {
     }
 
 	if (!urlParam("t") || !urlParam("u")) {
-		dialogComponent.open();
+		openDialog();
 	} else {
 		setupApp();
 	}
