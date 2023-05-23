@@ -142,7 +142,7 @@ async function setupApp()	{
 					const telNumbers = selectedElement.innerHTML.trim();
 					
 					for (let telNumber of telNumbers.split(" ")) {
-						const url = urlParam("u") + "/teams/api/openlink/workflow/call/" + telNumber;						
+						const url = urlParam("u") + "/teams/api/openlink/workflow/joincall/" + telNumber;						
 						const response =  await fetch(url, {method: "POST", headers: {authorization}});
 						
 						const resultAction = selectedElement.parentNode.parentNode.parentNode.querySelector(".ms-PeoplePicker-resultAction .ms-Icon");
