@@ -159,22 +159,77 @@ var cas_workflow_api = (function(api)
 	}	
 
 	function urlParam(name)	{
-		var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
-		if (!results) { return undefined; }
-		return unescape(results[1] || undefined);
+		let value = null;
+		let results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+		
+		if (results) {
+			value = unescape(results[1] || undefined);
+			console.debug("urlParam get", name, value);	
+		}
+		
+		if (!value) {
+			value = localStorage.getItem("cas.workflow.config." + name);
+			console.debug("urlParam get", name, value);	
+		}		
+			
+		if (value) {
+			localStorage.setItem("cas.workflow.config." + name, value);
+			console.debug("urlParam set", name, value);		
+		}
+		return value;
 	}
 
 	function registerUser() {	
-		const username = urlParam("i")
-		const token = urlParam("t");
-		const url = urlParam("u");
+		let username = urlParam("i")
+		let token = urlParam("t");
+		let url = urlParam("u");
 				
-		if (username && token && url) {
-			localStorage.setItem("cas.workflow.token", token);
-			localStorage.setItem("cas.workflow.url", url);		
+		if (username && token && url) {	
 			createUserCredentials(username, token);
+			
+		} else {
+			const example = document.querySelector(".docs-DialogExample-close");
+			const dialog = example.querySelector(".ms-Dialog");
+
+			const textFieldsElements = example.querySelectorAll(".ms-TextField");
+			const actionButtonElements = example.querySelectorAll(".ms-Dialog-action");
+
+			dialogComponent = new fabric.Dialog(dialog);
+
+			for (let textFieldsElement of textFieldsElements) {
+			  new fabric.TextField(textFieldsElement);
+			}
+
+			for (let actionButtonElement of actionButtonElements) {
+			  new fabric.Button(actionButtonElement, actionHandler);
+			}
+			
+			username = localStorage.getItem("cas.workflow.config.i");
+			url = localStorage.getItem("cas.workflow.config.u");			
+			token = localStorage.getItem("cas.workflow.config.t");
+			
+			document.querySelector("#user_name").value = username ? username : "";
+			document.querySelector("#server_url").value = url ? url : "";			
+			document.querySelector("#access_token").value = token ? token : "";	
+
+			dialogComponent.open();				
 		}
 	}	
+
+	function actionHandler(event) {
+		const url = document.querySelector("#server_url").value;
+		const token = document.querySelector("#access_token").value;
+		const username = document.querySelector("#user_name").value;
+		
+		if (url && url.length > 0 && token && token.length > 0 && username && username.length > 0) {
+			localStorage.setItem("cas.workflow.config.u", url);
+			localStorage.setItem("cas.workflow.config.t", token);
+			localStorage.setItem("cas.workflow.config.i", username);
+			
+			console.debug("actionHandler", url, token, username);
+			createUserCredentials(username, token);
+		}
+	}
 	
 	function createUserCredentials(username, token) 
 	{
