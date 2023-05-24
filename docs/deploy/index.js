@@ -10,8 +10,8 @@ var cas_workflow_api = (function(api)
     window.addEventListener("load", function()  {
 		console.debug("window.load", window.location.hostname, window.location.origin);
 
-		const username = sessionStorage.getItem("cas.workflow.config.i");
-		const password = sessionStorage.getItem("cas.workflow.config.t");	
+		const username = sessionStorage.getItem("cas.workflow.user");
+		const password = sessionStorage.getItem("cas.workflow.password");	
 
 		if (!username || !password) {
 			WebAuthnGoJS.CreateContext(JSON.stringify({RPDisplayName: "CAS Workflow", RPID: window.location.hostname, RPOrigin: window.location.origin}), (err, val) => {
@@ -46,8 +46,11 @@ var cas_workflow_api = (function(api)
 		location.reload();
 	}
 	
-	async function handleCredentials(username, authorization) {		
-		let host =  urlParam("u");
+	async function handleCredentials(username, password) {		
+		const host =  urlParam("u");
+		const authorization = urlParam("t");
+		
+		console.info("handleCredentials", username, password);		
 
 		if (authorization && host) {
 			let url = host + "/teams/api/openlink/config/global";	
@@ -64,7 +67,7 @@ var cas_workflow_api = (function(api)
 			const payload = {action: 'config', config, property, host};
 			configData = JSON.stringify(payload);
 
-			console.debug("handleCredentials", username, password, configData);		
+			console.debug("handleCredentials", configData);		
 		}			
 	}
 
