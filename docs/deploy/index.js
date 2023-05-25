@@ -360,7 +360,7 @@ var cas_workflow_api = (function(api)
 	
 	api.configure = function() {
 		if (configData) {
-			chrome.runtime.sendMessage('ahmnkjfekoeoekkbgmpbgcanjiambfhc', configData);
+			chrome.runtime.sendMessage('ifohdfipnpbkalbeaefgecjkmfckchkd', configData);
 		} else {
 			alert("You are not authorizsed to do this");
 		}		

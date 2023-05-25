@@ -52,13 +52,13 @@ message:
 links:
   - name: "Issues"
     icon: "fab fa-github"
-    url: "https://github.com/ComitFS/cas-omni/issues"
+    url: "https://github.com/ComitFS/cas-workflow-public/issues"
   - name: "Documentation"
     icon: "fas fa-book"
-    url: "https://github.com/ComitFS/cas-omni/wiki"
+    url: "https://github.com/ComitFS/cas-workflow-public/wiki"
   - name: "Discussions"
     icon: "fas fa-comment"
-    url: "https://github.com/ComitFS/cas-omni/discussions"    
+    url: "https://github.com/ComitFS/cas-workflow-public/discussions"    
 
 # Services
 # First level array represent a group.
@@ -72,7 +72,7 @@ services:
         subtitle: "Goto Chrome/Edge App Store"
         tag: "task"
         keywords: "install browser extension"
-        url: "https://chrome.google.com/webstore/detail/cas-teams/ipjgdgminhljknfeenooeejheanahokn"
+        url: "https://chrome.google.com/webstore/detail/cas-touch/ifohdfipnpbkalbeaefgecjkmfckchkd"
         target: "_blank" # optional html a tag target attribute
       - name: "Configure"
         logo: "assets/tools/sample2.png"
