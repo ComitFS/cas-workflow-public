@@ -168,7 +168,7 @@ async function joinMeeting(body, title, start) {
 	const url = urlParam("u") + "/teams/api/openlink/workflow/meeting";	
 	console.log("joinMeeting", url, title, start);
 	
-	if (confirm("Are you sure you wish to join " + title)) {
+	//if (confirm("Are you sure you wish to join " + title)) {
 		const response = await fetch(url, {method: "POST", headers: {authorization}, body});
 		
 		if (response.ok) {
@@ -180,5 +180,5 @@ async function joinMeeting(body, title, start) {
 		} else {
 			//alert("Unable to join meeting");
 		}
-	}
+	//}
 }
