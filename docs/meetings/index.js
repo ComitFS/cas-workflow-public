@@ -174,11 +174,11 @@ async function joinMeeting(body, title, start) {
 		if (response.ok) {
 			const json = await response.json();	
 			callId = json.resourceUrl;
-			alert("Joining Call " + callId);
+			//alert("Joining Call " + callId);
 			console.debug("joinMeeting - response", response, callId);	
 			sessionStorage.setItem("callId", callId);
 		} else {
-			alert("Unable to join meeting");
+			//alert("Unable to join meeting");
 		}
 	}
 }
