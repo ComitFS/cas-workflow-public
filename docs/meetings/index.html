@@ -19,8 +19,8 @@
 	<button class="ms-Button" id="refresh">Refresh Calendar</button> 	
 	<button class="ms-Button" id="terminate">Leave Meeting</button>	
 	<div id='full_calendar' style='width: 100%;color:black; background-color:white;'></div>
-	<div class="docs-DialogExample-close">
-	  <div class="ms-Dialog ms-Dialog--close">
+	<div id="dialogContainer">
+	  <div id="settingsDialog" class="ms-Dialog ms-Dialog--close">
 		<button class="ms-Dialog-button ms-Dialog-buttonClose">
 		  <i class="ms-Icon ms-Icon--Cancel"></i>
 		</button>
@@ -37,10 +37,24 @@
 		</div>
 		<div class="ms-Dialog-actions">
 		  <button class="ms-Button ms-Dialog-action ms-Button--primary">
-			<span class="ms-Button-label">Save</span> 
+			<span id="settingsDialogSave" class="ms-Button-label">Save</span> 
 		  </button>
 		  <button class="ms-Button ms-Dialog-action">
-			<span class="ms-Button-label">Cancel</span> 
+			<span id="settingsDialogCancel" class="ms-Button-label">Cancel</span> 
+		  </button>
+		</div>
+	  </div>
+	  <div id="confirmDialog" class="ms-Dialog ms-Dialog--lgHeader">
+		<div id="confirmDialogTitle" class="ms-Dialog-title">Join Online Meeting</div>
+		<div class="ms-Dialog-content">
+		  <p id="confirmDialogDesc" class="ms-Dialog-subText"></p>
+		</div>
+		<div class="ms-Dialog-actions">
+		  <button class="ms-Button ms-Dialog-action ms-Button--primary">
+			<span id="confirmDialogProceed" class="ms-Button-label">Proceed</span> 
+		  </button>
+		  <button class="ms-Button ms-Dialog-action">
+			<span id="confirmDialogCancel" class="ms-Button-label">Cancel</span> 
 		  </button>
 		</div>
 	  </div>

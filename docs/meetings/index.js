@@ -1,5 +1,5 @@
 let callId = sessionStorage.getItem("callId");
-let dialogComponent;
+let settingsDialog, confirmDialog, activeMeeting;
 
 window.addEventListener("unload", () => {
 	console.debug("unload");
@@ -26,17 +26,39 @@ window.addEventListener("load", () =>  {
 	}
 });
 
-function actionHandler(event) {
-	const url = document.querySelector("#server_url").value;
-	const token = document.querySelector("#access_token").value;	
+async function actionHandler(event) {
+	console.log("actionHandler", event.target.innerHTML, event.target.id);
 	
-	if (url && url.length > 0 && token && token.length > 0) {
-		localStorage.setItem("cas.workflow.config.u", url);
-		localStorage.setItem("cas.workflow.config.t", token);
+	if (event.target.id == "settingsDialogSave") {
+		const url = document.querySelector("#server_url").value;
+		const token = document.querySelector("#access_token").value;	
 		
-		console.debug("actionHandler", url, token);
-		location.reload();
+		if (url && url.length > 0 && token && token.length > 0) {
+			localStorage.setItem("cas.workflow.config.u", url);
+			localStorage.setItem("cas.workflow.config.t", token);
+			
+			console.debug("actionHandler", url, token);
+			location.reload();
+		}
 	}
+	else
+		
+	if (event.target.id == "confirmDialogProceed") {
+		const authorization = urlParam("t");	
+		const url = urlParam("u") + "/teams/api/openlink/workflow/meeting";	
+	
+		const response = await fetch(url, {method: "POST", headers: {authorization}, body: activeMeeting.url});
+		
+		if (response.ok) {
+			const json = await response.json();	
+			callId = json.resourceUrl;
+			document.getElementById("confirmDialogDesc").innerHTML = "Call Accepted - " + callId;
+			console.debug("joinMeeting - response", response, callId);	
+			sessionStorage.setItem("callId", callId);
+		} else {
+			document.getElementById("confirmDialogDesc").innerHTML = "Unable to join meeting";
+		}
+	}		
 }
 
 function setupUI() {
@@ -49,30 +71,29 @@ function setupUI() {
 	const settingsButton = document.querySelector('#settings');
 
 	settingsButton.addEventListener('click', async () => {
-		openDialog();
+		openSettingsDialog();
 	});	
 	
 	setupDialog();	
 }
 
-function openDialog() {
+function openSettingsDialog() {
 	const url = localStorage.getItem("cas.workflow.config.u");
 	const token = localStorage.getItem("cas.workflow.config.t");
 	
 	document.querySelector("#server_url").value = url ? url : "";
 	document.querySelector("#access_token").value = token ? token : "";	
 
-	dialogComponent.open();	
+	settingsDialog.open();	
 }
 
 function setupDialog() {
-    const example = document.querySelector(".docs-DialogExample-close");
-    const dialog = example.querySelector(".ms-Dialog");
+    const container = document.querySelector("#dialogContainer");
+    const textFieldsElements = container.querySelectorAll(".ms-TextField");
+    const actionButtonElements = container.querySelectorAll(".ms-Dialog-action");
 
-    const textFieldsElements = example.querySelectorAll(".ms-TextField");
-    const actionButtonElements = example.querySelectorAll(".ms-Dialog-action");
-
-    dialogComponent = new fabric.Dialog(dialog);
+    settingsDialog = new fabric.Dialog(container.querySelector("#settingsDialog"));
+	confirmDialog = new fabric.Dialog(container.querySelector("#confirmDialog"));
 
     for (let textFieldsElement of textFieldsElements) {
       new fabric.TextField(textFieldsElement);
@@ -83,7 +104,7 @@ function setupDialog() {
     }
 
 	if (!urlParam("t") || !urlParam("u")) {
-		openDialog();
+		openSettingsDialog();
 	} else {
 		setupApp();
 	}
@@ -163,22 +184,68 @@ function urlParam(name)	{
 	return value;
 }
 
-async function joinMeeting(body, title, start) {
-	const authorization = urlParam("t");	
-	const url = urlParam("u") + "/teams/api/openlink/workflow/meeting";	
+async function joinMeeting(url, title, start) {
 	console.log("joinMeeting", url, title, start);
 	
-	//if (confirm("Are you sure you wish to join " + title)) {
-		const response = await fetch(url, {method: "POST", headers: {authorization}, body});
-		
-		if (response.ok) {
-			const json = await response.json();	
-			callId = json.resourceUrl;
-			//alert("Joining Call " + callId);
-			console.debug("joinMeeting - response", response, callId);	
-			sessionStorage.setItem("callId", callId);
-		} else {
-			//alert("Unable to join meeting");
+	activeMeeting = {url, title, start};
+	document.getElementById("confirmDialogDesc").innerHTML = title + " at " + time_ago(start);
+	confirmDialog.open();	
+}
+
+function time_ago(time) {
+	switch (typeof time) {
+		case 'number':
+		  break;
+		case 'string':
+		  time = +new Date(time);
+		  break;
+		case 'object':
+		  if (time.constructor === Date) time = time.getTime();
+		  break;
+		default:
+		  time = +new Date();
+	}
+	var time_formats = [
+		[60, 'seconds', 1], // 60
+		[120, '1 minute ago', '1 minute from now'], // 60*2
+		[3600, 'minutes', 60], // 60*60, 60
+		[7200, '1 hour ago', '1 hour from now'], // 60*60*2
+		[86400, 'hours', 3600], // 60*60*24, 60*60
+		[172800, 'Yesterday', 'Tomorrow'], // 60*60*24*2
+		[604800, 'days', 86400], // 60*60*24*7, 60*60*24
+		[1209600, 'Last week', 'Next week'], // 60*60*24*7*4*2
+		[2419200, 'weeks', 604800], // 60*60*24*7*4, 60*60*24*7
+		[4838400, 'Last month', 'Next month'], // 60*60*24*7*4*2
+		[29030400, 'months', 2419200], // 60*60*24*7*4*12, 60*60*24*7*4
+		[58060800, 'Last year', 'Next year'], // 60*60*24*7*4*12*2
+		[2903040000, 'years', 29030400], // 60*60*24*7*4*12*100, 60*60*24*7*4*12
+		[5806080000, 'Last century', 'Next century'], // 60*60*24*7*4*12*100*2
+		[58060800000, 'centuries', 2903040000] // 60*60*24*7*4*12*100*20, 60*60*24*7*4*12*100
+	];
+	var seconds = (+new Date() - time) / 1000,
+	token = 'ago',
+	list_choice = 1;
+
+	if (seconds == 0) {
+		return 'Just now'
+	}
+	
+	if (seconds < 0) {
+		seconds = Math.abs(seconds);
+		token = 'from now';
+		list_choice = 2;
+	}
+	var i = 0,
+	format;
+	
+	while (format = time_formats[i++]) 
+	{
+		if (seconds < format[0]) {
+		  if (typeof format[2] == 'string')
+			return format[list_choice];
+		  else
+			return Math.floor(seconds / format[2]) + ' ' + format[1] + ' ' + token;
 		}
-	//}
+	}
+	return time;
 }
