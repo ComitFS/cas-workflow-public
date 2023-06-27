@@ -44,6 +44,8 @@ async function actionHandler(event) {
 	else
 		
 	if (event.target.id == "confirmDialogProceed") {
+		const status = document.getElementById("status");
+		status.innerHTML = "Joining....";
 		const authorization = urlParam("t");	
 		const url = urlParam("u") + "/teams/api/openlink/workflow/meeting";	
 	
@@ -52,11 +54,11 @@ async function actionHandler(event) {
 		if (response.ok) {
 			const json = await response.json();	
 			callId = json.resourceUrl;
-			document.getElementById("confirmDialogDesc").innerHTML = "Call Accepted - " + callId;
+			status.innerHTML = "Joined Meeting - " + callId;
 			console.debug("joinMeeting - response", response, callId);	
 			sessionStorage.setItem("callId", callId);
 		} else {
-			document.getElementById("confirmDialogDesc").innerHTML = "Unable to join meeting";
+			status.innerHTML = "Unable to join meeting";
 		}
 	}		
 }
@@ -120,6 +122,7 @@ async function setupApp()	{
 			console.log("hangup", callId);
 			
 			const response = await fetch(url, {method: "DELETE", headers: {authorization}, body: callId});
+			document.getElementById("status").innerHTML = "Inactive";			
 		}			
 	});
 	
@@ -188,7 +191,9 @@ async function joinMeeting(url, title, start) {
 	console.log("joinMeeting", url, title, start);
 	
 	activeMeeting = {url, title, start};
-	document.getElementById("confirmDialogDesc").innerHTML = title + " at " + time_ago(start);
+	const label = title + " at " + time_ago(start);
+	document.getElementById("confirmDialogDesc").innerHTML = label;
+	document.getElementById("status").innerHTML = label;
 	confirmDialog.open();	
 }
 
