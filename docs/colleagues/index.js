@@ -96,9 +96,9 @@ async function setupApp()	{
 			let peers =  "";
 			
 			for (let peer of colleague.peers) {
-				const phoneNo = formatPhoneNumber(peer.teams_phone);
+				//const phoneNo = formatPhoneNumber(peer.teams_phone);
 				
-				if (phoneNo && phoneNo.trim().length > 0) {
+				if (!peer.teams_id.startsWith("8:acs:") && peer.email && peer.email.trim().length > 0) {
 					peers += `
 					  <div class="ms-PeoplePicker-result" tabindex="1">
 						<div class="ms-Persona ms-Persona--sm">
@@ -109,7 +109,7 @@ async function setupApp()	{
 						  </div>
 						  <div class="ms-Persona-details">
 							<div class="ms-Persona-primaryText"><input data-group="${colleague.group}" class="${colleague.group} cas-user-selection" id="${peer.username}" type="checkbox">${peer.name}</div>
-							<div class="ms-Persona-secondaryText">${phoneNo}</div>					
+							<div class="ms-Persona-secondaryText">${peer.email}</div>					
 						  </div>
 						</div>
 						<button class="ms-PeoplePicker-resultAction">
