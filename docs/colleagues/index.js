@@ -176,25 +176,39 @@ async function setupApp()	{
 		
 		selectionButton.addEventListener("click", async (ev) => {
 			const selectedElements = document.querySelectorAll(".ms-Persona-secondaryText");
-			const authorization = urlParam("t");			
+			const authorization = urlParam("t");
+			const allEmails = [];
 			
 			for (let selectedElement of selectedElements) {
 				const checkedElement = selectedElement.parentNode.querySelector("input");
 				
 				if (checkedElement.checked) {
-					const telNumbers = selectedElement.innerHTML.trim();
+					const emails = selectedElement.innerHTML.trim();
 					
-					for (let telNumber of telNumbers.split(" ")) {
-						const url = urlParam("u") + "/teams/api/openlink/workflow/joincall/" + telNumber;						
-						const response =  await fetch(url, {method: "POST", headers: {authorization}});
-						
+					for (let email of emails.split(" ")) {
+						allEmails.push(email);
+					}										
+				}					
+			}
+			
+			if (allEmails.length > 0) {
+				const emailString = allEmails.join(",");
+				const url = urlParam("u") + "/teams/api/openlink/workflow/joincall/" + emailString;						
+				const response =  await fetch(url, {method: "POST", headers: {authorization}});
+				
+				for (let selectedElement of selectedElements) {
+					const checkedElement = selectedElement.parentNode.querySelector("input");
+					
+					if (checkedElement.checked) {
 						const resultAction = selectedElement.parentNode.parentNode.parentNode.querySelector(".ms-PeoplePicker-resultAction .ms-Icon");
-						console.debug("Adding participant ", telNumber, response.ok, resultAction);
 						resultAction.classList.replace("ms-Icon--Clear", response.ok ? "ms-Icon--Accept" : "ms-Icon--Error");
-						resultAction.style = response.ok ? "color: green;" : "color: red;";		
+						resultAction.style = response.ok ? "color: green;" : "color: red;";							
 					}
 				}					
-			}			
+
+				console.debug("Adding participants ", allEmails, response.ok);				
+				
+			}
 		});		
 	}
 };
