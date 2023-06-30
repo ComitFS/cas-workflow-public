@@ -175,6 +175,7 @@ async function setupApp()	{
 		const selectionButton = document.querySelector("#selectionButton");
 		
 		selectionButton.addEventListener("click", async (ev) => {
+		
 			const selectedElements = document.querySelectorAll(".ms-Persona-secondaryText");
 			const authorization = urlParam("t");
 			const allEmails = [];
@@ -206,7 +207,8 @@ async function setupApp()	{
 					}
 				}					
 
-				console.debug("Adding participants ", allEmails, response.ok);				
+				console.debug("Adding participants ", allEmails, response.ok);	
+				document.getElementById("status").innerHTML = "Adding Participants....";				
 				
 			}
 		});		
