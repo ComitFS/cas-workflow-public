@@ -112,7 +112,28 @@ function setupDialog() {
 	}
 }
 
+function urlify(text) {
+	var urlRegex = /(https?:\/\/[^\s]+)/g;
+	return text.replace(urlRegex, '<a target="_blank" href="$1">$1</a>');
+}
+
 async function setupApp()	{	
+	const source = new EventSource( urlParam("u") + "/teams/web-sse?token=" + urlParam("t"));
+	
+	source.onerror = event => {
+		console.debug("EventSource - onError", event);				
+	};
+
+	source.addEventListener('onNotify', async event => {
+		const msg = JSON.parse(event.data);
+		document.getElementById("status").innerHTML = urlify(msg.text);
+		console.debug("EventSource - onMessage", msg);
+	});
+	
+	source.addEventListener('onConnect', async event => {
+		console.debug("EventSource - onConnect");
+	});
+	
 	const hangUp = document.querySelector('#terminate');
 
 	hangUp.addEventListener('click', async () => {
@@ -153,7 +174,8 @@ async function setupApp()	{
 	console.debug("setupCalendarView", calendarEl, config, meetings);
 	
 	if (meetings && meetings.length > 0) {
-
+		document.getElementById("status").innerHTML = "Signed In";
+		
 		for (let meeting of meetings) {
 			const title =  meeting.subject;
 			const start = meeting.start;			

@@ -82,7 +82,23 @@ function setupDialog() {
 	}
 }
 
-async function setupApp()	{		
+async function setupApp()	{
+	const source = new EventSource( urlParam("u") + "/teams/web-sse?token=" + urlParam("t"));
+	
+	source.onerror = event => {
+		console.debug("EventSource - onError", event);				
+	};
+
+	source.addEventListener('onNotify', async event => {
+		const msg = JSON.parse(event.data);
+		document.getElementById("status").innerHTML = urlify(msg.text);
+		console.debug("EventSource - onMessage", msg);
+	});
+	
+	source.addEventListener('onConnect', async event => {
+		console.debug("EventSource - onConnect");
+	});
+	
 	const authorization = urlParam("t");
 	const url = urlParam("u") + "/teams/api/openlink/workflow/colleagues";
 			
@@ -90,15 +106,16 @@ async function setupApp()	{
 	const colleagues = await response.json();
 	console.debug("onload", colleagues);
 		
-	if (colleagues && colleagues.length > 0) 
-	{
+	if (colleagues && colleagues.length > 0)  {
+		document.getElementById("status").innerHTML = "Signed In";
+		
 		for (let colleague of colleagues) {
 			let peers =  "";
 			
 			for (let peer of colleague.peers) {
 				//const phoneNo = formatPhoneNumber(peer.teams_phone);
 				
-				if (!peer.teams_id.startsWith("8:acs:") && peer.email && peer.email.trim().length > 0) {
+				if (peer.teams_id && !peer.teams_id.startsWith("8:acs:") && peer.email && peer.email.trim().length > 0) {
 					peers += `
 					  <div class="ms-PeoplePicker-result" tabindex="1">
 						<div class="ms-Persona ms-Persona--sm">

@@ -82,7 +82,23 @@ function setupDialog() {
 	}
 }
 
-async function setupApp()	{	
+async function setupApp()	{
+		const source = new EventSource( urlParam("u") + "/teams/web-sse?token=" + urlParam("t"));
+	
+	source.onerror = event => {
+		console.debug("EventSource - onError", event);				
+	};
+
+	source.addEventListener('onNotify', async event => {
+		const msg = JSON.parse(event.data);
+		document.getElementById("status").innerHTML = urlify(msg.text);
+		console.debug("EventSource - onMessage", msg);
+	});
+	
+	source.addEventListener('onConnect', async event => {
+		console.debug("EventSource - onConnect");
+	});
+	
 	const authorization = urlParam("t");
 	const url = urlParam("u") + "/teams/api/openlink/workflow/contacts";
 			
@@ -91,6 +107,7 @@ async function setupApp()	{
 	console.debug("onload", contacts);
 		
 	if (contacts && contacts.length > 0) {
+		document.getElementById("status").innerHTML = "Signed In";		
 		const resultGroup = document.querySelector(".ms-PeoplePicker-resultGroup");
 
 		for (let person of contacts) {
