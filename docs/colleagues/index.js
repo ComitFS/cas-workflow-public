@@ -82,6 +82,11 @@ function setupDialog() {
 	}
 }
 
+function urlify(text) {
+	var urlRegex = /(https?:\/\/[^\s]+)/g;
+	return text.replace(urlRegex, '<a target="_blank" href="$1">$1</a>');
+}
+
 async function setupApp()	{
 	const source = new EventSource( urlParam("u") + "/teams/web-sse?token=" + urlParam("t"));
 	
