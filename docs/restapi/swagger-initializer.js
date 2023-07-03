@@ -46,8 +46,9 @@ window.onload = function() {
 		let token = urlParam();
 		
 		if (token) {
-			window.ui.preauthorizeApiKey("authorization", token);		
-			const source = new EventSource( "/teams/web-sse?token=" + token);
+			window.ui.preauthorizeApiKey("authorization", token);	
+			const url = location.host.indexOf("comitfs.github.io") > -1 ? "https://localhost:7443" : location.protocol + "//" + location.host
+			const source = new EventSource(url + "/teams/web-sse?token=" + token);
 			
 			source.onerror = event => {
 				console.debug("EventSource - onError", event);				
