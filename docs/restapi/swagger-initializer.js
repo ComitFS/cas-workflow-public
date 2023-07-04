@@ -61,7 +61,8 @@ window.onload = function() {
 			});
 			
 			source.addEventListener('onConnect', async event => {
-				document.getElementById("status").innerHTML = "CAS Signed In";				
+				const msg = JSON.parse(event.data);				
+				document.getElementById("status").innerHTML = "CAS User " + msg.username + " (" + msg.name + ") Signed In";				
 				console.debug("EventSource - onConnect");		
 			});	
 		}			
