@@ -179,28 +179,29 @@ async function setupApp()	{
 		
 		const filterList = document.querySelector("#filterList");
 
-		filterList.addEventListener("input", async (ev) => {
-            const panels = document.querySelectorAll('.ms-PeoplePicker-result');	
-			panels.forEach((panel) => {
-				panel.style.display = "block";
-			});				
+		filterList.addEventListener("change", async (ev) => {
+			doFilter(filterList);			
 		})
 		
 		filterList.addEventListener("input", async (ev) => {
-			const filter = filterList.value.toLowerCase();
-            const panels = document.querySelectorAll('.ms-PeoplePicker-result');	
-
-			panels.forEach((panel) => {
-				panel.style.display = "block";
-				const name = panel.querySelector('.ms-Persona-primaryText').innerHTML.toLowerCase();
-				console.debug("oninput", filter, name);				
-				
-                if (filter.length > 0 && name.indexOf(filter) == -1) {
-					panel.style.display = "none";
-				}				
-			});				
+			doFilter(filterList);
 		})		
 	}
+}
+
+function doFilter(filterList) {
+	const filter = filterList.value.toLowerCase();
+	const panels = document.querySelectorAll('.ms-PeoplePicker-result');	
+
+	panels.forEach((panel) => {
+		panel.style.display = "block";
+		const name = panel.querySelector('.ms-Persona-primaryText').innerHTML.toLowerCase();
+		console.debug("oninput", filter, name);				
+		
+		if (filter.length > 0 && name.indexOf(filter) == -1) {
+			panel.style.display = "none";
+		}				
+	});		
 }
 
 function formatPhoneNumber(phone) {
