@@ -178,6 +178,13 @@ async function setupApp()	{
 		});
 		
 		const filterList = document.querySelector("#filterList");
+
+		filterList.addEventListener("input", async (ev) => {
+            const panels = document.querySelectorAll('.ms-PeoplePicker-result');	
+			panels.forEach((panel) => {
+				panel.style.display = "block";
+			});				
+		})
 		
 		filterList.addEventListener("input", async (ev) => {
 			const filter = filterList.value.toLowerCase();
