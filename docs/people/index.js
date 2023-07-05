@@ -119,13 +119,15 @@ async function setupApp()	{
 			let accum = "";
 			
 			for (let phone of person.phones) {
-				const numberObjEvt = libphonenumber.parsePhoneNumber(phone.number, "US");				
+				//const numberObjEvt = libphonenumber.parsePhoneNumber(phone.number, "US");				
 
-				if (numberObjEvt.isValid()) {				
+				/*if (numberObjEvt.isValid()) {				
 					const phoneNumber = numberObjEvt.format('E.164');		
 					const formattedPhoneNumber = numberObjEvt.format('IDD', {fromCountry: 'GB'});
 					accum += (phoneNumber + " ");					
-				}
+				}*/
+				
+				accum += (phone.number + " ");
 			}
 
 			if (accum.length > 0) {

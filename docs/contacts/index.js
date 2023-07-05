@@ -185,9 +185,10 @@ async function setupApp()	{
 
 			panels.forEach((panel) => {
 				panel.style.display = "block";
-				const name = panel.querySelector('.ms-Persona-primaryText').innerHTML.toLowerCase();			
+				const name = panel.querySelector('.ms-Persona-primaryText').innerHTML.toLowerCase();
+				console.debug("oninput", filter, name);				
 				
-                if (filter.length > 1 && name.indexOf(filter) == -1) {
+                if (filter.length > 0 && name.indexOf(filter) == -1) {
 					panel.style.display = "none";
 				}				
 			});				
@@ -196,16 +197,20 @@ async function setupApp()	{
 }
 
 function formatPhoneNumber(phone) {
-	let phoneNumber = "";
-	
+	let phoneNumber = phone;
+	/*
 	if (phone) {
-		const numberObjEvt = libphonenumber.parsePhoneNumber(phone, "US");				
+		try {
+			const numberObjEvt = libphonenumber.parsePhoneNumber(phone, ""), "US");				
 
-		if (numberObjEvt.isValid()) {				
-			phoneNumber = numberObjEvt.format('E.164') + " ";		
-			const formattedPhoneNumber = numberObjEvt.format('IDD', {fromCountry: 'GB'});				
+			if (numberObjEvt.isValid()) {				
+				phoneNumber = numberObjEvt.format('E.164') + " ";					
+			}
+		} catch (e) {
+			console.warn("formatPhoneNumber - bad phone number", phone, e);
 		}
-	}		
+	}
+	*/	
 	return phoneNumber;
 }
 
