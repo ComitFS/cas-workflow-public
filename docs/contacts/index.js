@@ -131,7 +131,7 @@ async function setupApp()	{
 				resultGroup.appendChild(ele);
 				ele.outerHTML = `
 				  <div class="ms-PeoplePicker-result" tabindex="1">
-					<div class="ms-Persona ms-Persona">
+					<div class="ms-Persona ms-Persona--sm">
 					  <div class="ms-Persona-imageArea">
 						<div class="ms-Persona-initials ms-Persona-initials--blue">${getInitials(person.displayName)}</div>
 					  </div>
@@ -176,6 +176,22 @@ async function setupApp()	{
 				}					
 			}			
 		});
+		
+		const filterList = document.querySelector("#filterList");
+		
+		filterList.addEventListener("input", async (ev) => {
+			const filter = filterList.value.toLowerCase();
+            const panels = document.querySelectorAll('.ms-PeoplePicker-result');	
+
+			panels.forEach((panel) => {
+				panel.style.display = "block";
+				const name = panel.querySelector('.ms-Persona-primaryText').innerHTML.toLowerCase();			
+				
+                if (filter.length > 1 && name.indexOf(filter) == -1) {
+					panel.style.display = "none";
+				}				
+			});				
+		})		
 	}
 }
 
