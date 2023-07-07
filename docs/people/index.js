@@ -127,7 +127,7 @@ async function setupApp()	{
 					accum += (phoneNumber + " ");					
 				}*/
 				
-				accum += (phone.number + " ");
+				accum += (phone.number.replaceAll(" ", "") + " ");
 			}
 
 			if (accum.length > 0) {
