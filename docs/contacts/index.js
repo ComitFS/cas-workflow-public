@@ -205,7 +205,8 @@ function doFilter(filterList) {
 }
 
 function formatPhoneNumber(phone) {
-	let phoneNumber = phone.replaceAll(" ", "");
+	let phoneNumber = "";
+	if (phone) phoneNumber = phone.replaceAll(" ", "");
 	/*
 	if (phone) {
 		try {
