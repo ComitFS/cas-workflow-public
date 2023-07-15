@@ -182,9 +182,10 @@ async function setupApp()	{
 			const url = `javascript:joinMeeting('${meeting.url}', '${title}', '${start}')`;
 			
 			config.events.push({title, url, start});
-		}		
+		}
+
 		calendar = new FullCalendar.Calendar(calendarEl, config);
-		calendar.render();
+		calendar.render();		
 	}
 }
 
