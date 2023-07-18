@@ -3,7 +3,7 @@ window.onload = function() {
 
   // the following lines will be replaced by docker/configurator, when it runs in a docker-container
   window.ui = SwaggerUIBundle({
-    url: location.host.indexOf("comitfs.github.io") > -1 ? "https://localhost:7443/teams/api/swagger.json" : location.protocol + "//" + location.host + "/teams/api/swagger.json",
+    url: location.host.indexOf("comitfs.github.io") > -1 ? "https://do.comitfs.com/teams/api/swagger.json" : location.protocol + "//" + location.host + "/teams/api/swagger.json",
     dom_id: '#swagger-ui',
     deepLinking: true,
     presets: [
