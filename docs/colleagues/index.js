@@ -119,13 +119,14 @@ async function setupApp()	{
 			
 			for (let peer of colleague.peers) {
 				//const phoneNo = formatPhoneNumber(peer.teams_phone);
+				const photo = peer.photo ? peer.photo : getInitials(peer.name);
 				
 				if (peer.teams_id && !peer.teams_id.startsWith("8:acs:") && peer.email && peer.email.trim().length > 0) {
 					peers += `
 					  <div class="ms-PeoplePicker-result" tabindex="1">
 						<div class="ms-Persona ms-Persona--sm">
 						  <div class="ms-Persona-imageArea">
-							<div class="ms-Persona-initials ms-Persona-initials--blue">${getInitials(peer.name)}</div>
+							<div class="ms-Persona-initials ms-Persona-initials--blue">${photo}</div>
 						  </div>
 						  <div class="ms-Persona-presence">
 						  </div>
