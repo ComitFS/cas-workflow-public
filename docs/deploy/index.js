@@ -24,9 +24,9 @@ var cas_workflow_api = (function(api)
 			const config = await response.json();			
 			console.info("handleCredentials config", config);
 				
-			url = host + "/teams/api/openlink/config/properties";	
-			response = await fetch(url, {method: "GET", headers: {authorization}});
-			const property = await response.json();	
+			//url = host + "/teams/api/openlink/config/properties";	
+			//response = await fetch(url, {method: "GET", headers: {authorization}});
+			const property = {}; //await response.json();	
 			console.log("User properties", property);		
 
 			const payload = {action: 'config', config, property, host};
