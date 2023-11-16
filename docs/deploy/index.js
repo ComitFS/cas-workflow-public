@@ -75,7 +75,9 @@ var cas_workflow_api = (function(api)
 			const payload = {action: 'config', config, property, host};
 			configData = JSON.stringify(payload);
 
-			console.debug("handleCredentials", configData);		
+			console.debug("handleCredentials", configData);	
+
+			cas_workflow_api.configure();			
 		}			
 	}
 
