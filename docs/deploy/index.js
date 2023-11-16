@@ -10,10 +10,17 @@ var cas_workflow_api = (function(api)
     window.addEventListener("load", function()  {
 		console.debug("window.load", window.location.hostname, window.location.origin);
 
+		const username =  urlParam("i");
+		const password = urlParam("t");		
+		handleCredentials(username, password);
+
+/*
 		const username = sessionStorage.getItem("cas.workflow.user");
 		const password = sessionStorage.getItem("cas.workflow.password");	
 
 		if (!username || !password) {
+			registerUser();
+			
 			WebAuthnGoJS.CreateContext(JSON.stringify({RPDisplayName: "CAS Workflow", RPID: window.location.hostname, RPOrigin: window.location.origin}), (err, val) => {
 				if (err) {
 					handleError(err);
@@ -30,10 +37,11 @@ var cas_workflow_api = (function(api)
 					console.error("window.load credential error", err);	
 					registerUser();					
 				});	
-			});		
+			});				
 		} else {
 			handleCredentials(username, password);
 		}
+*/		
     });
 	
 	function handleError(err) {
