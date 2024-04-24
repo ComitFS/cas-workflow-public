@@ -1,0 +1,222 @@
+.dial-pad-wrap {
+  position: relative;
+  height: 88%;
+  background: #ecf0f1;
+  box-shadow: -1px 6px 13px 0 #3333331f, -1px 1px 2px 0 #3333331f;
+  border-radius: 20px;
+}
+  .dial-pad-wrap .dial-pad {
+    height: 100%;
+    padding: 0px; }
+    .dial-pad-wrap .dial-pad .dailed-screen {
+      background-color: #fff;
+      text-align: center;
+      padding: 5px 0px;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px; }
+  .dial-pad-wrap .dial-screen {
+    height: 50px;
+    padding: 0 15px;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 50px;
+    text-align: center;
+    background: #fff;
+    overflow-x: auto;
+    overflow-y: hidden; }
+  .dial-pad-wrap .call-table {
+    overflow-y: auto;
+    min-height: 385px;
+    max-height: 385px; }
+    .dial-pad-wrap .call-table .call-list {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 5px;
+      margin: 10px; }
+      .dial-pad-wrap .call-table .call-list .icon {
+        background-color: #ecf0f1;
+        border-radius: 10px;
+        padding: 5px;
+        width: 60px;
+        height: 60px;
+        color: #4caf50; }
+      .dial-pad-wrap .call-table .call-list .call-list-details {
+        padding: 5px;
+        font-size: 12px; }
+        .dial-pad-wrap .call-table .call-list .call-list-details .time {
+          color: #2196f3;
+          text-align: right;
+          font-size: 9px; }
+        .dial-pad-wrap .call-table .call-list .call-list-details .actions .actions-list {
+          text-align: right; }
+          .dial-pad-wrap .call-table .call-list .call-list-details .actions .actions-list .progress {
+            display: flex;
+            height: 0.2rem; }
+          .dial-pad-wrap .call-table .call-list .call-list-details .actions .actions-list span {
+            margin-right: 10px; }
+            .dial-pad-wrap .call-table .call-list .call-list-details .actions .actions-list span:last-child {
+              margin: 0px; }
+        .dial-pad-wrap .call-table .call-list .call-list-details .phone-numbers {
+          font-size: 10px; }
+          .dial-pad-wrap .call-table .call-list .call-list-details .phone-numbers span {
+            margin-right: 4px; }
+  .dial-pad-wrap .call-table.search-result {
+    overflow-y: auto;
+    min-height: 263px;
+    max-height: 263px; }
+  .dial-pad-wrap .line-table {
+    overflow-y: auto;
+    min-height: 350px;
+    width: 100%;
+    max-height: 350px; }
+    .dial-pad-wrap .line-table .line-list {
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 5px;
+      margin: 10px; }
+      .dial-pad-wrap .line-table .line-list .icon {
+        margin-right: 5px;
+        color: #4caf50; }
+      .dial-pad-wrap .line-table .line-list .add-icon {
+        text-align: right;
+        font-size: 12px; }
+    .dial-pad-wrap .line-table .line-list-details .label {
+      font-size: 13px; }
+  .dial-pad-wrap .record-sec {
+    margin: 60px 0px; }
+    .dial-pad-wrap .record-sec .time {
+      font-size: 50px; }
+    .dial-pad-wrap .record-sec .record-icon {
+      font-size: 9rem;
+      margin: 20px 0px; }
+  .dial-pad-wrap .save-rec {
+    min-height: 350px; }
+    .dial-pad-wrap .save-rec .save-block {
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 5px;
+      margin: 10px; }
+  .dial-pad-wrap .search-sec .search-block {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 10px; }
+  .dial-pad-wrap .record-table {
+    overflow-y: auto;
+    min-height: 398px;
+    width: 100%;
+    max-height: 398px; }
+    .dial-pad-wrap .record-table .record-list {
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 5px;
+      margin: 10px; }
+      .dial-pad-wrap .record-table .record-list .icon {
+        margin-right: 5px;
+        color: #4caf50; }
+      .dial-pad-wrap .record-table .record-list .actions {
+        text-align: right;
+        font-size: 12px; }
+        .dial-pad-wrap .record-table .record-list .actions span {
+          margin-right: 5px; }
+    .dial-pad-wrap .record-table .record-list-details .label {
+      font-size: 13px; }
+  .dial-pad-wrap .dailed-screen svg:hover,
+  .dial-pad-wrap .actions svg:hover,
+  .dial-pad-wrap .add-icon svg:hover,
+  .dial-pad-wrap .record-actions svg:hover {
+    color: #479AC8;
+    cursor: pointer; }
+  .dial-pad-wrap .dial-table {
+    width: 100%;
+    display: table;
+    padding: 10px; }
+  .dial-pad-wrap .dial-table-row {
+    display: table-row;
+    width: 100%;
+    display: table; }
+  .dial-pad-wrap .dial-table-col {
+    cursor: default;
+    width: 33.333333%;
+    text-align: center;
+    display: table-cell;
+    vertical-align: top; }
+    .dial-pad-wrap .dial-table-col .dial-key {
+      font-size: 22px;
+      font-weight: 400;
+      min-height: 30px;
+      line-height: 30px; }
+  .dial-pad-wrap .del-btn.dial-key-wrap {
+    margin-bottom: 0px;
+    cursor: pointer; }
+    .dial-pad-wrap .del-btn.dial-key-wrap:hover {
+      color: #479AC8;
+      background: transparent;
+      width: auto;
+      height: auto;
+      margin: 0 auto;
+      border-radius: 100%; }
+  .dial-pad-wrap .main-button {
+    margin-top: 10px; }
+  .dial-pad-wrap .dial-key-wrap {
+    margin-bottom: 10px; }
+    .dial-pad-wrap .dial-key-wrap:hover {
+      color: #fff;
+      background: #479AC8;
+      width: 60px;
+      height: 60px;
+      margin: 0 auto;
+      border-radius: 100%;
+      cursor: pointer; }
+      .dial-pad-wrap .dial-key-wrap:hover .dial-sub-key {
+        color: #eee; }
+  .dial-pad-wrap .no-sub-key .dial-key {
+    min-height: 40px;
+    line-height: 40px;
+    border-radius: 100%;
+    background-color: #42cd39;
+    width: 40px;
+    color: #fff;
+    margin: 0px auto 20px auto;
+    cursor: pointer; }
+  .dial-pad-wrap .dial-sub-key {
+    color: #aaa;
+    font-size: 14px;
+    text-transform: uppercase; }
+  .dial-pad-wrap .dial-key-wrap.active {
+    color: #eee;
+    background: #479AC8; }
+    .dial-pad-wrap .dial-key-wrap.active .dial-sub-key {
+      color: #eee; }
+  .dial-pad-wrap .no-sub-key .dial-sub-key {
+    display: none; }
+  .dial-pad-wrap .header-sec {
+    padding: 13px 20px; }
+    .dial-pad-wrap .header-sec .filter .dropdown-menu {
+      padding: 0px; }
+    .dial-pad-wrap .header-sec .filter .dropdown-item {
+      font-size: 12px;
+      padding: 0.25rem; }
+      .dial-pad-wrap .header-sec .filter .dropdown-item span {
+        margin-right: 5px; }
+  .dial-pad-wrap .headset {
+    padding: 10px;
+    font-size: 12px; }
+    .dial-pad-wrap .headset .status {
+      color: green;
+      padding: 5px;
+      background-color: #fff; }
+    .dial-pad-wrap .headset .left-headset {
+      background-color: #479AC8;
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
+      color: #fff;
+      padding: 5px;
+      cursor: pointer; }
+    .dial-pad-wrap .headset .right-headset {
+      background-color: #479AC8;
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+      color: #fff;
+      padding: 5px;
+      cursor: pointer; }

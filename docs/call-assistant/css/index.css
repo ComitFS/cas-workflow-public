@@ -1,0 +1,152 @@
+/* styles.css */
+body {
+    /*font-family: 'Arial', sans-serif;*/
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+	overflow: hidden;
+}
+
+.header {
+    background-color: #ffffff;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
+.body, .call-search {
+    margin: 10px;	
+}
+
+.status-icon {
+    width: 20px;
+    height: 20px;
+    background-color: green;
+    border-radius: 50%;
+    position: absolute;
+    left: 20px;
+    top: 30px;
+}
+
+.client-info h1 {
+    margin: 0;
+}
+
+.client-info p {
+    margin: 5px 0 0;
+}
+
+.tabs {
+    padding: 10px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.tab {
+    cursor: pointer;
+}
+
+.tab:focus {
+    outline: none;
+}
+
+.main-content {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.notes-section textarea {
+    width: 100%; /* Makes the textarea take the full width of its container */
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #cccccc;
+    /*font-family: 'Arial', sans-serif;*/
+    font-size: 14px;
+}
+
+.action-list h2 {
+    margin-top: 0;
+}
+
+label {
+    display: block;
+    margin: 10px 0;
+}
+
+.input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.call-action {
+	margin-left: 10px;
+}
+
+.internal-collab, .end-call, .view-client, .accept-call, .decline-call {
+    cursor: pointer;
+}
+.end-call {
+	--neutral-fill-rest: red;
+    --neutral-fill-hover: blue; 	
+	color: white;
+}
+#accept-call, #accept-suggestion {
+	--neutral-fill-rest: green; 
+	--neutral-fill-hover: blue; 
+	margin-right: 20px;
+	color: white;	
+}
+#decline-call, #decline-suggestion {
+	--neutral-fill-rest: red; 
+	--neutral-fill-hover: blue; 
+	color: white;	
+}
+#return-call, #make-next-call {
+	--neutral-fill-rest: purple; 
+	--neutral-fill-hover: blue; 
+	color: white;	
+}
+#request-join-call, #make-call {
+	--neutral-fill-rest: green; 
+	--neutral-fill-hover: blue; 
+	color: white;	
+}
+#dial-pad {
+	background-color: white;
+}
+
+.call-held {
+    --person-background-color: #fafaee;
+}
+
+.call-connected {
+    --person-background-color: #eefaee;
+}
+
+.call-conferenced {
+    --person-background-color: #eefafa;
+}
+
+.call-disconnected {
+    --person-background-color: #ffffff;
+}
+
+fluent-tab {
+	margin-left: 20px
+}
+fluent-tabs {
+    background-color: #f8f8f8;	
+}
+fluent-anchor {
+	margin-top: 10px;
+	margin-bottom: 10px;	
+}
+fluent-text-area  {
+	width: 500px;
+}

@@ -1,12 +1,4402 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Call Assistant</title>
+<html lang="en" dir="ltr">
+  <head>
+    <style data-merge-styles="true"></style>
+    <!-- <link rel="manifest" href="/tasks/manifest.json"> -->
+    <!-- Apple -->
+    <style data-merge-styles="true"></style>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="To Do">
+    <meta name="apple-itunes-app" content="app-id=1212616790">
+    <meta name="application-name" content="To Do">
+    <meta name="description" content="Microsoft To Do">
+    <!-- Windows -->
+    <meta name="msapplication-TileImage" content="">
+    <meta name="msapplication-starturl" content="/">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="referrer" content="never">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="https://res.cdn.office.net/teams-js/2.21.0/js/MicrosoftTeams.min.js"></script>	
-    <script src='./index.js'></script> 		
-</head>
-<body>
- </body>
+    <meta name="physicalRing" content="WW">
+    <meta name="physicalEnvironment" content="Prod">
+    <meta name="authenticationUrl" content="https://login.microsoftonline.com">
+    <meta name="graphUrl" content="https://graph.microsoft.com">
+    <meta name="shellUrl" content="https://webshell.suite.office.com">
+    <meta name="ecsUrl" content="https://config.edge.skype.com">
+    <meta name="resourceUrl" content="https://outlook.office.com">
+    <meta name="substrateApiUrl" content="https://substrate.office.com">
+    <meta name="cdnUrl" content="//res.cdn.office.net/">
+    <meta name="devCdnRootUrl" content="">
+    <meta name="telemetryUrl" content="https://browser.events.data.microsoft.com/OneCollector/1.0/">
+    <base href="/tasks/">
+    <title>CAS Call Assistant - Call Lists</title>
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://to-do.microsoft.com">
+    <meta property="og:site_name" content="To Do">
+    <meta property="og:title" content="Microsoft To Do">
+    <meta property="og:image" content="https://res.cdn.office.net/todo/1630603_2.116.1/preview.png">
+    <link rel="apple-touch-icon" sizes="152X152" href="https://res.cdn.office.net/todo/1630603_2.116.1/touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="167X167" href="https://res.cdn.office.net/todo/1630603_2.116.1/touch-icon-167x167.png">
+    <link rel="apple-touch-icon" sizes="180X180" href="https://res.cdn.office.net/todo/1630603_2.116.1/touch-icon-180x180.png">
+    <link rel="icon" type="image/x-icon" href="/cas-workflow-public/call-assistant/img/comitfs-32.png">
+    
+    <link href="https://res.cdn.office.net/todo/1630603_2.116.1/standalonepages.css" rel="stylesheet">
+    <link href="https://res.cdn.office.net/todo/1630603_2.116.1/app.css" rel="stylesheet">
+    <link href="https://res.cdn.office.net/todo/1630603_2.116.1/invitation.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://res.cdn.office.net/todo/1630603_2.116.1/officebrowserfeedback/styles/officebrowserfeedback.min.css">
+        
+    <style type="text/css">
+      .c03mzkikP7ZUP6Hiuzky1 {
+        height: 50px
+      }
+
+      ._3GyzBKeNc5SFYaMYNbudM2 {
+        height: 48px
+      }
+    </style>
+    <style data-make-styles-bucket="d"></style>
+    <style data-make-styles-bucket="t"></style>
+    <style type="text/css">
+      .dQ8XLMIyNxl8MAYqMsUZFQ\=\= {
+        width: 100%;
+        height: 50px;
+        display: flex;
+        border-spacing: 0;
+        white-space: nowrap;
+        line-height: normal
+      }
+
+      .dQ8XLMIyNxl8MAYqMsUZFQ\=\= .hpyHhmSe9hmk5gopLr9a5Q\=\=,
+      .dQ8XLMIyNxl8MAYqMsUZFQ\=\= a.rOy\+Hn8kiD5J9v5VDCE3Dg\=\= {
+        vertical-align: top
+      }
+
+      .aU8N30IM3GcKO4KKz8lgNA\=\= {
+        display: none !important
+      }
+
+      .removeFocusOutline :focus {
+        outline: none;
+        box-shadow: none !important
+      }
+
+      .clgiLVKPzugZZns0LiPTqw\=\=,
+      .SXGDf\/jjzN5Yzn8eL0wHjg\=\= {
+        display: block;
+        position: relative;
+        margin: 0;
+        padding: 0;
+        min-width: 48px;
+        text-align: center;
+        cursor: pointer;
+        outline-offset: -1px
+      }
+
+      @media (-ms-high-contrast:active),
+      (forced-colors:active) {
+
+        .clgiLVKPzugZZns0LiPTqw\=\=:focus,
+        .clgiLVKPzugZZns0LiPTqw\=\=:hover+.icon,
+        .SXGDf\/jjzN5Yzn8eL0wHjg\=\=:focus,
+        .SXGDf\/jjzN5Yzn8eL0wHjg\=\=:hover+.icon {
+          -ms-high-contrast-adjust: none;
+          forced-color-adjust: none;
+          background-color: Highlight !important;
+          color: highlightText !important
+        }
+      }
+
+      .clgiLVKPzugZZns0LiPTqw\=\=:hover,
+      .SXGDf\/jjzN5Yzn8eL0wHjg\=\=:hover {
+        -webkit-transition: background-color .467s cubic-bezier(.1, .9, .2, 1) 34ms;
+        transition: background-color .467s cubic-bezier(.1, .9, .2, 1) 34ms
+      }
+
+      .SXGDf\/jjzN5Yzn8eL0wHjg\=\=,
+      .BiD096xkmK8Uxwc5MTuOlw\=\= {
+        display: block;
+        position: relative;
+        margin: 0;
+        padding: 0;
+        min-width: 48px;
+        text-align: center;
+        cursor: default
+      }
+
+      @media (-ms-high-contrast:active),
+      (forced-colors:active) {
+
+        .SXGDf\/jjzN5Yzn8eL0wHjg\=\=:focus,
+        .SXGDf\/jjzN5Yzn8eL0wHjg\=\=:hover+.icon,
+        .BiD096xkmK8Uxwc5MTuOlw\=\=:focus,
+        .BiD096xkmK8Uxwc5MTuOlw\=\=:hover+.icon {
+          -ms-high-contrast-adjust: none;
+          forced-color-adjust: none
+        }
+      }
+
+      .clgiLVKPzugZZns0LiPTqw\=\= {
+        background: transparent;
+        border-width: 0;
+        width: auto;
+        height: 100%;
+        box-sizing: border-box;
+        overflow: visible
+      }
+
+      .clgiLVKPzugZZns0LiPTqw\=\=,
+      .clgiLVKPzugZZns0LiPTqw\=\= span[class*=" ms-Icon--"],
+      .clgiLVKPzugZZns0LiPTqw\=\= span[class^=ms-Icon--] {
+        line-height: 48px
+      }
+
+      @media (-ms-high-contrast:active),
+      (forced-colors:active) {
+
+        .clgiLVKPzugZZns0LiPTqw\=\=:focus+.icon,
+        .clgiLVKPzugZZns0LiPTqw\=\=:hover {
+          -ms-high-contrast-adjust: none;
+          forced-color-adjust: none;
+          background-color: Highlight !important;
+          color: highlightText !important
+        }
+      }
+
+      .BiD096xkmK8Uxwc5MTuOlw\=\= {
+        background: transparent;
+        border-width: 0;
+        width: auto;
+        height: 100%;
+        box-sizing: border-box;
+        line-height: 48px;
+        overflow: visible;
+        cursor: default
+      }
+
+      .BiD096xkmK8Uxwc5MTuOlw\=\= span[class*=" ms-Icon--"],
+      .BiD096xkmK8Uxwc5MTuOlw\=\= span[class^=ms-Icon--] {
+        line-height: 48px
+      }
+
+      @media (-ms-high-contrast:active),
+      (forced-colors:active) {
+
+        .BiD096xkmK8Uxwc5MTuOlw\=\=:focus+.icon,
+        .BiD096xkmK8Uxwc5MTuOlw\=\=:hover {
+          -ms-high-contrast-adjust: none;
+          forced-color-adjust: none
+        }
+      }
+
+      .RGSb\/1c4ex9CM0as0oaLQA\=\= {
+        display: inherit
+      }
+
+      .\/l2PApUbI5EhJK0cmfHXqg\=\= {
+        min-width: 68px
+      }
+
+      .SXGDf\/jjzN5Yzn8eL0wHjg\=\= {
+        line-height: 48px
+      }
+
+      .bfWNEPs24dESqyqDnh\/7tA\=\= {
+        display: inline-block;
+        vertical-align: middle;
+        align-self: center;
+        background-color: currentColor;
+        margin-left: 16px;
+        margin-right: 8px;
+        height: 28px;
+        width: 1px
+      }
+
+      html[dir=rtl] .bfWNEPs24dESqyqDnh\/7tA\=\= {
+        margin-right: 16px;
+        margin-left: 8px
+      }
+
+      .hpyHhmSe9hmk5gopLr9a5Q\=\= {
+        display: inline-block;
+        font-weight: 600;
+        font-family: SegoeUI-SemiBold-final, Segoe UI Semibold, SegoeUI-Regular-final, Segoe UI, "Segoe UI Web (West European)", Segoe, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, Tahoma, Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        line-height: 48px;
+        -webkit-font-smoothing: antialiased
+      }
+
+      .AzzTpbJF15SioND4vylW8A\=\= {
+        box-shadow: none !important
+      }
+
+      .yvHsK6IvuQovPfJmcAYOOg\=\= {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        width: 48px;
+        height: 48px
+      }
+
+      .yvHsK6IvuQovPfJmcAYOOg\=\= a:focus-visible {
+        outline-offset: 11px
+      }
+
+      .yvHsK6IvuQovPfJmcAYOOg\=\= img {
+        width: 24px;
+        height: 24px;
+        top: 12px;
+        left: 12px
+      }
+
+      .UbbNU\+CJSypYHluHed61kg\=\= {
+        display: inline-block;
+        vertical-align: top;
+        font-size: 24px;
+        margin-top: 13px;
+        margin-left: 6px
+      }
+
+      .UbbNU\+CJSypYHluHed61kg\=\=:before {
+        vertical-align: top
+      }
+
+      .q8AbQOBpuy93yBfTeGfNaw\=\= {
+        margin-left: 14px;
+        margin-right: 14px;
+        height: 25px;
+        margin-top: 12px;
+        border-right: 1px solid
+      }
+
+      html[dir=rtl] .UbbNU\+CJSypYHluHed61kg\=\= {
+        margin-left: 0;
+        margin-right: 6px
+      }
+
+      .e\/Vl0j0zHQMhZT1vQ6J\+SQ\=\= {
+        height: 100%;
+        display: flex;
+        vertical-align: middle;
+        outline-offset: -1px;
+        padding: 0 12px 0 8px;
+        text-decoration: none
+      }
+
+      .e\/Vl0j0zHQMhZT1vQ6J\+SQ\=\= a {
+        display: flex;
+        text-decoration: none;
+        color: inherit
+      }
+
+      html[dir=rtl] .e\/Vl0j0zHQMhZT1vQ6J\+SQ\=\= {
+        padding: 0 8px 0 12px
+      }
+
+      ._3rJAyyAtPSCl0uoYr\+wuLA\=\= {
+        line-height: 48px;
+        height: 100%;
+        display: inline-block;
+        vertical-align: top;
+        padding-left: 8px
+      }
+
+      html[dir=rtl] ._3rJAyyAtPSCl0uoYr\+wuLA\=\= {
+        padding-right: 8px;
+        padding-left: 0
+      }
+
+      .rOy\+Hn8kiD5J9v5VDCE3Dg\=\= {
+        max-width: 200px;
+        max-height: 48px;
+        overflow: hidden;
+        line-height: 48px;
+        font-size: 0;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center
+      }
+
+      .rOy\+Hn8kiD5J9v5VDCE3Dg\=\=:focus-visible {
+        outline-offset: -2px
+      }
+
+      .rOy\+Hn8kiD5J9v5VDCE3Dg\=\= img {
+        max-width: 200px;
+        max-height: 48px;
+        border-style: none !important;
+        vertical-align: middle
+      }
+
+      .tP6UdQAxefBu0rqv2chMeg\=\= img {
+        width: auto;
+        height: 24px
+      }
+
+      @media (-ms-high-contrast:none),
+      screen and (-ms-high-contrast:active) {
+        .tP6UdQAxefBu0rqv2chMeg\=\= img {
+          max-width: 200px;
+          max-height: none;
+          min-width: 160px;
+          width: 100%;
+          height: 24px
+        }
+      }
+
+      @media (min-width:640px) {
+        .H7wt1\/T7kbyfSRNZ2JzVLA\=\= {
+          max-width: 176px;
+          text-decoration: none
+        }
+      }
+
+      .\/B1n\/h6ibI5wVz7jdDIP0A\=\= {
+        height: 100%;
+        max-width: 176px;
+        display: flex
+      }
+
+      .HcKMEYhmL4uLyG\+K4hy8pg\=\= {
+        text-align: right;
+        vertical-align: middle;
+        display: table-cell;
+        overflow: hidden;
+        max-width: 120px;
+        font-size: 14px;
+        font-family: SegoeUI-SemiLight-final, Segoe UI Semilight, SegoeUI-Regular-final, Segoe UI, "Segoe UI Web (West European)", Segoe, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, Tahoma, Helvetica, Arial, sans-serif;
+        text-overflow: ellipsis;
+        word-break: break-all;
+        white-space: nowrap;
+        margin-left: 4px
+      }
+
+      .HcKMEYhmL4uLyG\+K4hy8pg\=\=>span {
+        padding-left: 4px;
+        display: none
+      }
+
+      .U6Cnfo0RjXJ8UEwXhZV8mQ\=\= {
+        text-align: left;
+        display: block;
+        overflow: hidden;
+        max-width: 160px;
+        font-size: 13px;
+        font-family: SegoeUI-Regular-final, Segoe UI, "Segoe UI Web (West European)", Segoe, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, Tahoma, Helvetica, Arial, sans-serif;
+        text-overflow: ellipsis;
+        word-break: break-all;
+        white-space: nowrap;
+        line-height: 48px
+      }
+
+      .U6Cnfo0RjXJ8UEwXhZV8mQ\=\=>span {
+        padding-left: 12px;
+        padding-right: 4px;
+        display: none
+      }
+
+      html[dir=rtl] .HcKMEYhmL4uLyG\+K4hy8pg\=\= {
+        text-align: left
+      }
+
+      html[dir=rtl] .HcKMEYhmL4uLyG\+K4hy8pg\=\=>span {
+        padding-left: 0;
+        padding-right: 4px
+      }
+
+      html[dir=rtl] .U6Cnfo0RjXJ8UEwXhZV8mQ\=\=>span {
+        padding-left: 4px;
+        padding-right: 12px
+      }
+
+      .NK6YQ060InuEH1W1LbFJ4Q\=\= {
+        display: table-cell;
+        border-left-width: 0 !important;
+        vertical-align: middle;
+        display: flex;
+        align-items: center;
+        justify-content: center
+      }
+
+      html[dir=rtl] .NK6YQ060InuEH1W1LbFJ4Q\=\= {
+        border-right-width: 0 !important
+      }
+
+      .x03Rvs3MQ7Id948TyiIkCQ\=\= {
+        overflow: hidden;
+        display: inline-block;
+        border-radius: 50%;
+        vertical-align: middle;
+        font-size: 6px
+      }
+
+      .x03Rvs3MQ7Id948TyiIkCQ\=\= .ms-Persona {
+        right: 2px;
+        top: -2px
+      }
+
+      .x03Rvs3MQ7Id948TyiIkCQ\=\= .ms-Persona .ms-Image-image {
+        overflow: hidden;
+        top: 0
+      }
+
+      html[dir=rtl] .x03Rvs3MQ7Id948TyiIkCQ\=\= .ms-Persona {
+        left: 2px;
+        right: 0
+      }
+
+      .\+gKDxCURR5euwhVW2NK21g\=\= {
+        overflow: hidden;
+        display: inline-block;
+        border: thin solid;
+        border-radius: 50%;
+        vertical-align: middle;
+        font-size: 6px
+      }
+
+      .u85SIhgERLuqcMUbt2s66A\=\= {
+        border-radius: 50%;
+        line-height: 1 !important
+      }
+
+      .u85SIhgERLuqcMUbt2s66A\=\=:before {
+        margin-top: .4em
+      }
+
+      .SPrdsmCpZYS0tgvvd0cRgQ\=\= {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        font-family: SegoeUI-Regular-final, Segoe UI, "Segoe UI Web (West European)", Segoe, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, Tahoma, Helvetica, Arial, sans-serif;
+        border: 1px solid;
+        box-sizing: border-box;
+        border-radius: 50%;
+        line-height: 1 !important
+      }
+
+      .SPrdsmCpZYS0tgvvd0cRgQ\=\=:before {
+        margin-top: .4em
+      }
+
+      .x03Rvs3MQ7Id948TyiIkCQ\=\=,
+      .u85SIhgERLuqcMUbt2s66A\=\=,
+      .\+gKDxCURR5euwhVW2NK21g\=\= {
+        width: 32px;
+        height: 32px
+      }
+
+      .ieRo\/OqPYB7kffRFKx2c9w\=\= {
+        align-items: center;
+        justify-content: space-between;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        height: 100%
+      }
+
+      ._25CqRVKwE38X5RHExD4IyA\=\= {
+        display: flex;
+        flex: 1 0 auto;
+        height: 100%
+      }
+
+      ._1tJrEjbv1Qkvxc\/P7r3tZg\=\= {
+        display: flex;
+        justify-content: flex-start
+      }
+
+      .S3TWafQDKD\+3UQM7Jnziug\=\= {
+        display: flex;
+        flex: 1 0 auto;
+        justify-content: center
+      }
+
+      ._16lUvVUJZw68Zc4vFo8oMQ\=\= {
+        display: flex;
+        justify-content: flex-end
+      }
+
+      .HV6lC9J8OUFpKJjfAr1Asw\=\= {
+        display: flex;
+        flex: 0 0 auto
+      }
+
+      .Bh46b1rd8BrU4zolL9RzUg\=\= {
+        height: 100%;
+        line-height: 48px;
+        display: flex
+      }
+
+      .hdkWCzc6sRQuamFV07Y3xQ\=\= {
+        right: 24px;
+        top: 8px
+      }
+
+      html[dir=rtl] .hdkWCzc6sRQuamFV07Y3xQ\=\= {
+        right: 0;
+        left: 24px
+      }
+
+      @-moz-document url-prefix() {
+        .clgiLVKPzugZZns0LiPTqw\=\=:focus {
+          outline: 1px dotted
+        }
+      }
+
+      #O365_NavHeader abbr,
+      #O365_NavHeader address,
+      #O365_NavHeader article,
+      #O365_NavHeader aside,
+      #O365_NavHeader audio,
+      #O365_NavHeader b,
+      #O365_NavHeader blockquote,
+      #O365_NavHeader body,
+      #O365_NavHeader body :focus,
+      #O365_NavHeader body div,
+      #O365_NavHeader caption,
+      #O365_NavHeader cite,
+      #O365_NavHeader code,
+      #O365_NavHeader dd,
+      #O365_NavHeader del,
+      #O365_NavHeader details,
+      #O365_NavHeader dfn,
+      #O365_NavHeader dl,
+      #O365_NavHeader dt,
+      #O365_NavHeader em,
+      #O365_NavHeader fieldset,
+      #O365_NavHeader figure,
+      #O365_NavHeader footer,
+      #O365_NavHeader form,
+      #O365_NavHeader h1,
+      #O365_NavHeader h2,
+      #O365_NavHeader h3,
+      #O365_NavHeader h4,
+      #O365_NavHeader h5,
+      #O365_NavHeader h6,
+      #O365_NavHeader header,
+      #O365_NavHeader html,
+      #O365_NavHeader i,
+      #O365_NavHeader iframe,
+      #O365_NavHeader img,
+      #O365_NavHeader ins,
+      #O365_NavHeader kbd,
+      #O365_NavHeader label,
+      #O365_NavHeader legend,
+      #O365_NavHeader li,
+      #O365_NavHeader mark,
+      #O365_NavHeader menu,
+      #O365_NavHeader nav,
+      #O365_NavHeader object,
+      #O365_NavHeader ol,
+      #O365_NavHeader p,
+      #O365_NavHeader pre,
+      #O365_NavHeader q,
+      #O365_NavHeader samp,
+      #O365_NavHeader section,
+      #O365_NavHeader small,
+      #O365_NavHeader strong,
+      #O365_NavHeader sub,
+      #O365_NavHeader summary,
+      #O365_NavHeader sup,
+      #O365_NavHeader table,
+      #O365_NavHeader tbody,
+      #O365_NavHeader td,
+      #O365_NavHeader tfoot,
+      #O365_NavHeader th,
+      #O365_NavHeader thead,
+      #O365_NavHeader time,
+      #O365_NavHeader tr,
+      #O365_NavHeader ul,
+      #O365_NavHeader var,
+      #O365_NavHeader video,
+      #O365fpcontainerid abbr,
+      #O365fpcontainerid address,
+      #O365fpcontainerid article,
+      #O365fpcontainerid aside,
+      #O365fpcontainerid audio,
+      #O365fpcontainerid b,
+      #O365fpcontainerid blockquote,
+      #O365fpcontainerid body,
+      #O365fpcontainerid body :focus,
+      #O365fpcontainerid body div,
+      #O365fpcontainerid caption,
+      #O365fpcontainerid cite,
+      #O365fpcontainerid code,
+      #O365fpcontainerid dd,
+      #O365fpcontainerid del,
+      #O365fpcontainerid details,
+      #O365fpcontainerid dfn,
+      #O365fpcontainerid dl,
+      #O365fpcontainerid dt,
+      #O365fpcontainerid em,
+      #O365fpcontainerid fieldset,
+      #O365fpcontainerid figure,
+      #O365fpcontainerid footer,
+      #O365fpcontainerid form,
+      #O365fpcontainerid h1,
+      #O365fpcontainerid h2,
+      #O365fpcontainerid h3,
+      #O365fpcontainerid h4,
+      #O365fpcontainerid h5,
+      #O365fpcontainerid h6,
+      #O365fpcontainerid header,
+      #O365fpcontainerid html,
+      #O365fpcontainerid i,
+      #O365fpcontainerid iframe,
+      #O365fpcontainerid img,
+      #O365fpcontainerid ins,
+      #O365fpcontainerid kbd,
+      #O365fpcontainerid label,
+      #O365fpcontainerid legend,
+      #O365fpcontainerid li,
+      #O365fpcontainerid mark,
+      #O365fpcontainerid menu,
+      #O365fpcontainerid nav,
+      #O365fpcontainerid object,
+      #O365fpcontainerid ol,
+      #O365fpcontainerid p,
+      #O365fpcontainerid pre,
+      #O365fpcontainerid q,
+      #O365fpcontainerid samp,
+      #O365fpcontainerid section,
+      #O365fpcontainerid small,
+      #O365fpcontainerid strong,
+      #O365fpcontainerid sub,
+      #O365fpcontainerid summary,
+      #O365fpcontainerid sup,
+      #O365fpcontainerid table,
+      #O365fpcontainerid tbody,
+      #O365fpcontainerid td,
+      #O365fpcontainerid tfoot,
+      #O365fpcontainerid th,
+      #O365fpcontainerid thead,
+      #O365fpcontainerid time,
+      #O365fpcontainerid tr,
+      #O365fpcontainerid ul,
+      #O365fpcontainerid var,
+      #O365fpcontainerid video,
+      .o365shell-popup abbr,
+      .o365shell-popup address,
+      .o365shell-popup article,
+      .o365shell-popup aside,
+      .o365shell-popup audio,
+      .o365shell-popup b,
+      .o365shell-popup blockquote,
+      .o365shell-popup body,
+      .o365shell-popup body :focus,
+      .o365shell-popup body div,
+      .o365shell-popup caption,
+      .o365shell-popup cite,
+      .o365shell-popup code,
+      .o365shell-popup dd,
+      .o365shell-popup del,
+      .o365shell-popup details,
+      .o365shell-popup dfn,
+      .o365shell-popup dl,
+      .o365shell-popup dt,
+      .o365shell-popup em,
+      .o365shell-popup fieldset,
+      .o365shell-popup figure,
+      .o365shell-popup footer,
+      .o365shell-popup form,
+      .o365shell-popup h1,
+      .o365shell-popup h2,
+      .o365shell-popup h3,
+      .o365shell-popup h4,
+      .o365shell-popup h5,
+      .o365shell-popup h6,
+      .o365shell-popup header,
+      .o365shell-popup html,
+      .o365shell-popup i,
+      .o365shell-popup iframe,
+      .o365shell-popup img,
+      .o365shell-popup ins,
+      .o365shell-popup kbd,
+      .o365shell-popup label,
+      .o365shell-popup legend,
+      .o365shell-popup li,
+      .o365shell-popup mark,
+      .o365shell-popup menu,
+      .o365shell-popup nav,
+      .o365shell-popup object,
+      .o365shell-popup ol,
+      .o365shell-popup p,
+      .o365shell-popup pre,
+      .o365shell-popup q,
+      .o365shell-popup samp,
+      .o365shell-popup section,
+      .o365shell-popup small,
+      .o365shell-popup strong,
+      .o365shell-popup sub,
+      .o365shell-popup summary,
+      .o365shell-popup sup,
+      .o365shell-popup table,
+      .o365shell-popup tbody,
+      .o365shell-popup td,
+      .o365shell-popup tfoot,
+      .o365shell-popup th,
+      .o365shell-popup thead,
+      .o365shell-popup time,
+      .o365shell-popup tr,
+      .o365shell-popup ul,
+      .o365shell-popup var,
+      .o365shell-popup video {
+        box-sizing: content-box
+      }
+    </style>
+    <style type="text/css">
+      .mssxsb-searchBox {
+        display: flex;
+        position: var(--mssxsb-pos);
+        font: 14px SegoeUI-Regular-final, Segoe UI, "Segoe UI Web (West European)", Segoe, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, Tahoma, Helvetica, Arial, sans-serif;
+        color: var(--mssxsb-color);
+        background: var(--mssxsb-bg);
+        border-radius: var(--mssxsb-borderRadius);
+        height: 32px;
+        text-align: left;
+        align-self: center;
+        box-shadow: var(--mssxsb-shadow);
+        width: var(--mssxsb-width);
+        max-width: var(--mssxsb-maxWidth);
+        margin: var(--mssxsb-margin, auto)
+      }
+
+      .mssxsb-searchBox:hover,
+      .mssxsb-searchBox.mssxsb-active,
+      .mssxsb-searchBox[active=true] {
+        box-shadow: var(--mssxsb-shadowHover)
+      }
+
+      .mssxsb-searchBox.mssxsb-filled,
+      .mssxsb-searchBox[filled=true] {
+        background-color: var(--mssxsb-bgHover)
+      }
+
+      .mssxsb-form {
+        display: flex;
+        flex: 1 1 100%;
+        height: 100%;
+        border-radius: inherit
+      }
+
+      @media screen and (-ms-high-contrast:white-on-black) {
+        .mssxsb-form {
+          border: 1px solid #fff
+        }
+      }
+
+      @media screen and (-ms-high-contrast:black-on-white) {
+        .mssxsb-form {
+          border: 1px solid #000
+        }
+      }
+
+      .mssxsb-input {
+        font: inherit;
+        flex: 1 1 0;
+        color: inherit !important;
+        background: transparent;
+        border: 0;
+        border-radius: inherit;
+        padding: 0;
+        outline: 0
+      }
+
+      .mssxsb-input::-webkit-search-cancel-button,
+      .mssxsb-input::-webkit-search-decoration,
+      .mssxsb-input::-webkit-search-results-button,
+      .mssxsb-input::-webkit-search-results-decoration {
+        appearance: none;
+        display: none
+      }
+
+      .mssxsb-input::-webkit-input-placeholder {
+        color: var(--mssxsb-phColor)
+      }
+
+      .mssxsb-input:-ms-input-placeholder {
+        color: var(--mssxsb-phColor)
+      }
+
+      .mssxsb-input::placeholder {
+        color: var(--mssxsb-phColor)
+      }
+
+      .mssxsb-mag {
+        background: transparent;
+        border: 0;
+        flex: 0 0 48px;
+        font-size: 16px;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        color: var(--mssxsb-theme-palette-themeDarkAlt, #106ebe);
+        fill: var(--mssxsb-theme-palette-themeDarkAlt, #106ebe)
+      }
+
+      .mssxsb-mag:before {
+        position: relative;
+        bottom: -1px;
+        left: 2px
+      }
+
+      .mssxsb-mag[dir=rtl] {
+        transform: scaleX(-1)
+      }
+
+      @media screen and (-ms-high-contrast:white-on-black) {
+        .mssxsb-mag {
+          color: #fff;
+          fill: #fff
+        }
+      }
+
+      .mssxsb-popup {
+        left: 0
+      }
+    </style>
+    <style></style>
+    <style type="text/css">
+      @charset "UTF-8";
+
+      @font-face {
+        font-family: ShellFabricMDL2IconsLite;
+        src: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAmoAA4AAAAAExwAA5R8AAAAAAAAAAAAAAAAAAAAAAAAAABPUy8yAAABRAAAAEgAAABgMWd7ZGNtYXAAAAGMAAAAPQAAAVLnkt3NY3Z0IAAAAcwAAAAgAAAAKgnZCa9mcGdtAAAB7AAAAPAAAAFZ/J7mjmdhc3AAAALcAAAADAAAAAwACAAbZ2x5ZgAAAugAAAGhAAADZMkacS9oZWFkAAAEjAAAADIAAAA2AQjyc2hoZWEAAATAAAAAFQAAACQQAQgDaG10eAAABNgAAAAMAAAADA0qASZsb2NhAAAE5AAAAAoAAAAKAiQA2G1heHAAAATwAAAAHQAAACAAIgIObmFtZQAABRAAAAP4AAAJ+pGb8VNwb3N0AAAJCAAAABQAAAAg/1EAe3ByZXAAAAkcAAAAiQAAANN4vfIOeJxjYGH3YpzAwMrAwDqL1ZiBgVEaQjNfZEhjEuJgZeViZGIEAwYgEGBAAN9gBQUGh+eKXx5wgPkQkgGsjgXCU2BgAADOIQhyeJxjYGBgZoBgGQZGBhDwAfIYwXwWBgMgzQGETAwMzxWfV3958P8/giXxUKKNWxmqCwwY2RhGPAAA9FQPGwAAAHicY9BiCGUoYGhgWMXIwNjA7MB4gMEBiwgQAACqHAeVeJxdj79Ow0AMxnMktIQnQDohnXUqQ5WInemGSyTUJSUM56WA1Eqk74CUhcUDz+JuGfNiCMwR/i62v8/6fL9zp/nJfHacpUcqKVacN+Gg1AsO6u2Z/fkhT+82ZWFM1XlW92XBagmia04X9U2waMjQ9ZZMbR4ftpwtYpfFjvDScNKGTuptAHaov8cd4lU8ksUjhBLfT/F9jEv6tSxWhtOLJqwD916z86gBTMVjE3j0GhB/yKQ/dWcT42w5ZdvATnOCRJ/KAvdEmoT7S49/9aCS/4b7bci/q0H1Tdz0FvSHYcGCsKGXZ9tQCRpg+Q6E/GTGAAEAAgAIAAr//wAPeJxjYGJYxsDA0sJaxsDMwM7AYC6oKKiqKKi4jPnen21M2/56MbCW/eqawuLHAARMDA0MDOwNHAwM2gz2DAyMckxCosomTGoqykp8LECWkB2juR6zqYkdk7GRHJOoCB8To4gckG3HZGqixwRUxMRq1HF7ZlBD6bl/z5dkH1vdnWzWEDLrdrtfTbh+yrqXra0v16Xoh1f/aQzs3pWVtas7EEYz++qvvPfvR/8SRslzpWbJ3auPZU9gZL+zwlCrYvLyCJA2kPaIZZMqmTiR9QFpsLuBgAMIGZQZzIHuNpJjATqORVlJTZ2RDUiampgz6jEC3c0ijORWUaDbWR0St8xpjDEyimmcsyWx9mnCn/fCUlJqwswC/iEQsfJLc6Kj51wqh9IcDBBhiLYQ/z8fhNWkpISZBROe1kLEfjMgKQfTDJxA5zWAw1WYQZ3BmsGfIZmhnKGbYT7DZqAQNCiVlfSYQEGriMZnhNLwICegHkM/ieoPaLiZyMmZuGlAaWYNQgI/b5Cs5RdBFRgCHAxIHKz0vwbCIoTovwRtQacZGACrXM/pAAAAeJxjYGRgYGCeUnMvzUMnnt/mKwM3BwMI7P97sAFE33zlXwmiORjA4pwMTCAKAFBNCiIAAHicY2BkYOBgAAE4yciACpgAAsoAHQAAAAUqAKYIAACAAAAAAAAAABYAcgDCAbIAAHicY2BkYGBgYdjCwMkAAoxgkguEGSNBTAAVlgEyAAAAeJy1VM2KHDcQrtkZezc4XkIg4KMOJqyXocdeY+zYp8U/J+9lbRZ8CWi6Nd3CPS0hqd10yCFHH/IYuRjyFCGBHHP2E/icU46pKqlndj0TswlkmlF/KtXvV6UGgBujr2EE8XcX/xGP4EvcRbwDu/A04THKnyc8Qfxtwlfgc7AJX4Uv4PuEd+Eb+DHhPfgKfkv4GhzC+4Svj34dTRLeh8Od3zHKaPIZ7oqdPxMewc3xWcI7sD/+LuExyt8mPEH8c8JX4Mb4j4Svghh/SHgX3GQv4T04nAx+rsHLyU8JXx+/nfyV8D683Pvhl3fi6Pad++JE5854swjisXHWOBm0aTJxXNfiVJdV8OJUeeXeqCJ7JudO5+LkyfMjcey9Cv5UlW0t3ebBpuRMOY+exd3s3oN4Sofx7IUqjRLaCymCk4VaSvdamIUIlTqXX+lMa0mcm6WVjVY+25p8FYJ9OJt1XZcth/MMbWaht6Z00lb9bGGa4Gdrc99aW2tVCDrIxCvTiqXsResVJoGJkVgEI3KnZFBTUWhva9lPhWwKYZ3G0xxVFL6lF1a5pQ4B3c17LqLWuWrIFx54YdwAFhRhulmqdaZo8zAVxDzaTslmCKAb0VU6r85l1mFQ3eR1W2CbVtmbpu7Fgb4l1HKOuazV0cOnsmX1QjelcMoH7BSxug5A5itfj5iBA41RglpSC5zGqIXpmtrI4iJ7MlKlHJVjMBSubbBtEIWiMkmnUrW9yCgOY9MndWoIOkR+Kj3XmHN2+W7DOxBwBLfhDtxHdAIacnBgwON/AQFljxE5vPO0SpRoRA1keHIMNT4CTlFWQoVnnncK3wq13+BaoOYztJvjnnxTjCf4ZTlie8+aZEdWJbToT6LmZSwuo3PGefiUs8AvXQb34MEF28HyvN0LzsbgKlCHqpL4D8xAgdIlZ/kaZcQSnVSsu42/kvctMjho5/he4l5iTprZyv4F88RzQOlDmOHT8ZOhv4/tsxRnhrhnLyX7seihR+mCvVG1s63RPedssSOa+yhWFtT7V1yTYCZ6fLfMXWQiMjZok8xw1Q41qA4FU9wXrGe54z1LiA+KY7kz0TZPXlTaS/Ztua9Uc+AzsppzHkMnaq6IrIa8ooXnLrgNyWJVw/RSXbW8L9Amx/2U+YozH+NOV3E+rkDzJHbMU47rds66VClp51hNy3NXbOWebGpGB6h/C980ofPEyzbvMYf/yu3ae8GeSpQ5nuOQ7tQwq9sqGKJv5vXo3AxQJbGWwPGGW0D+Y60FSjqu3PCt/NTsyQtTpbgvJq2xqohbvlktW1K2QzcHP6RZ803+5xmNX8YmdWbtfbghOrFM80P5zpnp2Nv/4W7/DYa7OJp4nGNgZgCD/34M5QyYgAUAKS4BzHic28CgzbCJkZNJm3ETF4jcztWaG2qrysChvZ07NdhBTwbE4onwsNCQBLF4nc215YVBLD4dFRkRHhCLX05CmI8DxBLg4+FkZwGxBMEAxBLaMKEgwADIYtjOCDeaCW40M9xoFrjRrHCj2eQkoUazw43mgBvNCTd6kzAju/YGBgXX2kwJFwDEASgaAAAA) format("woff");
+        font-display: auto
+      }
+
+      .o365cs-base [class*=" ms-Icon--"],
+      .o365cs-base [class*=" ms-Icon--"]:before,
+      .o365cs-base [class^=ms-Icon--],
+      .o365cs-base [class^=ms-Icon--]:before {
+        font-family: ShellFabricMDL2IconsLite, ShellFabricMDL2Icons;
+        display: inline-block;
+        line-height: 1
+      }
+
+      .o365cs-base [class*=" ms-Icon--"]:before,
+      .o365cs-base [class^=ms-Icon--]:before {
+        font-style: normal;
+        font-weight: 400;
+        text-decoration: inherit;
+        text-align: center;
+        font-variant: normal;
+        text-transform: none;
+        width: auto;
+        margin-left: 0;
+        margin-right: 0
+      }
+
+      .o365cs-base .ms-icon-font-circle:before {
+        border-style: solid;
+        border-radius: 1em;
+        line-height: 1.15;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        padding: .1em
+      }
+
+      @media screen and (-webkit-min-device-pixel-ratio:0) {
+        .o365cs-base .ms-icon-font-circle:before {
+          line-height: 1
+        }
+      }
+
+      .o365cs-base .ms-icon-font-size-8 {
+        font-size: 8 !important
+      }
+
+      .o365cs-base .ms-icon-font-size-11 {
+        font-size: 11 !important
+      }
+
+      .o365cs-base .ms-icon-font-size-12 {
+        font-size: 12 !important
+      }
+
+      .o365cs-base .ms-icon-font-size-14 {
+        font-size: 14 !important
+      }
+
+      .o365cs-base .ms-icon-font-size-18 {
+        font-size: 18 !important
+      }
+
+      .o365cs-base .ms-icon-font-size-20 {
+        font-size: 20 !important
+      }
+
+      .o365cs-base .ms-icon-font-size-22 {
+        font-size: 22 !important
+      }
+
+      .o365cs-base .ms-icon-font-size-25 {
+        font-size: 25 !important
+      }
+
+      .o365cs-base .ms-icon-font-size-26 {
+        font-size: 26 !important
+      }
+
+      .o365cs-base .ms-icon-font-size-35 {
+        font-size: 35 !important
+      }
+
+      .o365cs-base [data-icon]:before {
+        content: attr(data-icon)
+      }
+
+      .o365cs-base .ms-Icon--WaffleOffice365:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--Search:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--Contact:before {
+        content: ""
+      }
+    </style>
+    
+    <style type="text/css">
+      .M3pcB5evSAtYMozck1WU7A\=\= {
+        height: 100%;
+        line-height: 48px;
+        display: flex
+      }
+
+      ._1QSK5lUhw5Gkh7SDz97ZPQ\=\= {
+        height: 48px;
+        display: flex
+      }
+
+      .siUMOJwnumycxvszBe3uzQ\=\= {
+        display: inherit;
+        flex: inherit;
+        justify-content: inherit;
+        order: inherit;
+        align-self: inherit;
+        min-width: inherit
+      }
+
+      .\/DyMYj2gNfPrYNbEWoV2\/w\=\= {
+        font-size: 14px;
+        font-family: SegoeUI-Regular-final, Segoe UI, "Segoe UI Web (West European)", Segoe, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, Tahoma, Helvetica, Arial, sans-serif;
+        text-align: left;
+        height: 48px;
+        line-height: 48px;
+        vertical-align: top;
+        padding-left: 8px;
+        text-overflow: ellipsis !important;
+        overflow: hidden !important;
+        max-width: 220px;
+        cursor: pointer
+      }
+
+      @media (-ms-high-contrast:active),
+      (forced-colors:active) {
+
+        .\/DyMYj2gNfPrYNbEWoV2\/w\=\=:focus,
+        .\/DyMYj2gNfPrYNbEWoV2\/w\=\=:hover {
+          -ms-high-contrast-adjust: none;
+          forced-color-adjust: none;
+          background-color: Highlight !important;
+          color: highlightText !important
+        }
+      }
+
+      .N9B5\/L\/KHHvT9WOBAb1beA\=\= {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+        justify-content: right !important;
+        display: flex
+      }
+    </style>
+    <style type="text/css">
+      html[dir=rtl] ._7PGqXIlT8jItdB8fOBmFkg\=\= {
+        transform: scaleX(-1);
+        -moz-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        -ms-transform: scaleX(-1)
+      }
+    </style>
+    
+    <style type="text/css">
+      .o365cs-base .XNCq\+l4QufHtwDhOGdcrEA\=\=::-webkit-scrollbar {
+        width: 8px
+      }
+
+      .o365cs-base .XNCq\+l4QufHtwDhOGdcrEA\=\=::-webkit-scrollbar-button,
+      .o365cs-base .XNCq\+l4QufHtwDhOGdcrEA\=\=::-webkit-scrollbar-corner,
+      .o365cs-base .XNCq\+l4QufHtwDhOGdcrEA\=\=::-webkit-scrollbar-track {
+        background-color: transparent
+      }
+
+      .o365cs-base .XNCq\+l4QufHtwDhOGdcrEA\=\=::-webkit-scrollbar-button {
+        background-repeat: no-repeat;
+        cursor: pointer
+      }
+
+      .o365cs-base .XNCq\+l4QufHtwDhOGdcrEA\=\=::-webkit-scrollbar-button:vertical {
+        background-position: 50%;
+        width: 18px;
+        height: 18px
+      }
+
+      .o365cs-base .XNCq\+l4QufHtwDhOGdcrEA\=\=::-webkit-scrollbar-button:vertical:increment {
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAAUUlEQVQ4T6XLMQ6AMAwEwfz/bXRIfOeQCxckK8iKYgqvfCPJLxgNjAZGA6OB0VjCcV55M/8/jkbDMv+VJbSdccHYvsYFo4HRwGhgNDAaGPdl3LNlBnofQ4+bAAAAAElFTkSuQmCC)
+      }
+
+      .o365cs-base .XNCq\+l4QufHtwDhOGdcrEA\=\=::-webkit-scrollbar-button:vertical:increment:hover {
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAAUklEQVQ4T6XLsQ2AMAwF0ey/A1swAnt95MIFyQlyoniFT/4jyS8YDYwGRgOjgdFYwnFeeTP/P45GwzL/lSW0nXHB2L7GBaOB0cBoYDQwGhj3Zdx8sf7rjOGQqwAAAABJRU5ErkJggg==)
+      }
+
+      .o365cs-base .XNCq\+l4QufHtwDhOGdcrEA\=\=::-webkit-scrollbar-button:vertical:decrement {
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAAVUlEQVQ4T6XMMQoAIQxEUe9/NrsFrzOSIqDxgzu7xSv8ZGySfsHowOjA6MDowOjAmPozFGpfYQw5vn2CsY5TvQtHoOGq3m+PLzA6MDowOjA6ML6nNgFW+wZ6kTk6FAAAAABJRU5ErkJggg==)
+      }
+
+      .o365cs-base .XNCq\+l4QufHtwDhOGdcrEA\=\=::-webkit-scrollbar-button:vertical:decrement:hover {
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAAVklEQVQ4T6XMwQ3AIAwEQfrvgS5SAn0d8sMSmJXIJY95sPLRJP2C0YHRgdGB0YHRgTH1ZyjUvsIYcnz7BGMdp3oXjkDDVb3fHl9gdGB0YHRgdGB8T20CB+X+675uLU0AAAAASUVORK5CYII=)
+      }
+
+      .o365cs-base .XNCq\+l4QufHtwDhOGdcrEA\=\=::-webkit-scrollbar-thumb {
+        border-radius: 9px;
+        border: 3px solid transparent;
+        background-color: #ccd3d6
+      }
+
+      .o365cs-base .XNCq\+l4QufHtwDhOGdcrEA\=\=::-webkit-scrollbar-thumb:vertical {
+        min-height: 50px
+      }
+
+      .o365cs-base .XNCq\+l4QufHtwDhOGdcrEA\=\=::-webkit-scrollbar-thumb:hover {
+        background-color: #9db4c4
+      }
+
+      .o365cs-base .oDjNsKgU0LouSL2Cszjoaw\=\= {
+        display: flex;
+        font-family: SegoeUI-SemiBold-final, Segoe UI Semibold, SegoeUI-Regular-final, Segoe UI, "Segoe UI Web (West European)", Segoe, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, Tahoma, Helvetica, Arial, sans-serif !important;
+        font-weight: 600;
+        background: transparent !important;
+        border: 0;
+        padding: 0;
+        min-width: 0;
+        height: auto;
+        text-decoration: none !important;
+        cursor: pointer
+      }
+
+      .o365cs-base .oDjNsKgU0LouSL2Cszjoaw\=\=>span {
+        padding-bottom: 2px;
+        transition: border-bottom-color 83ms linear
+      }
+
+      .o365cs-base .oDjNsKgU0LouSL2Cszjoaw\=\=:hover>span {
+        border-bottom: 1px solid;
+        padding-bottom: 1px
+      }
+    </style>
+    <style type="text/css">
+      ._9i5RwVv0f00JLPQL7I\+Y8Q\=\= {
+        width: 360px;
+        height: calc(100vh - 50px);
+        overflow: hidden;
+        position: fixed;
+        z-index: 1000000;
+        top: 50px;
+        right: 0;
+        pointer-events: none
+      }
+
+      .X6jmOJbtPxrdLcpMF7gbRg\=\= iframe {
+        height: 1000px !important;
+        overflow: hidden;
+        position: absolute
+      }
+
+      .mdn3zwUjEpxe5XhvWdUUVg\=\= {
+        height: calc(100vh - 48px);
+        top: 48px
+      }
+
+      .f3ZNvJ3t0PnWAgoWv5LY2g\=\= {
+        height: calc(100vh - 8px);
+        top: 8px
+      }
+
+      @-moz-document url-prefix() {
+        .XlKf\+hNIUsKJ42S9ybY7rg\=\=:focus {
+          outline: 1px dotted
+        }
+      }
+
+      .o365cs-base .fHsS8WIbhHVDlPRycq1MWw\=\= {
+        height: 100%;
+        position: absolute;
+        right: 0;
+        z-index: 1000000;
+        width: 320px;
+        border-style: solid;
+        pointer-events: all;
+        border-width: 0 0 0 1px;
+        box-sizing: content-box
+      }
+
+      .o365cs-base .xRFEaPmwULXdFRg6xb0jHA\=\= {
+        border-color: #000;
+        border-left-width: 1px !important
+      }
+
+      .o365cs-base ._0um\+0lXKfaqA\+25RpmAufw\=\= {
+        height: 100%
+      }
+
+      .o365cs-base .Pq9Aph\+WaJhC6xHpxryKyw\=\= {
+        position: relative;
+        overflow-y: auto;
+        overflow-x: hidden
+      }
+
+      .o365cs-base .WtohaYWvzS3cfEoZF4BuZA\=\= {
+        -ms-flex: 1;
+        flex: 1;
+        overflow-x: hidden;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        height: 100%
+      }
+
+      .o365cs-base .WtohaYWvzS3cfEoZF4BuZA\=\=:not(:-webkit-any-link) {
+        box-sizing: border-box
+      }
+
+      .o365cs-base .XlKf\+hNIUsKJ42S9ybY7rg\=\= {
+        margin: 0 auto 1px
+      }
+
+      .o365cs-base .ABsUeIawNiAydZM8TZ9GHg\=\= {
+        height: 40px;
+        width: 40px;
+        min-width: 0;
+        position: absolute;
+        top: 12px;
+        left: calc(100% - 44px);
+        padding: 5px;
+        border-width: 0;
+        background-color: transparent;
+        text-align: center;
+        cursor: pointer
+      }
+
+      .o365cs-base .ABsUeIawNiAydZM8TZ9GHg\=\=:focus {
+        outline: 1px dotted;
+        outline: 1px auto -webkit-focus-ring-color;
+        outline-style: auto
+      }
+
+      .o365cs-base .jt1UvlCr1DTxe8MYybrikA\=\= {
+        -webkit-animation-name: flexPane-fadeIn, flexPane-slideRightIn;
+        animation-name: flexPane-fadeIn, flexPane-slideRightIn;
+        -webkit-animation-duration: .28s;
+        animation-duration: .28s;
+        -webkit-animation-timing-function: cubic-bezier(.8, 0, .2, 1);
+        animation-timing-function: cubic-bezier(.8, 0, .2, 1)
+      }
+
+      .o365cs-base ._8OLH5zBoaL4dWYE73YqcfA\=\= {
+        -webkit-animation-name: flexPane-fadeOut, flexPane-slideRightOut;
+        animation-name: flexPane-fadeOut, flexPane-slideRightOut;
+        -webkit-animation-duration: .16s;
+        animation-duration: .16s;
+        -webkit-animation-timing-function: cubic-bezier(.8, 0, .2, 1);
+        animation-timing-function: cubic-bezier(.8, 0, .2, 1);
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both
+      }
+
+      .o365cs-base ._2\/XVFgy7oOJ2PRdV0nb7xg\=\= {
+        visibility: hidden
+      }
+
+      @-webkit-keyframes flexPane-fadeIn {
+        0% {
+          visibility: hidden;
+          opacity: 0;
+          -webkit-animation-timing-function: linear;
+          animation-timing-function: linear
+        }
+
+        to {
+          visibility: visible;
+          opacity: 1
+        }
+      }
+
+      @keyframes flexPane-fadeIn {
+        0% {
+          visibility: hidden;
+          opacity: 0;
+          -webkit-animation-timing-function: linear;
+          animation-timing-function: linear
+        }
+
+        to {
+          visibility: visible;
+          opacity: 1
+        }
+      }
+
+      @-webkit-keyframes flexPane-fadeOut {
+        0% {
+          visibility: visible;
+          opacity: 1;
+          -webkit-animation-timing-function: linear;
+          animation-timing-function: linear
+        }
+
+        to {
+          visibility: hidden;
+          opacity: 0
+        }
+      }
+
+      @keyframes flexPane-fadeOut {
+        0% {
+          visibility: visible;
+          opacity: 1;
+          -webkit-animation-timing-function: linear;
+          animation-timing-function: linear
+        }
+
+        to {
+          visibility: hidden;
+          opacity: 0
+        }
+      }
+
+      @-webkit-keyframes flexPane-slideRightIn {
+        0% {
+          -webkit-transform: translate(80px);
+          -ms-transform: translate(80px);
+          transform: translate(80px)
+        }
+
+        to {
+          -webkit-transform: translate(0);
+          -ms-transform: translate(0);
+          transform: translate(0)
+        }
+      }
+
+      @keyframes flexPane-slideRightIn {
+        0% {
+          -webkit-transform: translate(80px);
+          -ms-transform: translate(80px);
+          transform: translate(80px)
+        }
+
+        to {
+          -webkit-transform: translate(0);
+          -ms-transform: translate(0);
+          transform: translate(0)
+        }
+      }
+
+      @-webkit-keyframes flexPane-slideRightOut {
+        0% {
+          -webkit-transform: translate(0);
+          -ms-transform: translate(0);
+          transform: translate(0)
+        }
+
+        to {
+          -webkit-transform: translate(80px);
+          -ms-transform: translate(80px);
+          transform: translate(80px)
+        }
+      }
+
+      @keyframes flexPane-slideRightOut {
+        0% {
+          -webkit-transform: translate(0);
+          -ms-transform: translate(0);
+          transform: translate(0)
+        }
+
+        to {
+          -webkit-transform: translate(80px);
+          -ms-transform: translate(80px);
+          transform: translate(80px)
+        }
+      }
+
+      .o365cs-base .JQUzjR1BqzgYWBFcHEPQkQ\=\= {
+        -webkit-animation-name: flexPaneItem-slideContentIn;
+        animation-name: flexPaneItem-slideContentIn;
+        -webkit-animation-duration: .28s;
+        animation-duration: .28s;
+        -webkit-animation-timing-function: cubic-bezier(.8, 0, .2, 1);
+        animation-timing-function: cubic-bezier(.8, 0, .2, 1);
+        -webkit-animation-fill-mode: backwards;
+        animation-fill-mode: backwards;
+        -webkit-animation-delay: .04s;
+        animation-delay: .04s
+      }
+
+      .o365cs-base .hjnv9tRBywIVLOVT0rwOpA\=\= {
+        -webkit-animation-name: flexPane-fadeOut, flexPane-slideRightOut;
+        animation-name: flexPane-fadeOut, flexPane-slideRightOut;
+        -webkit-animation-duration: .16s;
+        animation-duration: .16s;
+        -webkit-animation-timing-function: cubic-bezier(.8, 0, .2, 1);
+        animation-timing-function: cubic-bezier(.8, 0, .2, 1);
+        -webkit-animation-fill-mode: backwards;
+        animation-fill-mode: backwards
+      }
+
+      @-webkit-keyframes flexPaneItem-slideContentIn {
+        0% {
+          opacity: 0;
+          -webkit-transform: translate(80px);
+          -ms-transform: translate(80px);
+          transform: translate(80px)
+        }
+
+        to {
+          opacity: 1;
+          -webkit-transform: translate(0);
+          -ms-transform: translate(0);
+          transform: translate(0)
+        }
+      }
+
+      @keyframes flexPaneItem-slideContentIn {
+        0% {
+          opacity: 0;
+          -webkit-transform: translate(80px);
+          -ms-transform: translate(80px);
+          transform: translate(80px)
+        }
+
+        to {
+          opacity: 1;
+          -webkit-transform: translate(0);
+          -ms-transform: translate(0);
+          transform: translate(0)
+        }
+      }
+    </style>
+    <style type="text/css">
+      html[dir=rtl] ._7PGqXIlT8jItdB8fOBmFkg\=\= {
+        transform: scaleX(-1);
+        -moz-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        -ms-transform: scaleX(-1)
+      }
+    </style>
+    <style type="text/css">
+      .o365cs-base .f5ba\/8qghSGxJEKWPtai6A\=\= {
+        padding-left: 16px;
+        padding-right: 16px
+      }
+
+      .o365cs-base ._6993O\+eOvKnD2lo\+d3S\/KQ\=\= {
+        font: 600 20px SegoeUI-SemiBold-final, Segoe UI Semibold, SegoeUI-Regular-final, Segoe UI, "Segoe UI Web (West European)", Segoe, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, Tahoma, Helvetica, Arial, sans-serif;
+        display: inline-block;
+        margin: 0;
+        line-height: 27px;
+        padding-left: 16px;
+        padding-top: 20px;
+        padding-bottom: 18px;
+        vertical-align: middle
+      }
+
+      .o365cs-base .\/qOktybF63BhiAEUFHIu8A\=\= {
+        display: flex;
+        font-family: SegoeUI-SemiBold-final, Segoe UI Semibold, SegoeUI-Regular-final, Segoe UI, "Segoe UI Web (West European)", Segoe, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, Tahoma, Helvetica, Arial, sans-serif !important;
+        font-weight: 600;
+        background: transparent !important;
+        border: 0;
+        min-width: 0;
+        height: auto;
+        text-decoration: none !important;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 12px;
+        vertical-align: middle;
+        padding: 10px 0 0 16px;
+        width: auto
+      }
+
+      .o365cs-base .\/qOktybF63BhiAEUFHIu8A\=\=>span {
+        padding-bottom: 2px;
+        transition: border-bottom-color 83ms linear
+      }
+
+      .o365cs-base .\/qOktybF63BhiAEUFHIu8A\=\=:hover>span {
+        border-bottom: 1px solid;
+        padding-bottom: 1px
+      }
+
+      .o365cs-base .N\+CwwxeyNQqLhH2xWvWJ8w\=\= {
+        font-family: SegoeUI-Regular-final, Segoe UI, "Segoe UI Web (West European)", Segoe, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, Tahoma, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1)
+      }
+    </style>
+    <style type="text/css">
+      .dQ8XLMIyNxl8MAYqMsUZFQ\=\= {
+        width: 100%;
+        height: 50px;
+        display: flex;
+        border-spacing: 0;
+        white-space: nowrap;
+        line-height: normal
+      }
+
+      .dQ8XLMIyNxl8MAYqMsUZFQ\=\= .hpyHhmSe9hmk5gopLr9a5Q\=\=,
+      .dQ8XLMIyNxl8MAYqMsUZFQ\=\= a.rOy\+Hn8kiD5J9v5VDCE3Dg\=\= {
+        vertical-align: top
+      }
+
+      .aU8N30IM3GcKO4KKz8lgNA\=\= {
+        display: none !important
+      }
+
+      .removeFocusOutline :focus {
+        outline: none;
+        box-shadow: none !important
+      }
+
+      .clgiLVKPzugZZns0LiPTqw\=\=,
+      .SXGDf\/jjzN5Yzn8eL0wHjg\=\= {
+        display: block;
+        position: relative;
+        margin: 0;
+        padding: 0;
+        min-width: 48px;
+        text-align: center;
+        cursor: pointer;
+        outline-offset: -1px
+      }
+
+      @media (-ms-high-contrast:active),
+      (forced-colors:active) {
+
+        .clgiLVKPzugZZns0LiPTqw\=\=:focus,
+        .clgiLVKPzugZZns0LiPTqw\=\=:hover+.icon,
+        .SXGDf\/jjzN5Yzn8eL0wHjg\=\=:focus,
+        .SXGDf\/jjzN5Yzn8eL0wHjg\=\=:hover+.icon {
+          -ms-high-contrast-adjust: none;
+          forced-color-adjust: none;
+          background-color: Highlight !important;
+          color: highlightText !important
+        }
+      }
+
+      .clgiLVKPzugZZns0LiPTqw\=\=:hover,
+      .SXGDf\/jjzN5Yzn8eL0wHjg\=\=:hover {
+        -webkit-transition: background-color .467s cubic-bezier(.1, .9, .2, 1) 34ms;
+        transition: background-color .467s cubic-bezier(.1, .9, .2, 1) 34ms
+      }
+
+      .SXGDf\/jjzN5Yzn8eL0wHjg\=\=,
+      .BiD096xkmK8Uxwc5MTuOlw\=\= {
+        display: block;
+        position: relative;
+        margin: 0;
+        padding: 0;
+        min-width: 48px;
+        text-align: center;
+        cursor: default
+      }
+
+      @media (-ms-high-contrast:active),
+      (forced-colors:active) {
+
+        .SXGDf\/jjzN5Yzn8eL0wHjg\=\=:focus,
+        .SXGDf\/jjzN5Yzn8eL0wHjg\=\=:hover+.icon,
+        .BiD096xkmK8Uxwc5MTuOlw\=\=:focus,
+        .BiD096xkmK8Uxwc5MTuOlw\=\=:hover+.icon {
+          -ms-high-contrast-adjust: none;
+          forced-color-adjust: none
+        }
+      }
+
+      .clgiLVKPzugZZns0LiPTqw\=\= {
+        background: transparent;
+        border-width: 0;
+        width: auto;
+        height: 100%;
+        box-sizing: border-box;
+        overflow: visible
+      }
+
+      .clgiLVKPzugZZns0LiPTqw\=\=,
+      .clgiLVKPzugZZns0LiPTqw\=\= span[class*=" ms-Icon--"],
+      .clgiLVKPzugZZns0LiPTqw\=\= span[class^=ms-Icon--] {
+        line-height: 48px
+      }
+
+      @media (-ms-high-contrast:active),
+      (forced-colors:active) {
+
+        .clgiLVKPzugZZns0LiPTqw\=\=:focus+.icon,
+        .clgiLVKPzugZZns0LiPTqw\=\=:hover {
+          -ms-high-contrast-adjust: none;
+          forced-color-adjust: none;
+          background-color: Highlight !important;
+          color: highlightText !important
+        }
+      }
+
+      .BiD096xkmK8Uxwc5MTuOlw\=\= {
+        background: transparent;
+        border-width: 0;
+        width: auto;
+        height: 100%;
+        box-sizing: border-box;
+        line-height: 48px;
+        overflow: visible;
+        cursor: default
+      }
+
+      .BiD096xkmK8Uxwc5MTuOlw\=\= span[class*=" ms-Icon--"],
+      .BiD096xkmK8Uxwc5MTuOlw\=\= span[class^=ms-Icon--] {
+        line-height: 48px
+      }
+
+      @media (-ms-high-contrast:active),
+      (forced-colors:active) {
+
+        .BiD096xkmK8Uxwc5MTuOlw\=\=:focus+.icon,
+        .BiD096xkmK8Uxwc5MTuOlw\=\=:hover {
+          -ms-high-contrast-adjust: none;
+          forced-color-adjust: none
+        }
+      }
+
+      .RGSb\/1c4ex9CM0as0oaLQA\=\= {
+        display: inherit
+      }
+
+      .\/l2PApUbI5EhJK0cmfHXqg\=\= {
+        min-width: 68px
+      }
+
+      .SXGDf\/jjzN5Yzn8eL0wHjg\=\= {
+        line-height: 48px
+      }
+
+      .bfWNEPs24dESqyqDnh\/7tA\=\= {
+        display: inline-block;
+        vertical-align: middle;
+        align-self: center;
+        background-color: currentColor;
+        margin-left: 16px;
+        margin-right: 8px;
+        height: 28px;
+        width: 1px
+      }
+
+      html[dir=rtl] .bfWNEPs24dESqyqDnh\/7tA\=\= {
+        margin-right: 16px;
+        margin-left: 8px
+      }
+
+      .hpyHhmSe9hmk5gopLr9a5Q\=\= {
+        display: inline-block;
+        font-weight: 600;
+        font-family: SegoeUI-SemiBold-final, Segoe UI Semibold, SegoeUI-Regular-final, Segoe UI, "Segoe UI Web (West European)", Segoe, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, Tahoma, Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        line-height: 48px;
+        -webkit-font-smoothing: antialiased
+      }
+
+      .AzzTpbJF15SioND4vylW8A\=\= {
+        box-shadow: none !important
+      }
+
+      .yvHsK6IvuQovPfJmcAYOOg\=\= {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        width: 48px;
+        height: 48px
+      }
+
+      .yvHsK6IvuQovPfJmcAYOOg\=\= a:focus-visible {
+        outline-offset: 11px
+      }
+
+      .yvHsK6IvuQovPfJmcAYOOg\=\= img {
+        width: 24px;
+        height: 24px;
+        top: 12px;
+        left: 12px
+      }
+
+      .UbbNU\+CJSypYHluHed61kg\=\= {
+        display: inline-block;
+        vertical-align: top;
+        font-size: 24px;
+        margin-top: 13px;
+        margin-left: 6px
+      }
+
+      .UbbNU\+CJSypYHluHed61kg\=\=:before {
+        vertical-align: top
+      }
+
+      .q8AbQOBpuy93yBfTeGfNaw\=\= {
+        margin-left: 14px;
+        margin-right: 14px;
+        height: 25px;
+        margin-top: 12px;
+        border-right: 1px solid
+      }
+
+      html[dir=rtl] .UbbNU\+CJSypYHluHed61kg\=\= {
+        margin-left: 0;
+        margin-right: 6px
+      }
+
+      .e\/Vl0j0zHQMhZT1vQ6J\+SQ\=\= {
+        height: 100%;
+        display: flex;
+        vertical-align: middle;
+        outline-offset: -1px;
+        padding: 0 12px 0 8px;
+        text-decoration: none
+      }
+
+      .e\/Vl0j0zHQMhZT1vQ6J\+SQ\=\= a {
+        display: flex;
+        text-decoration: none;
+        color: inherit
+      }
+
+      html[dir=rtl] .e\/Vl0j0zHQMhZT1vQ6J\+SQ\=\= {
+        padding: 0 8px 0 12px
+      }
+
+      ._3rJAyyAtPSCl0uoYr\+wuLA\=\= {
+        line-height: 48px;
+        height: 100%;
+        display: inline-block;
+        vertical-align: top;
+        padding-left: 8px
+      }
+
+      html[dir=rtl] ._3rJAyyAtPSCl0uoYr\+wuLA\=\= {
+        padding-right: 8px;
+        padding-left: 0
+      }
+
+      .rOy\+Hn8kiD5J9v5VDCE3Dg\=\= {
+        max-width: 200px;
+        max-height: 48px;
+        overflow: hidden;
+        line-height: 48px;
+        font-size: 0;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center
+      }
+
+      .rOy\+Hn8kiD5J9v5VDCE3Dg\=\=:focus-visible {
+        outline-offset: -2px
+      }
+
+      .rOy\+Hn8kiD5J9v5VDCE3Dg\=\= img {
+        max-width: 200px;
+        max-height: 48px;
+        border-style: none !important;
+        vertical-align: middle
+      }
+
+      .tP6UdQAxefBu0rqv2chMeg\=\= img {
+        width: auto;
+        height: 24px
+      }
+
+      @media (-ms-high-contrast:none),
+      screen and (-ms-high-contrast:active) {
+        .tP6UdQAxefBu0rqv2chMeg\=\= img {
+          max-width: 200px;
+          max-height: none;
+          min-width: 160px;
+          width: 100%;
+          height: 24px
+        }
+      }
+
+      @media (min-width:640px) {
+        .H7wt1\/T7kbyfSRNZ2JzVLA\=\= {
+          max-width: 176px;
+          text-decoration: none
+        }
+      }
+
+      .\/B1n\/h6ibI5wVz7jdDIP0A\=\= {
+        height: 100%;
+        max-width: 176px;
+        display: flex
+      }
+
+      .HcKMEYhmL4uLyG\+K4hy8pg\=\= {
+        text-align: right;
+        vertical-align: middle;
+        display: table-cell;
+        overflow: hidden;
+        max-width: 120px;
+        font-size: 14px;
+        font-family: SegoeUI-SemiLight-final, Segoe UI Semilight, SegoeUI-Regular-final, Segoe UI, "Segoe UI Web (West European)", Segoe, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, Tahoma, Helvetica, Arial, sans-serif;
+        text-overflow: ellipsis;
+        word-break: break-all;
+        white-space: nowrap;
+        margin-left: 4px
+      }
+
+      .HcKMEYhmL4uLyG\+K4hy8pg\=\=>span {
+        padding-left: 4px;
+        display: none
+      }
+
+      .U6Cnfo0RjXJ8UEwXhZV8mQ\=\= {
+        text-align: left;
+        display: block;
+        overflow: hidden;
+        max-width: 160px;
+        font-size: 13px;
+        font-family: SegoeUI-Regular-final, Segoe UI, "Segoe UI Web (West European)", Segoe, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, Tahoma, Helvetica, Arial, sans-serif;
+        text-overflow: ellipsis;
+        word-break: break-all;
+        white-space: nowrap;
+        line-height: 48px
+      }
+
+      .U6Cnfo0RjXJ8UEwXhZV8mQ\=\=>span {
+        padding-left: 12px;
+        padding-right: 4px;
+        display: none
+      }
+
+      html[dir=rtl] .HcKMEYhmL4uLyG\+K4hy8pg\=\= {
+        text-align: left
+      }
+
+      html[dir=rtl] .HcKMEYhmL4uLyG\+K4hy8pg\=\=>span {
+        padding-left: 0;
+        padding-right: 4px
+      }
+
+      html[dir=rtl] .U6Cnfo0RjXJ8UEwXhZV8mQ\=\=>span {
+        padding-left: 4px;
+        padding-right: 12px
+      }
+
+      .NK6YQ060InuEH1W1LbFJ4Q\=\= {
+        display: table-cell;
+        border-left-width: 0 !important;
+        vertical-align: middle;
+        display: flex;
+        align-items: center;
+        justify-content: center
+      }
+
+      html[dir=rtl] .NK6YQ060InuEH1W1LbFJ4Q\=\= {
+        border-right-width: 0 !important
+      }
+
+      .x03Rvs3MQ7Id948TyiIkCQ\=\= {
+        overflow: hidden;
+        display: inline-block;
+        border-radius: 50%;
+        vertical-align: middle;
+        font-size: 6px
+      }
+
+      .x03Rvs3MQ7Id948TyiIkCQ\=\= .ms-Persona {
+        right: 2px;
+        top: -2px
+      }
+
+      .x03Rvs3MQ7Id948TyiIkCQ\=\= .ms-Persona .ms-Image-image {
+        overflow: hidden;
+        top: 0
+      }
+
+      html[dir=rtl] .x03Rvs3MQ7Id948TyiIkCQ\=\= .ms-Persona {
+        left: 2px;
+        right: 0
+      }
+
+      .\+gKDxCURR5euwhVW2NK21g\=\= {
+        overflow: hidden;
+        display: inline-block;
+        border: thin solid;
+        border-radius: 50%;
+        vertical-align: middle;
+        font-size: 6px
+      }
+
+      .u85SIhgERLuqcMUbt2s66A\=\= {
+        border-radius: 50%;
+        line-height: 1 !important
+      }
+
+      .u85SIhgERLuqcMUbt2s66A\=\=:before {
+        margin-top: .4em
+      }
+
+      .SPrdsmCpZYS0tgvvd0cRgQ\=\= {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        font-family: SegoeUI-Regular-final, Segoe UI, "Segoe UI Web (West European)", Segoe, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, Tahoma, Helvetica, Arial, sans-serif;
+        border: 1px solid;
+        box-sizing: border-box;
+        border-radius: 50%;
+        line-height: 1 !important
+      }
+
+      .SPrdsmCpZYS0tgvvd0cRgQ\=\=:before {
+        margin-top: .4em
+      }
+
+      .x03Rvs3MQ7Id948TyiIkCQ\=\=,
+      .u85SIhgERLuqcMUbt2s66A\=\=,
+      .\+gKDxCURR5euwhVW2NK21g\=\= {
+        width: 32px;
+        height: 32px
+      }
+
+      .ieRo\/OqPYB7kffRFKx2c9w\=\= {
+        align-items: center;
+        justify-content: space-between;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        height: 100%
+      }
+
+      ._25CqRVKwE38X5RHExD4IyA\=\= {
+        display: flex;
+        flex: 1 0 auto;
+        height: 100%
+      }
+
+      ._1tJrEjbv1Qkvxc\/P7r3tZg\=\= {
+        display: flex;
+        justify-content: flex-start
+      }
+
+      .S3TWafQDKD\+3UQM7Jnziug\=\= {
+        display: flex;
+        flex: 1 0 auto;
+        justify-content: center
+      }
+
+      ._16lUvVUJZw68Zc4vFo8oMQ\=\= {
+        display: flex;
+        justify-content: flex-end
+      }
+
+      .HV6lC9J8OUFpKJjfAr1Asw\=\= {
+        display: flex;
+        flex: 0 0 auto
+      }
+
+      .Bh46b1rd8BrU4zolL9RzUg\=\= {
+        height: 100%;
+        line-height: 48px;
+        display: flex
+      }
+
+      .hdkWCzc6sRQuamFV07Y3xQ\=\= {
+        right: 24px;
+        top: 8px
+      }
+
+      html[dir=rtl] .hdkWCzc6sRQuamFV07Y3xQ\=\= {
+        right: 0;
+        left: 24px
+      }
+
+      @-moz-document url-prefix() {
+        .clgiLVKPzugZZns0LiPTqw\=\=:focus {
+          outline: 1px dotted
+        }
+      }
+
+      #O365_NavHeader abbr,
+      #O365_NavHeader address,
+      #O365_NavHeader article,
+      #O365_NavHeader aside,
+      #O365_NavHeader audio,
+      #O365_NavHeader b,
+      #O365_NavHeader blockquote,
+      #O365_NavHeader body,
+      #O365_NavHeader body :focus,
+      #O365_NavHeader body div,
+      #O365_NavHeader caption,
+      #O365_NavHeader cite,
+      #O365_NavHeader code,
+      #O365_NavHeader dd,
+      #O365_NavHeader del,
+      #O365_NavHeader details,
+      #O365_NavHeader dfn,
+      #O365_NavHeader dl,
+      #O365_NavHeader dt,
+      #O365_NavHeader em,
+      #O365_NavHeader fieldset,
+      #O365_NavHeader figure,
+      #O365_NavHeader footer,
+      #O365_NavHeader form,
+      #O365_NavHeader h1,
+      #O365_NavHeader h2,
+      #O365_NavHeader h3,
+      #O365_NavHeader h4,
+      #O365_NavHeader h5,
+      #O365_NavHeader h6,
+      #O365_NavHeader header,
+      #O365_NavHeader html,
+      #O365_NavHeader i,
+      #O365_NavHeader iframe,
+      #O365_NavHeader img,
+      #O365_NavHeader ins,
+      #O365_NavHeader kbd,
+      #O365_NavHeader label,
+      #O365_NavHeader legend,
+      #O365_NavHeader li,
+      #O365_NavHeader mark,
+      #O365_NavHeader menu,
+      #O365_NavHeader nav,
+      #O365_NavHeader object,
+      #O365_NavHeader ol,
+      #O365_NavHeader p,
+      #O365_NavHeader pre,
+      #O365_NavHeader q,
+      #O365_NavHeader samp,
+      #O365_NavHeader section,
+      #O365_NavHeader small,
+      #O365_NavHeader strong,
+      #O365_NavHeader sub,
+      #O365_NavHeader summary,
+      #O365_NavHeader sup,
+      #O365_NavHeader table,
+      #O365_NavHeader tbody,
+      #O365_NavHeader td,
+      #O365_NavHeader tfoot,
+      #O365_NavHeader th,
+      #O365_NavHeader thead,
+      #O365_NavHeader time,
+      #O365_NavHeader tr,
+      #O365_NavHeader ul,
+      #O365_NavHeader var,
+      #O365_NavHeader video,
+      #O365fpcontainerid abbr,
+      #O365fpcontainerid address,
+      #O365fpcontainerid article,
+      #O365fpcontainerid aside,
+      #O365fpcontainerid audio,
+      #O365fpcontainerid b,
+      #O365fpcontainerid blockquote,
+      #O365fpcontainerid body,
+      #O365fpcontainerid body :focus,
+      #O365fpcontainerid body div,
+      #O365fpcontainerid caption,
+      #O365fpcontainerid cite,
+      #O365fpcontainerid code,
+      #O365fpcontainerid dd,
+      #O365fpcontainerid del,
+      #O365fpcontainerid details,
+      #O365fpcontainerid dfn,
+      #O365fpcontainerid dl,
+      #O365fpcontainerid dt,
+      #O365fpcontainerid em,
+      #O365fpcontainerid fieldset,
+      #O365fpcontainerid figure,
+      #O365fpcontainerid footer,
+      #O365fpcontainerid form,
+      #O365fpcontainerid h1,
+      #O365fpcontainerid h2,
+      #O365fpcontainerid h3,
+      #O365fpcontainerid h4,
+      #O365fpcontainerid h5,
+      #O365fpcontainerid h6,
+      #O365fpcontainerid header,
+      #O365fpcontainerid html,
+      #O365fpcontainerid i,
+      #O365fpcontainerid iframe,
+      #O365fpcontainerid img,
+      #O365fpcontainerid ins,
+      #O365fpcontainerid kbd,
+      #O365fpcontainerid label,
+      #O365fpcontainerid legend,
+      #O365fpcontainerid li,
+      #O365fpcontainerid mark,
+      #O365fpcontainerid menu,
+      #O365fpcontainerid nav,
+      #O365fpcontainerid object,
+      #O365fpcontainerid ol,
+      #O365fpcontainerid p,
+      #O365fpcontainerid pre,
+      #O365fpcontainerid q,
+      #O365fpcontainerid samp,
+      #O365fpcontainerid section,
+      #O365fpcontainerid small,
+      #O365fpcontainerid strong,
+      #O365fpcontainerid sub,
+      #O365fpcontainerid summary,
+      #O365fpcontainerid sup,
+      #O365fpcontainerid table,
+      #O365fpcontainerid tbody,
+      #O365fpcontainerid td,
+      #O365fpcontainerid tfoot,
+      #O365fpcontainerid th,
+      #O365fpcontainerid thead,
+      #O365fpcontainerid time,
+      #O365fpcontainerid tr,
+      #O365fpcontainerid ul,
+      #O365fpcontainerid var,
+      #O365fpcontainerid video,
+      .o365shell-popup abbr,
+      .o365shell-popup address,
+      .o365shell-popup article,
+      .o365shell-popup aside,
+      .o365shell-popup audio,
+      .o365shell-popup b,
+      .o365shell-popup blockquote,
+      .o365shell-popup body,
+      .o365shell-popup body :focus,
+      .o365shell-popup body div,
+      .o365shell-popup caption,
+      .o365shell-popup cite,
+      .o365shell-popup code,
+      .o365shell-popup dd,
+      .o365shell-popup del,
+      .o365shell-popup details,
+      .o365shell-popup dfn,
+      .o365shell-popup dl,
+      .o365shell-popup dt,
+      .o365shell-popup em,
+      .o365shell-popup fieldset,
+      .o365shell-popup figure,
+      .o365shell-popup footer,
+      .o365shell-popup form,
+      .o365shell-popup h1,
+      .o365shell-popup h2,
+      .o365shell-popup h3,
+      .o365shell-popup h4,
+      .o365shell-popup h5,
+      .o365shell-popup h6,
+      .o365shell-popup header,
+      .o365shell-popup html,
+      .o365shell-popup i,
+      .o365shell-popup iframe,
+      .o365shell-popup img,
+      .o365shell-popup ins,
+      .o365shell-popup kbd,
+      .o365shell-popup label,
+      .o365shell-popup legend,
+      .o365shell-popup li,
+      .o365shell-popup mark,
+      .o365shell-popup menu,
+      .o365shell-popup nav,
+      .o365shell-popup object,
+      .o365shell-popup ol,
+      .o365shell-popup p,
+      .o365shell-popup pre,
+      .o365shell-popup q,
+      .o365shell-popup samp,
+      .o365shell-popup section,
+      .o365shell-popup small,
+      .o365shell-popup strong,
+      .o365shell-popup sub,
+      .o365shell-popup summary,
+      .o365shell-popup sup,
+      .o365shell-popup table,
+      .o365shell-popup tbody,
+      .o365shell-popup td,
+      .o365shell-popup tfoot,
+      .o365shell-popup th,
+      .o365shell-popup thead,
+      .o365shell-popup time,
+      .o365shell-popup tr,
+      .o365shell-popup ul,
+      .o365shell-popup var,
+      .o365shell-popup video {
+        box-sizing: content-box
+      }
+    </style>
+    <style type="text/css">
+      .eGE08z8aIfAkGe8BvkfeSw\=\= {
+        position: absolute;
+        z-index: 1000000;
+        background-color: #fff;
+        width: 320px;
+        min-width: 320px;
+        max-width: 320px;
+        box-sizing: border-box;
+        outline: none;
+        overflow-y: auto;
+        visibility: visible;
+        pointer-events: auto
+      }
+
+      .JPdZa9r8EHVwO2nsUxqScA\=\= {
+        z-index: 1000001;
+        position: fixed
+      }
+    </style>
+    <style type="text/css">
+      .EsS594twlMdbEJOPJo6UDg\=\= {
+        position: absolute;
+        z-index: 1000000;
+        background-color: #fff;
+        width: 320px;
+        min-width: 320px;
+        max-width: 320px;
+        box-sizing: border-box;
+        outline: none;
+        overflow-y: auto;
+        visibility: visible;
+        pointer-events: auto;
+        border: 1px solid #f4f4f4;
+        border-radius: 2px;
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .1);
+        animation-duration: .15s;
+        animation-name: contextMenu-slideIn;
+        animation-timing-function: cubic-bezier(0, 0, 0, 1);
+        transform-origin: top;
+        display: block;
+        min-width: 180px !important;
+        outline-width: 0;
+        outline-color: invert
+      }
+
+      .u10sUHK1gkyWPJAvhySBrw\=\= {
+        margin: 0;
+        padding: 0;
+        list-style: none
+      }
+
+      .o365cs-base .gL7YLFs55DBFHGm0aAlvaw\=\= {
+        width: 100%;
+        height: 100%;
+        padding-right: 40px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        box-sizing: content-box;
+        position: relative
+      }
+
+      @keyframes contextMenu-slideIn {
+        0% {
+          opacity: 0;
+          transform: scaleY(.93)
+        }
+
+        to {
+          opacity: 1;
+          transform: scaleY(1)
+        }
+      }
+    </style>
+    <style type="text/css">
+      .o365cs-base .qLbnXrrpb1JPt\+x0quZ\+QQ\=\= {
+        font-size: 14px;
+        display: block;
+        box-sizing: border-box;
+        margin: 1px;
+        padding: 6px;
+        text-align: left;
+        height: 32px;
+        line-height: normal;
+        animation-name: contextMenuItem-slideIn;
+        animation-timing-function: linear;
+        transition: background-color 83ms linear;
+        border-style: none;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis
+      }
+
+      .o365cs-base .qLbnXrrpb1JPt\+x0quZ\+QQ\=\=:active,
+      .o365cs-base .qLbnXrrpb1JPt\+x0quZ\+QQ\=\=:focus,
+      .o365cs-base .qLbnXrrpb1JPt\+x0quZ\+QQ\=\=:hover {
+        outline: none;
+        transition: background-color .167s linear
+      }
+
+      .o365cs-base .qLbnXrrpb1JPt\+x0quZ\+QQ\=\=:active:focus,
+      .o365cs-base .qLbnXrrpb1JPt\+x0quZ\+QQ\=\=:focus:focus,
+      .o365cs-base .qLbnXrrpb1JPt\+x0quZ\+QQ\=\=:hover:focus {
+        background-color: #e0dfdd
+      }
+
+      .o365cs-base .qLbnXrrpb1JPt\+x0quZ\+QQ\=\=:active:focus:focus,
+      .o365cs-base .qLbnXrrpb1JPt\+x0quZ\+QQ\=\=:focus:focus:focus,
+      .o365cs-base .qLbnXrrpb1JPt\+x0quZ\+QQ\=\=:hover:focus:focus {
+        outline: 1px dotted;
+        outline: 1px auto -webkit-focus-ring-color;
+        outline-style: auto
+      }
+
+      @media screen and (-ms-high-contrast:white-on-black) {
+
+        .o365cs-base .qLbnXrrpb1JPt\+x0quZ\+QQ\=\=:active,
+        .o365cs-base .qLbnXrrpb1JPt\+x0quZ\+QQ\=\=:focus,
+        .o365cs-base .qLbnXrrpb1JPt\+x0quZ\+QQ\=\=:hover {
+          -ms-high-contrast-adjust: none;
+          color: #fff
+        }
+
+        .o365cs-base .qLbnXrrpb1JPt\+x0quZ\+QQ\=\=:active:focus,
+        .o365cs-base .qLbnXrrpb1JPt\+x0quZ\+QQ\=\=:active:hover,
+        .o365cs-base .qLbnXrrpb1JPt\+x0quZ\+QQ\=\=:focus:focus,
+        .o365cs-base .qLbnXrrpb1JPt\+x0quZ\+QQ\=\=:focus:hover,
+        .o365cs-base .qLbnXrrpb1JPt\+x0quZ\+QQ\=\=:hover:focus,
+        .o365cs-base .qLbnXrrpb1JPt\+x0quZ\+QQ\=\=:hover:hover {
+          color: #000;
+          background-color: #1aebff
+        }
+      }
+
+      @media screen and (-ms-high-contrast:black-on-white) {
+
+        .o365cs-base .qLbnXrrpb1JPt\+x0quZ\+QQ\=\=:active,
+        .o365cs-base .qLbnXrrpb1JPt\+x0quZ\+QQ\=\=:focus,
+        .o365cs-base .qLbnXrrpb1JPt\+x0quZ\+QQ\=\=:hover {
+          -ms-high-contrast-adjust: none;
+          color: #000
+        }
+
+        .o365cs-base .qLbnXrrpb1JPt\+x0quZ\+QQ\=\=:active:focus,
+        .o365cs-base .qLbnXrrpb1JPt\+x0quZ\+QQ\=\=:active:hover,
+        .o365cs-base .qLbnXrrpb1JPt\+x0quZ\+QQ\=\=:focus:focus,
+        .o365cs-base .qLbnXrrpb1JPt\+x0quZ\+QQ\=\=:focus:hover,
+        .o365cs-base .qLbnXrrpb1JPt\+x0quZ\+QQ\=\=:hover:focus,
+        .o365cs-base .qLbnXrrpb1JPt\+x0quZ\+QQ\=\=:hover:hover {
+          color: #fff;
+          background-color: #37006e
+        }
+      }
+
+      @media (hover:none),
+      (pointer:coarse) {
+
+        .o365cs-base .qLbnXrrpb1JPt\+x0quZ\+QQ\=\=:focus,
+        .o365cs-base .qLbnXrrpb1JPt\+x0quZ\+QQ\=\=:focus-visible {
+          border: 2px solid highlight;
+          padding: 4px
+        }
+      }
+
+      .o365cs-base .qLbnXrrpb1JPt\+x0quZ\+QQ\=\=:nth-child(2) {
+        animation-duration: .05s
+      }
+
+      .o365cs-base .qLbnXrrpb1JPt\+x0quZ\+QQ\=\=:nth-child(3) {
+        animation-duration: 67ms
+      }
+
+      .o365cs-base .qLbnXrrpb1JPt\+x0quZ\+QQ\=\=:nth-child(n+4) {
+        animation-duration: 83ms
+      }
+
+      .o365cs-base .qLbnXrrpb1JPt\+x0quZ\+QQ\=\=>label {
+        font-weight: 400;
+        margin: 0;
+        padding: 0;
+        font-size: 14px;
+        line-height: normal;
+        color: currentColor !important
+      }
+
+      .o365cs-base .qqcB4nWgri26vFLL0yHLHw\=\= {
+        transition: color 83ms linear;
+        display: inline-block;
+        vertical-align: middle;
+        padding-right: 6px;
+        padding-bottom: 2px;
+        width: 20px;
+        height: 20px
+      }
+
+      @keyframes contextMenuItem-slideIn {
+        0% {
+          opacity: 0
+        }
+
+        to {
+          opacity: 1
+        }
+      }
+    </style>
+    <style type="text/css">
+      .M3pcB5evSAtYMozck1WU7A\=\= {
+        height: 100%;
+        line-height: 48px;
+        display: flex
+      }
+
+      ._1QSK5lUhw5Gkh7SDz97ZPQ\=\= {
+        height: 48px;
+        display: flex
+      }
+
+      .siUMOJwnumycxvszBe3uzQ\=\= {
+        display: inherit;
+        flex: inherit;
+        justify-content: inherit;
+        order: inherit;
+        align-self: inherit;
+        min-width: inherit
+      }
+
+      .\/DyMYj2gNfPrYNbEWoV2\/w\=\= {
+        font-size: 14px;
+        font-family: SegoeUI-Regular-final, Segoe UI, "Segoe UI Web (West European)", Segoe, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, Tahoma, Helvetica, Arial, sans-serif;
+        text-align: left;
+        height: 48px;
+        line-height: 48px;
+        vertical-align: top;
+        padding-left: 8px;
+        text-overflow: ellipsis !important;
+        overflow: hidden !important;
+        max-width: 220px;
+        cursor: pointer
+      }
+
+      @media (-ms-high-contrast:active),
+      (forced-colors:active) {
+
+        .\/DyMYj2gNfPrYNbEWoV2\/w\=\=:focus,
+        .\/DyMYj2gNfPrYNbEWoV2\/w\=\=:hover {
+          -ms-high-contrast-adjust: none;
+          forced-color-adjust: none;
+          background-color: Highlight !important;
+          color: highlightText !important
+        }
+      }
+
+      .N9B5\/L\/KHHvT9WOBAb1beA\=\= {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+        justify-content: right !important;
+        display: flex
+      }
+    </style>
+    <style type="text/css">
+      .o365cs-base.oxqgTC3pSRhOfrgHfYUrfw\=\= {
+        padding-bottom: 2px;
+        width: auto
+      }
+
+      .o365cs-base .MP9y\+OCUQ0Dsy6Z6A0P7qg\=\= {
+        padding: 12px 20px 12px 8px;
+        font-family: SegoeUI-Regular-final, Segoe UI, "Segoe UI Web (West European)", Segoe, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, Tahoma, Helvetica, Arial, sans-serif;
+        font-weight: 400;
+        line-height: 16px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap
+      }
+
+      .o365cs-base .U3BBQu\+2xhg0uuDXS\/n8\+g\=\= {
+        display: "inline-block";
+        font-size: 16px;
+        padding-right: 16px;
+        vertical-align: middle
+      }
+
+      .o365cs-base .Si\+F1NEyl39azkbswg7g8w\=\= {
+        padding-left: 16px
+      }
+
+      .o365cs-base ._21b4kBzHkdpWCgCgA\+VRlQ\=\= {
+        left: 16px;
+        top: 8px
+      }
+
+      .o365cs-base .FdC5CgNe2qQBXGbOKlNuew\=\= {
+        justify-content: flex-end;
+        max-width: 48px
+      }
+    </style>
+    <style type="text/css">
+      .o365cs-base .rSDngy50C4hLvjN77R3dbA\=\= {
+        height: 100%
+      }
+    </style>
+    <style type="text/css">
+      .o365cs-base .qNo\/sN23chEBUe0H8Hn0HA\=\= {
+        padding-top: 14px;
+        padding-bottom: 15px;
+        -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, .1)
+      }
+
+      .o365cs-base .F0O9Uh2pe9g2AY0G8h\/\+Ig\=\= {
+        height: 100%;
+        display: table-cell;
+        vertical-align: middle
+      }
+
+      .o365cs-base ._9vDKNLv2p0rO0JuPUAbO2Q\=\= {
+        outline: none;
+        width: 100%;
+        height: 100%;
+        display: table;
+        vertical-align: middle;
+        white-space: nowrap;
+        font: 600 14px SegoeUI-SemiBold-final, Segoe UI Semibold, SegoeUI-Regular-final, Segoe UI, "Segoe UI Web (West European)", Segoe, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, Tahoma, Helvetica, Arial, sans-serif
+      }
+
+      .o365cs-base .CdPZflTrXWHEicpXXS6AlQ\=\= {
+        height: 88px;
+        display: inline-block;
+        background: transparent;
+        background-color: transparent;
+        border-width: 0;
+        padding: 0;
+        width: 88px
+      }
+
+      .o365cs-base ._8EiyIQbC2jdaO0EOWDlujA\=\= {
+        overflow: hidden;
+        width: 88px;
+        height: 88px;
+        position: relative;
+        vertical-align: middle
+      }
+
+      .o365cs-base ._8EiyIQbC2jdaO0EOWDlujA\=\= .ms-Persona {
+        position: absolute;
+        top: 0;
+        left: 0
+      }
+
+      .o365cs-base ._8EiyIQbC2jdaO0EOWDlujA\=\= .ms-Persona .ms-Image-image {
+        overflow: hidden;
+        top: 0
+      }
+
+      .o365cs-base .MpvtHlUkaovZcuOiXBne3A\=\= {
+        border-radius: 50%;
+        text-align: center;
+        width: 88px;
+        height: 88px;
+        overflow: hidden;
+        background-color: #a6a6a6
+      }
+
+      .o365cs-base .MpvtHlUkaovZcuOiXBne3A\=\=:before {
+        margin-top: 17px;
+        padding-right: 2px
+      }
+
+      .o365cs-base .ET90q9eZ8tc8ZXPAo76Ylg\=\= {
+        border-radius: 50%;
+        font-size: 32px;
+        text-align: center;
+        line-height: 88px !important;
+        color: #fff;
+        background-color: rgba(0, 0, 0, .6);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        cursor: pointer
+      }
+
+      .o365cs-base .ET90q9eZ8tc8ZXPAo76Ylg\=\=:active {
+        color: #bebbb8
+      }
+
+      .o365cs-base .SaqVecUjoNb0KEBe216b2A\=\= {
+        max-width: 214px;
+        white-space: nowrap;
+        padding-left: 10px;
+        overflow: hidden;
+        display: table-cell;
+        line-height: 88px;
+        vertical-align: middle
+      }
+
+      .o365cs-base .hNLixTh\+CloPpy10mYs9tw\=\=,
+      .o365cs-base .pWVVXrrMBYjXprMj26pk8Q\=\= {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font: 600 16px SegoeUI-SemiBold-final, Segoe UI Semibold, SegoeUI-Regular-final, Segoe UI, "Segoe UI Web (West European)", Segoe, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, Tahoma, Helvetica, Arial, sans-serif
+      }
+
+      .o365cs-base .pWVVXrrMBYjXprMj26pk8Q\=\= {
+        font: 14px SegoeUI-Regular-final, Segoe UI, "Segoe UI Web (West European)", Segoe, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, Tahoma, Helvetica, Arial, sans-serif
+      }
+
+      .o365cs-base .\+BuUSN5J6XE4OQWpQxcjlQ\=\= {
+        color: #106ebe
+      }
+
+      .o365cs-base .\+BuUSN5J6XE4OQWpQxcjlQ\=\= div {
+        line-height: 30px
+      }
+
+      .o365cs-base .\+BuUSN5J6XE4OQWpQxcjlQ\=\= div a {
+        font-size: 14px;
+        font-family: SegoeUI-Regular-final, Segoe UI, "Segoe UI Web (West European)", Segoe, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, Tahoma, Helvetica, Arial, sans-serif;
+        padding: 0;
+        text-decoration: none
+      }
+
+      .o365cs-base .\+BuUSN5J6XE4OQWpQxcjlQ\=\= div {
+        margin-top: 4px;
+        line-height: 19px
+      }
+
+      .o365cs-base .\+BuUSN5J6XE4OQWpQxcjlQ\=\= div:hover {
+        text-decoration: underline
+      }
+
+      .o365cs-base .jnUqGtlqOJFibeuSHEVQ\/w\=\= {
+        color: #8a8886
+      }
+
+      .o365cs-base .dANNEUd\/6gcUsHCwwo4vMg\=\= {
+        display: inline;
+        margin-right: 30px
+      }
+
+      .o365cs-base .VX1ElPIMzFMFz9C\/WiPN\+A\=\= {
+        color: #fff;
+        position: absolute
+      }
+
+      .o365cs-base .gD7D0IvB2LK4DtpKHP\/kcg\=\= {
+        position: absolute;
+        right: 24px;
+        bottom: 24px
+      }
+
+      .o365cs-base .\/mOlWjAqPf2WqoRBvRI6TA\=\= {
+        position: absolute;
+        right: 20px;
+        bottom: 38px
+      }
+
+      .o365cs-base .zbYgVZLJkpwl3AoOQWq7Vg\=\= {
+        width: 8px;
+        height: 8px;
+        position: absolute;
+        z-index: 2;
+        padding-top: 22px;
+        padding-left: 4px
+      }
+
+      .o365cs-base .eZeFoO97j7vtIHA7a4IQJQ\=\= {
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        z-index: 2;
+        padding-left: 4px;
+        padding-top: 4px
+      }
+
+      .o365cs-base .sXytkqjdjf0xvjn5T2RLeA\=\= {
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        z-index: 2;
+        border-radius: 12px
+      }
+
+      .o365cs-base .l\+hNN9VULKqxAzbeinOj2Q\=\= {
+        color: #fff;
+        position: absolute;
+        left: 2px;
+        top: 2px
+      }
+    </style>
+    <style type="text/css">
+      ._07tLGRYM\/89D7ElAIBuDmw\=\= {
+        top: 100%;
+        max-width: 184px;
+        width: auto !important;
+        padding: 8px 0
+      }
+
+      .o365cs-base .ZfuvsgSmPhMAqqrv55yOMA\=\= {
+        font: 400 14px SegoeUI-Regular-final, Segoe UI, "Segoe UI Web (West European)", Segoe, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, Tahoma, Helvetica, Arial, sans-serif;
+        border: 0 solid #f4f4f4;
+        text-align: center;
+        background-color: transparent;
+        position: relative;
+        display: block;
+        padding: 4px 0 0
+      }
+
+      .o365cs-base .ZfuvsgSmPhMAqqrv55yOMA\=\=:active,
+      .o365cs-base .ZfuvsgSmPhMAqqrv55yOMA\=\=:hover {
+        text-decoration: underline
+      }
+
+      .o365cs-base .ZfuvsgSmPhMAqqrv55yOMA\=\=>span {
+        display: -ms-flexbox;
+        display: flex;
+        justify-content: center
+      }
+
+      .o365cs-base .ZfuvsgSmPhMAqqrv55yOMA\=\=>span>div {
+        margin-left: 4px
+      }
+
+      .o365cs-base .DEfKR7CR9jTmB2rhYOL\/jg\=\= {
+        font-family: SegoeUI-Regular-final, Segoe UI, "Segoe UI Web (West European)", Segoe, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, Tahoma, Helvetica, Arial, sans-serif;
+        display: flex;
+        height: 36px;
+        padding: 7px 12px 0
+      }
+    </style>
+    <style type="text/css">
+      .ohcfXYh6LUBy5DS5kNUjRQ\=\= {
+        position: relative;
+        overflow: hidden;
+        border-radius: 50%;
+        width: 100%;
+        height: 100%
+      }
+
+      ._8ZYZKvxC8bvw1xgQGSkvvA\=\= {
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: inline-block;
+        line-height: normal
+      }
+
+      .Mc\+fiAdJTuKKS\+yJLN3rDQ\=\=,
+      ._8ZYZKvxC8bvw1xgQGSkvvA\=\=,
+      ._8ZYZKvxC8bvw1xgQGSkvvA\=\= img {
+        width: 100%;
+        height: 100%
+      }
+
+      .Mc\+fiAdJTuKKS\+yJLN3rDQ\=\= {
+        position: absolute;
+        left: 0;
+        top: 0;
+        border-radius: 50%;
+        text-align: center;
+        display: inline-block;
+        color: #fff;
+        font-family: SegoeUI-SemiLight-final, Segoe UI Semilight, SegoeUI-Regular-final, Segoe UI, "Segoe UI Web (West European)", Segoe, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, Tahoma, Helvetica, Arial, sans-serif;
+        line-height: 195%
+      }
+
+      .OLlo7WBYb7HJTGfGyVkiWQ\=\= {
+        font-size: 13px !important;
+        font-family: SegoeUI-Regular-final, Segoe UI, "Segoe UI Web (West European)", Segoe, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, Tahoma, Helvetica, Arial, sans-serif;
+        line-height: normal !important;
+        display: flex;
+        align-items: center;
+        justify-content: center
+      }
+
+      .Csa69b1duifKpk7Dd1dnYQ\=\=,
+      .OLlo7WBYb7HJTGfGyVkiWQ\=\= {
+        background-color: transparent !important;
+        border: 1px solid;
+        box-sizing: border-box
+      }
+
+      .Csa69b1duifKpk7Dd1dnYQ\=\= {
+        color: inherit !important
+      }
+
+      .lMHKWNw\+dCJnMDe9\+woOeA\=\= {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        background-color: #a6a6a6;
+        font-size: 6em
+      }
+
+      .lMHKWNw\+dCJnMDe9\+woOeA\=\=,
+      .AVxO7n7xVC0r\+UpsGePEyg\=\= {
+        position: absolute;
+        left: 0;
+        top: 0;
+        border-radius: 50%;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        overflow: hidden
+      }
+
+      .AVxO7n7xVC0r\+UpsGePEyg\=\= {
+        line-height: 1 !important;
+        font-size: 18px;
+        margin-top: 1px
+      }
+
+      .AVxO7n7xVC0r\+UpsGePEyg\=\=:before {
+        margin-top: .4em
+      }
+    </style>
+    <style type="text/css">
+      .o365cs-base ._8kgf\/hwnaG6yDp7ROaUTXQ\=\= {
+        height: 100%
+      }
+
+      .o365cs-base .al\+TT2aHbwgQ07YKgWsrZw\=\= {
+        width: 100%
+      }
+
+      .o365cs-base .v02KEC8zreNUdRsgFKjILA\=\= {
+        float: left
+      }
+
+      .o365cs-base ._8oKR2YgB\/Xftf\+UcYXBF8w\=\= {
+        float: right
+      }
+
+      .o365cs-base .VzNFGH0cG\+njOb21wXfhhA\=\= {
+        display: table
+      }
+
+      .o365cs-base .vcfp76jyih\+ENVqQ\/8DFnw\=\= {
+        display: table-cell;
+        vertical-align: top
+      }
+
+      .o365cs-base .JalJSTN5KL5K7CcIcQkzbA\=\= {
+        display: table-cell;
+        vertical-align: bottom
+      }
+
+      .o365cs-base .DjQ3\+qKHwG9bQOOkLpHAlw\=\= {
+        display: table-cell;
+        vertical-align: middle
+      }
+
+      .o365cs-base .Eke7MaGTyd6e99459bb4rg\=\= {
+        display: none
+      }
+
+      .o365cs-base .TgJAsY26sVHapvCKU8XENA\=\= {
+        position: absolute;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        width: 1px;
+        margin: -1px;
+        padding: 0;
+        border: 0
+      }
+    </style>
+    <style type="text/css">
+      @charset "UTF-8";
+
+      @font-face {
+        font-family: ShellFabricMDL2Icons;
+        src: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAEkgAA4AAAAAdUgABKj2AAAAAAAAAAAAAAAAAAAAAAAAAABPUy8yAAABRAAAAEgAAABgLuB/9WNtYXAAAAGMAAAB/wAABFqFlGebY3Z0IAAAA4wAAAAgAAAAKgnZCa9mcGdtAAADrAAAAPAAAAFZ/J7mjmdhc3AAAAScAAAADAAAAAwACAAbZ2x5ZgAABKgAAD3tAABgCCt0btFoZWFkAABCmAAAADYAAAA2LRkCQWhoZWEAAELQAAAAHQAAACQ3yjBmaG10eAAAQvAAAACNAAABsE2rJ4xsb2NhAABDgAAAAOgAAADowm7aXG1heHAAAERoAAAAHQAAACAApwNgbmFtZQAARIgAAAP3AAAJ+pKX8lVwb3N0AABIgAAAABQAAAAg/1EA6nByZXAAAEiUAAAAiQAAANN4vfIOeJxjYOEIYpzAwMrAwDqL1ZiBgVEaQjNfZEhjEuJgZeViZGIEAwYgEGBAAN9gBQUGhyezfmRygPkQkgGsjgXCU2BgAADSqwh+eJxjYGBgZoBgGQZGBhAzBMhjBPNZmC2A9CmGBgY2Bq8ns57cfPL9OcNz7udCz4WfizwXfS72XPy50nPt53bPfZ/nPM97XvK8+nn7813PDz4//ELmhcOLKS+mv9j9kuGl5Ev5l44v3V4WvZz5Su6V9avAVw2v+l9Ne53zOv+N0BuRN4vfMr2VfJv1tvBt9duat61vj789/fbM27NvL747/r70fe37uvf1H/o+TPzw56P2R4OP9z4+/vj04/OPLz++/lT9qe5Tw6emT8s/7fn08NPLz5qf47+YfKn70vSl7UvPl2lfNn3Z8+XBt5LvAt/dv0d/L/1+8Efm//8MDDj8ovhcC+yXbLBfqtD8Mg3FL4Vofsl+nUdTv0z6shHqF35kv0hfk54hXS3JKPFL4ovEe4nPEu8k/kh8lPgkcV/iusRJiQUS0yRmSkyRmCARJxEhES7+Rfy2eId4u3iKuKA4uziT2EOxu2KbxXrF+ETfid4UXS06Q3SSyCGRgyLyInLCE4SNhGWELgidENortFtoo1CpUJFQvlChUJ5gpcBZgWMChwWO8u/g38LvzS/LL8mXA4RpfKlAmMR7lfcy7yXei7xreWfzlvDm8urz/OJR477LfYv7Ovcl7rPcm7lXcbdzfuGM4lThFOT4wbGWgw2S9oYLYGQbaBcMPAAAB2RfLQB4nGPQYghlKGBoYFjFyMDYwOzAeIDBAYsIEAAAqhwHlXicXY+/TsNADMZzJLSEJ0A6IZ11KkOViJ3phksk1CUlDOelgNRKpO+AlIXFA8/ibhnzYgjMEf4utr/P+ny/c6f5yXx2nKVHKilWnDfhoNQLDurtmf35IU/vNmVhTNV5VvdlwWoJomtOF/VNsGjI0PWWTG0eH7acLWKXxY7w0nDShk7qbQB2qL/HHeJVPJLFI4QS30/xfYxL+rUsVobTiyasA/des/OoAUzFYxN49BoQf8ikP3VnE+NsOWXbwE5zgkSfygL3RJqE+0uPf/Wgkv+G+23Iv6tB9U3c9Bb0h2HBgrChl2fbUAkaYPkOhPxkxgABAAIACAAK//8AD3icrXwJeBvF2f/OnpIPyav7sC7LOizbsi1Zku34kO04vuLEjpOQ2DnJfd8JuTeQhEAuEsJZICkhUOCDQrgJFNGPFtomlCvAV2hLC7Sl0K8cH21iaTf/mVnJFg7H0+f5W97d2d2Z2Tneed/f+847Q5DEvQRB72Y2EhTBEUSMd/EeF++6l/pD6knySbGLYDYOXX+MnkDAP4oggKAgWJiAUBIqooQ4g59SBF36NEEUPEPkE+z/PUPkEBQ8K3CYgeHKKuCKuPT88ElBXCBGDkYQhBQhCCTYuRPmzBIsN8QNETFiHXEt8SP4TZ1Br2P1DOVhOS1DFbHuIq+b8mi9Pvio2hupjkY8WiYag49C0XDIEIaRDEaPFjSCSLXXF/MxQeDT+rggcBexnI/TqgDn4YwqoNcZjJzRYwdGyhizg3AoGjPGqEYQY2IgZCf1OhXpLgqSkepGUhtqhNcgvFfB53aS/TcAgDouvWOyjJV2/VipUcL/H0u7xlpM0jvHAQWAJB4HJfAt2Jl5C3bCt6DkuLSPpGnys6nSF45mb9Nrx4yVRlOF6cbXmrxxp/TF1M/kt0B9+Vugnpo6OuG6hWPGLLxuQuYam9NRUtIxJ5a+0sX/WWHE7IpIv4ffgl8c/txn3yxq9tvLikouzS4WuopCVsHwdZiGBBhiiVx4BynOqARaXgl4RA+HqTXUGnVKSAmskITkI0jt4JkUQV0lNYMXUvsQHTLopIA/Qkv4iFZiNrEB5pPuqXC651yj7kGItpMavY5UkbS7qDhIwreaRrIY9iwNexY+U9GwZ2nU0zGjikI974vZKVKwBt06nTtoTV/Jj0c9kBYcBOxHZ/Z0du4585E0dPCgNJS5A8yhrR+/fM+GeHzDPS9/vHUk/NG2zus2znatK7nq2IODMx44dlXJOtfsjftoISvfb71Swrd+JV2CC4Kc+eUfBYK/a2lzXd/uGaHQjN19dc1Lu/zymBYIgYM/OPI4OH5RfwAenSAX4F0c7AOJIAnpCeY3Q/AKIwkX4ZUhLj4Bumk4biWcBwVzoAXcH2NgHqNGj+sH7gExqqrU6Lpf9uCHW2r0VeZfFyDtKWBNcwk1QSiBHtZRDxh4BoyeUcDaDEGyJAkR0x6stwAEcAEQF2gCnveJBPnMi5+/CNuNRI3HXYI0OIbYjGpscAA75CisGiDaKQNBMgegujVBNhTOvEUkZgSGMKQ5CtFZFFGez4toDzI1HwiiJJAcfUHGXcSpKEiQLNte1ud43+FyOVTRgSuv6t8uXZCSyT8+t2+8rbY/WuDoLZff28siZXYr6bN6LeVlwZo2X8fcCV2VVluwNlaRb/VZysoqatrKYFzxfzKR80vDtdEqjdda2R2xdu565LW//uNTqtUFc+tDEVXRybX2Cdf/7E9JwAB6S//GK6fD7xUVye/baoJl5RavVfwfK85NbLCGx1davZqqaG24NF9+6HKQPjlyRVmZxWfNr4jVBm3Wyq4Jc9tX/+///vXVh3e2EwA2ZT/k+Q+hIa0EPiQtQIwbSvUPUNoLQxyb+scATeA7gdIOwPgs0Q87EccHLsApgRG4IPMYgm9T/dRDA6l/cCyVgMmoh/AdjAZOERQjciLiHh6YQAmYkymSkgZSs6i7KUqkxIHUzNRM1K2AhDKNHRyOG1PCJ9TdqVkDlJQiZ1InqZMDKSpFobg5w7zISniJENFMTCQGiaWQIwnEfkQX3851QJDy2SkjqPa5MNVwriiARBFz2Zm02HLJ8gnojC5EFdGYiwWQTDhXkGFUFOdqpADMAGYDGqmYS0XRxPdwIeop7/Ldt08urit35oF7PNJNCvgHlnlSQtWUjtoyu0KcoLCX1XZMAScUSqVCLMLnf3rAMhRRuslDZSKSp+WI0gOTb9+93At68pzldZJzJHsK4BfSY+iFgvg+biUKfYc3zrCFVm/aUi8Je7bGdzY374xvFZnotFVrl/p8S9eumhYlBfmxfAbEcDQymR2tyjZj4+G++i2bVifnZeU68phAqAWN2V9yv4R8ykGUEvMu51QUlO0IBwAVYFA/IInPcnhI+zg3MCKUEAMs7BkHgH2IX+p9gIMkEsPj3Ai8KJ8Yk5h5csu4cVtOzkxfPwxdsaGlYsAntVmsZLfFGr5iPboln3Q1tU4MFTn2PgkMOcagKVYl8ZZcjpJ0JjhirbXLg+DDhPjKvnKyVtpRPu7peb4eL9jK6r0xFyVk5Y+vUrxlwxUhqwWc8Q380TdQ0bL+irDVQna6Yl49ey0wUFyuBfyzKmYKGnMkfY4mj3M5JduTL4ovl+8ja8DV5eO68vPAVkdR1cSxTS4C8zkBthmU2LC9mmB7IWp2V5PeYiwv3ZCYQSxIfUPQ4iYcgUtMaN97t00SNrwq/fWeZb98cP+8qDD59veunbDtior5D3+yZ88nD8+vuGJralff/meXLn12f1/mSvVU3P8H6cLhe4D51Q3Refsf/OWyGwD3/k+qAlfdeN80lAwln3bv0c2kMjsdvGb4Mx6XDNGGpBrgAM9AIMmx6Ae70wt/EBjG7CQdHsEAJOeCMiHMw2pFY9HicMhoMBpoAqwYkFbQlb29Ew4deirx24fvvuuaq2dWtBm2+u/7CBhuzpa3V//fm/fHQIlECLzfMGvHbhA8+dvEU4cOsYT4nnR0ABwlB9ckfosfTeitjS1YcF3bzX1FR758eE627O7c+/x6Acqf/3U22LYPzroSfViuEsZPEKqrIb8JEEHIc6JEHdGI6ogIGeMehKncvA4hZRRGPeJCXYI4K0LgmR8S8uhQECVts6ovXgwPtvo5CMW9Fot3iNC6yswsh2SnhMUhBgLpQxREgRQkWBhJYImUEJnZVuJvHQzT114iBDFu8XotVCJ50Vzm0iIBDCFCSsB/MNk1ogiuGcEesErjiAFiJaIuCpJUBmWzXPatG40qLB9JNMwQ2YERsmPBKIA+mgrZ+c1LuvxCw+IDEyceWNzQ3/mNWwiOljR39qPbwXui3o3dchjHTL5ZPautBLUPqmNJ20wyAk+R7IdMt2vupus6UfR0Ft+477xu01xX9J5B+cPdG73psBw3dWl0djSR/lLm6Tfo2Q01I8S3aAQnMGrA3VwdS6OH0aoKE5/7+B27EOzbdcfjc7d/PCf1Ty3sXi1VMHGy/GzTG3cMDt7xxqb0VUHIj+VkkyemPtdCetBS/JyPt8vPkkRWdHxFkhLA0kEcyUHKRGVslbG9K+YyMi6fi0Ok9gNaFURReploq6NIFyA9AvmkAE5JHkF8UpA8HCS0pWf29/buP7M0c800ZPoqHkakBw8OIzlMckmCFrKToGtKyEqErxSmenRgDEC8CU5x5Ww5qpmShPydK0++Kb45AN6k3mTeTL5BBgekIPUGistiHon6xgFrXk5UERGiFmbhzhqQbjjcELUi6GsDJSQeezoDvIfaq5sPg/QBR5+9epw/RfjHVdshA0CDB2AVhCRSeLRRRBKWlCYsXhFWD6QPVhiKoyQoMZMQhpUWQbhEDOHhmIAQipAP+MfDQ8D0RKXRsJYwQgyDauCDvL6CCOM+nEj0w5qE9e7M4YEHk756fuAe938krEcHg8J62AzwQM8pVHBBPqSsg/6Be1a4AJtBoAlhCBYcMpsUARnQRaQpigLUQ77jD0XhZHK4RAAcGIJkkRTSuEDmQ0ixUSItyONSQmCp5d1mVGdOuCBQCVHN/FlUx1FSpAQxf5bsiAeKqPcJCoFYnAdKz6dpn3ejmsIDYF0qlS6iKDCYfXKoS+GhgPUQYceKiLHKfFGmpxGdjHdpYZFwnhxxUaAHPcAjvQfpAQ4J5r0hD1JdgOfiIFJaLg7rJwjrFBMtMAeMYGQdhIR4eRiwZPAKSMMaYwbVyOgHJeF+mYYo0p78PEvVuDJpxwgeeWLepO40HAGHMHbJV0g6M4Yuy4Lkj51FXL4mB3xqqWJ0GIVIe7y9/uals6aUgauzYId5GHWIYzBEKayyZBCKODu4rMZaUV5mBp8pUHNAWtVy/+D+gewHSgT/fRikG+lB6uhAakVqxQB1NLVygLqRuhEpDtm3qZUwCmofAOmaLcf0nwf7G9KlFmYCoOgHABJduXijeCMc7AJ4ExIL9aZ4iFw7IAWY+4euAG/j9AIa+Dh9FUwPqUQr82TWBtywSdlIluSiEV3GJ94oLO0uKeuYMWdGR5mQvrZvRtBtc7tQ0r1UuFGAFIQDEyfvWzNnYPr89R2JBAzOHhiAQRQPxZczwnqTLBNGt8MRatWRFPzBKz7BW9gO2bcpFGXElgL5NoN1l3nEGtjAGAJluDWHqIbkjJyPRTqMj/PFvCTSSEZwn1HGvo0Ugzl5WjyDUHFUE5HBIs3C5xoDDUZQtR0wkHwFcnX/0eVNpmBLidm0ZukrA69skV6/+27p9S0wuHSNyVzSEjQ1LT/aXzVnape1/Wh399F2a9fU2clJNfO6SiOV8Z9v864iQ8eB8fXNm1+XPjl+XPoEhYCRerYyUto1r6ZxlXfbz2EHILhCEyir0Gw5q+GvyN8FFXenMw+NFEkugDCcUbwyclFA2R8f9Un6Tu+qxkyZsvrGiiyYo/W/MNYLoXq098yHsnr04Zm9negOsAeheoTuoEb3bY/lJGk7GLalnSCKIApsIjqIKTKGGhY7aGTDrgg3UqiXPLjRjUwMY3Yl8CCLKO4vBqo8SjjUw55ohmw5dtukg0vqW9bcMjV5AuHqyKzdvZ52LyjbeP1tfSt+dWqj+NM1Zzu8bS5w6yfGCot5zq7bU0upCdIzoZV1E65fVO9nnq6c5hVvSR0pXxRl5jpCU9Y2FbePbXHSLzDjVh+dNPWWNS0Is0++fddcc24O2bqs29e+89F/z7wix6H7vytz1EzvNbOqU5vBgpfszsYlB3rqt/7KbgNrpEOF9rsax7Ys7y7hLQ7VN/i3FcqsMUhP8RQFaQSGwmmcRKWtexmkT4Uha4Zjlkrs+frtn24fO3b7T9/+ek92eN1bz9y6vL5++a3PvLVu7flM+PxpLEIujy6HOQJHWjuSIJMY4WVIg5AuzKSZ+yu7GZnRlSQcsBy3MnU0dXQz9Vfqr5tJM7USh1PmzSguuJb7K/NXHBePbACHsXkztZJauTkFX8IUqaM4LGOWjC1Pi+wisIZKUi+rM0rSFWEgnBDEBBQ1cRbKL4FMAAJ8LL3HYtEhvggIsckDZdLQIPkClJF/EYi0XIPPYJ4OogwjT70rg+CgWOczbQw/luF3PMbiLojnOJizf9zMSGTmOD8c6cH+DYfumTbtnkMb+oNCRl0jse3vEgI6sHgoJkoBhaEcT04jQi6b0fFEAkdO2/RYIiN3sxEMqj0Eki5Z/QGyMROMOlg4eircF4uLKgGEUCQ8UohHCMjmB2FW+soSQ/3uyqoi5iHYWvDTCD0MYSBG4rOUFcZ94CSc3AfcB2jca7MoELYY7Wzf9cT70nXXSe8/sas9O0wTlz/D4cvkjFsfTtMylDNhSMrssBIUhnQNYdH/fzmDsQ2L2thLVBLtGe2D5VRAnwVxq5E+LWsg0QbggmwlDLl9LMPwZcGAJlsScx+/U5gRWrmwfzqCq5cw1p3ev3BlaIZw5+N/snglCHBBa/7Sgf7pGQVjev/A0nykmcAYc49cWDDp1xvldCgHQGz89aQFF47I+V6AqRMJixcIu94YnPzyiJ7y8uTBN3YN24FQfTyQb7YSV6TtQNl1QVA96wxg7eArVo8x+/ANbnfeM+oeYnr2U0fUbzL5o46LDziiJUZjSdQBlo2cpWX5SvFBRX6+gl6WrxAfUOQvdcT8JkqQb5ah1GCZAtYY5xHI5EG+Lb8ZOV8QyL8rYT5iQJFPf4pylG4y+WMO0aBn387cRh1JfT4BMC19Bes9AckkloupKC490wF7jq9Gs2eoh3wheNbzXCwSLcbCAviClC/IRFAMFMFOwTP71fgOg3Fsz0RXZMGSNc1Lzxydk0+SlUUqfW7zjjgJQLgGgGOg6MZcY179znp3wKZX0bxOr8ktdRWoC2PWogWLZlqnziD/sPTnPVZnbbhc54yHnd3XnF6ca8plbi2q5LiSyQEAihc3JRUAkFMevoLL58xFZnW4caxDWRKKhXxKZzmbV6jiw7V1pgnnES6Lw74NwDq2EKux5OVUDCRU94g4RCMSVQJVy4trDrFMI4PrThkNOk8G96gAZwwPNxGi7BimZ/hPf1ZRYSytqu9d2l5+ZXXNpKi1evLyGi5PwRSVV1d4lSqrirZUm/f9V3G+FgDK4I11zagpn+rrWNbhgS3zb0Ohmo3PXVPpnhSlBnLMgeYqpcXmyEePbcHamip1+eIuW2sRH2PG3ST98XD79ddsWTmvxOLwtEyPtN6wd7WbZvL1ZqOWZjlGofMbNgDTI81Xt8DPViyaN32s32oM7PvxwxNVhVfq7F5N308fuL2hrE3Djd28ZklYadDmmz0B3r32uhuvW1+89Ny0oiabyoTajiBqIK//JUYTyJ4Ec0dN5/V5cCtBymfwmGfVstEBkkxMnt8wMnaKQiwAxvTxnkbAEeObxPO55lxntVW6SWescoO3peOl1X73fUajvyZSRk7WBY28tYAsdYQ9OsGil/7pjDvBEb2FXZYMNC/QHIcZqs/leozuKnrjDvX4cnGDv1U7mFfjp24KzTCD/tw8hrlN6a4ak8yh3za42G6lVnHx1XWsC+s/cSLOPcwloCaLZgdlzQdVBdMCjfFrljVJZtMsk8VQjYZwKJoxCyKGmzFdQPCaxhIkt9DtmXbr2fXdR5otUcuWD39xcl2cZYq90247u37CLS2mCpP8jBG/Lm0fnD3YXlpYFjZZy0tLTWZDaZUrMrat2Tj2wNrO9FuLv9pcMa4uai+r9TZMmNBp6TywvIXa1bS/Y/3ZW6b5vRTdtO7Hv/hwi7PZ2XQQPystISn5maNhe3xOR6Sk2FNmt3mNOWwen5NTE3BVuHQ5tKtj9cSm2e2RgMdX4XD4DUqj1RguL454jPmMo3090hfJoIJg3iD0UPsfsYsPT6MOG9hcaWNNmA3OeWBHV9eOB+Yk78mE6Bk9+xaMGbNgX0/ynkyIeQO9ycRA19SzYxZc29NzLXovX0fh5e+YNaG5w4D989PXtHfufvbPUurAAWno4+f3dXftfe5jwKG5huc+koYOHZBSHz63pwujZvrgYcB99OyezrT/QtrmkYuRAiHPccoGCjksGyhQmIXSP2NpSEKpn7E1oNBFPAuKzQkyIEDWBDT/idT2jD5lICyEnXBB/duHW1THoTHjA9hUBwnOhSYLDMBFIVODVkmji88F3ApCnYprHA5NKq5WQnxv52mBtyuAoEzdJL19lvx56hrpHJh/VvwbuUL6A/gMzBPryHIYfgKA+dI5kU4YNUnBaKQFjVGjJgUVz6tEQU0Gs0y3BvLvqTXUYXQVsKUA64FG7i3uE6KGmEUsglrgNajMmAtiAYH4IEDld8njPuwCGXFh0CL9AnFPDxSERZA5+LCvhV5n1NqBDegMsiUWmfVi2ihSNGxI+dB6EIhAGMEjz3mxNMfq9IUwR5p7i8ktyGOsOmXd2IZ8fevUxbVKbZ5BLXnEEnco5CbfAb9TG/J5paVc/1+dmoamWJ7OyuTxuXSyPuDQuXOu3pFXYnIElI+SVLjIZCtgaZJ5PIc0SQ9rjaTPu+OU+K5RC/qnX10MtPl5efmvSQteA+A18CPqUmDhkvl+jVGl1VAT7jt+tFahVIPfhdzUVHcIflShtMRsH0n/ZDSafKOmZN6iBX9wBPSar782FsAPF0i/oPOYO7xujd1nsFQbVHoFqNWQfdJDuT7j32889GXy/LG/GX250kMrhvaNaT/Y0XFwXM2KmgJ7QYFDXbNctiViGpVt4juJA8QNoyzjP2AK56AUcyMrDjaig8xwTY/f0YZxhITDmdQ2UDKC1tAooOYhRwGhfsmBib37l9RjJ4Ku/vol+3tnnIx6N3XL4YkHltRP7amY2h4t2GvomrOqDsXtB29m0Hz6mvxN1g2+slArig9rCBCBZ4A9iCP0TXa75lyF7OhL6lEJOq+7ao4renIGuu/v6t7kiclh9G7WvVFz2+S54WqYUf3iAxNnnKQvjf5aihhVIKkbjYcRpWPYaopGNZIh10HdZxMcywFiZgYjuoeVZiNAxM5lVGaW8/EZRhkLy1gSaGU4CYcGmlVkdKyezTQ/Mq2xn9rCXsNFvr3MVu0z5Cqlf7tKvHGd9BPG4Ku2lXcUvGTwhm30x9ZKj5n6AoXFJeKnxdJplOx52uytsNiiOrAIAKO/uhDloQVKvpgTUFTp3yWVKButu0B6Ve91PqrhUYwwRFR/QunFn2hd5VZxMQqjdkBpQAJYypwak/5pAIAt7DMYvNU2rwOEc3IRPghA/Hge0mYZtiliSwPtpoAMoSLhRiqGZq1xDaGE9Y7yyaGZMbNuWVbXs/fJ1z9cc5f0rr5Ikw9AgU7HKhQNy49dMf2Je29Y1jBb3FTV3+Du3nxLd9XkhiJ3fd+shQpCNWn73bPXffDy/VvbxLnUrc1728onBUBOaUUg19HknH54fjR25bV3PTpj6aPiXntNX6jnyOqx9tq+UHj+9O6YA/G3ONHK/Y17nsghyolaooHolvmbOwILx3A+BPY4Hwtv02MjEo4ZkbkEng16D56WcEcQUAAe3gOMvAGzNNTvjKBzV1iwjX5x01u8x9D1rlDf1LFzViw2a2cHM/ELqzVkfG77ffnJt8a35pvy4YjbITYh4zNYdlP3tfPHXL25ZW8rTVgqoCKsKwqu+aLQUqVP7PiJ+g2UQcfO2bF3H4+f40uMHe/sGtP8aEcdSAIS/OLchb0vg/0a4CSN8dXTtgi5dKaeH6XrieYhmv+jeiL0DxmKXMeYg6Q4ZiccERYLqt2Cpjdg7TrfFuobO3bMikZn7YC1+9xqrTKe2XZvfrKZ92pv0Xp58V1cN91e/5tld3xwF3XJEizSSbCNVn5eaKk0vLD9PvXr0dk7Otp3zIq9c7rpLO83tr+9c0zzhd47e8mJd04ESVyzHymOcw/kkBJ2saCgmJrGCty9aRs9oQQ8wytJHlDLpWPoe+TnYgHdQ69M/p1hysSHxc3UJ2A1+Fp8CuqvUCdgEwoknVVQLsu+YrxLi8jSxWB7hotKoCllUhDQBYpIghHQ/DKyPKArCTkVuuLXWM7HibFQXj5HFBA6qEeiGdg2Ymq6rSHM5DGmJHFDIq+BDMeFAg9PC0SyfiGDXoumbBFfCRszUfVuOJLIi5pAR1RTrNH5dOG2AC+247atqV1bO3VTl8vSum5aw9Z65iPJthmckdoyBxnmTVeJX38Z6Iw5f+0PdEadzmhn4FfwRJvLZk8IQx1EAmR5xzTywXMX9r0MttK5PVtu7hx/eFWrmpGmSjZysO+qvs29m428SImnyMFeR6wz8CXKBGX2K3SCenQHbIinFQCGFEQeRjnIgZTx8HiuAkQNNsChkVMBABwmLAYAHoDsxjHq/g+lGvE28K7kp59FZ/IWmi2lSY6akOplc1IX8jUq2PnUA3Shw6Skev+U/C1V1d+U+pA+A16/uF5BACjRPyEZqjc1gyUXk5q8XBW5mLqTtjqsFEfK83IJqAPEoQ5ggzjMQ5TguTnkq6XH1qH0aUTpj4axJxjvMpNZZqJPEd6Q9PCYkm90aKSlGocxH8KBZUhEpRJQVCUoKK6ohAQ/FXKnAu6QdB4eb8N4KhVMwcI7ASMvSEwX8TwPQBNHMDklpATsYyHb7RhIn4TWw8AmhA0IFSnA8cgDDVulaAKlRCZzKp5ISEQiwcLPpghJiJMfACIOTnxjntgKR/93+x+lRdCI0Q7JMwN2IhoxMn/TLg1eNfjsvFP6I2/zG4w+G1+gBs3O77dhD/XzEAeVO4GLzDP4bTxKKr6sL1FLCSesbSI9Lothv9RBapoqS1mjnYHiAtAcHCjeYtmoFGuEAJRBwsUI4SbS3fkQhkEImfKNFMKPMEQlCoLBQN7YG/Zuml698BkpdadwlyQ+s7B6+qa9h9vyAsHyiqa9wtorQpNuPn+NUDl3oNfV9fD8jpsPbCm1jPV7BheuiF5z/uZJ6tzQriO3dSoIXaE9J3Lg7sfOPD9wQnpsASeJgOIWPCadGHj+zGN3H4jk2At1ifJtR+6+/4G+Pb890sdRj1K2YKN77uMdqatsddPrW7bW+dqqnXTqv7i+G3671x1z1vZFLIAY1Vd1391X2hBWsofZB/YXJLELkh18b4+ZDH41eEhdgFodtfmJjc5yg9/O8+r/Vpf8QMc9z6Okfj3qtQKcFPUkzOW/1fyoslf9EJ1la43fT2KvDRPJFkRhvM1n/P5yJo+hOJlUKA2UgZdSRC53gfuKCEI5P5tYQVwt27vAsC6D/SYwOwIynzbKKowSamQ6eEYiEDYzVNm0PjlaFA0XGGzC7c+lJ0sNyB3M61Oi2/RdNco5HSP9KMpd4HlxjGFMkSscKNZqi3xVRUWNevEKZ0EBeb++we0K+dwabXEg7CoaYwC3gvKi5AIG1AOvQpsrvcTm5LDSW0ztLUU8D5ppWnqhqOiWbjY3lxWnMRRJ/gQFyeOGAul30ksMA8pQAvLXFCm9xSpzWek8fFbK5uSyoJShJEulLnW3xWb2Icdyj9FuoQb9EXOljhqw2o0e5ODtM9ssUoF0NACeZznI5BbmFLBQEVVIN3FDl57yxyxVOrCHUSoYsDcQiQSemsNxqVMcyzBU6pRCAbaptGChJHAcTHxMoaBWkhwJVnAK6Rh8wiHfQ7CMlecr8PwVg3zBCTS9DckpBX+MIDspUMM0FiaWET/LWHHob7Hi0N+w4mSozodHDY1GTUYfgj2NISqN8LidQtqQIwNk03ZQGbDSGZHt8wzPc9JpC5DsKPaEx1vSvVg4OrH7huZAf2DPv95+ZHsbx33rU4mbdsf61jy9XavMq1t205OvrQnNrnKNaWj2fcdzcb8nWm/6n+aVveXe1oEla2vrdmxc5OYNGkeJ0V3u9dVNbS7qairROksM0vtNCzt9vcKP+9wz583uDupcpQZbSbGvpm+MsyXioqY339A98aiwuLvE6+G4tu2PvP2vPbBk3/pUVLeuv2Oar7lhjKtqdmjNa0/etKwuT6m16/O+6zm90VFayDOV6vDE5eNaFvfVFvN8SWvYXOsw+QrVjopohUPrHeM3+2watqsg1LVw7KxreotV1tK6rnKzx5xn9pR5zCpHtdzf2IeIIPREERy7eJ4Be8zoedkMbwMuzPQpN+NCPtNQWpNzypvD/pIKB/UBQuAXZI+ZD0zFdsQS7MUmxplyOipK/OHmcsnJwdy1hUWF2CktCSkNpREEJW9Uq428UsDvUt/gbxTRK3tgDFMVsoWDbCthA6j2DRPYsJkQ8QnWBtmJnULOTNRj0x7cOykybV1DQaDUl6fjnVUNNk9rU4OTplRKW+eE8Y4pJ7aPL+0YnDXYUeqqbrIHJ4xr89A0o+Rc4/v65MUyF68rnnJg0fi1U1vsCr3Jkq8L2twVtjylxqohVe8r6fyCHDow/brZ45b0NYTKQ3W+4kpbrqrQZyE59jMFrTGr2axxFSGmwJE1an4amXWy50plfyx5xhqkwxk0K9/JtkIqE5Q9uPDrYQfgQ1ISufwi96rRayE+3orck9I+wSkC3WTm+lA47en5C68F6ekoA9R3Fi9NpPPETsXsQRR320ej1z2g+HIRUl+hcGbaEYUz7qdU3OJF+j/KAdGDN+3XLWA7nvkbXpYtxDiiKwtD4hnGjEUMnShjmNK60dwBhCZuLRWWcaSb1+Lj8mlI7kGEL4cegIhxCgqBB0PuKZuf+s3LP11NUqS1pvDZn7/1NNUgJkiI+hIJMcEQKDxycELIffEBnLQ0baUqdYdS2g9BFxh7juLo2IqY9Kz0tNSL5i8hmoSAFSTSZ/gkSXz7czy3mmmDjFdY0/fWXYum1Snkyjaqkq5hzP3tFX7ty1uPffLjY0zyklwYfMCClWLsfR4tL/nWSp6XZpB3Sf3gIfFKaWK6Gtln4RIBETlMd4nA5lls55Tr5IQ1isKxPZjtTQlH7XCNGikj7wpSAMMXPhxBVC876fMszQ3XCAoRNF5UZCmI0MK2j18+iSjw5Msfb1v5xvMnm6THcaHHN518/o2HyefzNpz5l/i4b+yMqPTFnUurZnaVg13znz11/eK4IvXSMWloHliEq3xb7Jqjd4k/r6rTO/2aGZwg5yjnXj3v8IDcBgOH51VfI7Ye+PrMBnFvXX+1SZz7d1tsUuqFqsGddz45j6rPu2alXP+G2S1F1DlftdGm4X4C2yBvuB20RDVRQ9TDnm0l2onxRD+xiFhFrM1osiMWHObbOx02hA3wxrAdDHe43jMSNMYiQI+kc2S0i67WhVY+uF0MD8gTGm9jaaDeq9H4GkvL6j0FzJwa/1DCXyOTCFla7aXHe6uXAmWeNEIhtFiPyRUer64VhQeZXEZq7LlqUmmgd33XxC2TS8smbTxLu8TZiIYYQlJQoq+9xuWu7fB4O2vdxXWd7tQH/poaP3Cmacrrra72esUrG1gd+QT6iiTI5zvuoIjs+4eEsZ9QRIIkX0p+Fpm5o6t9y0A4PFMY37FlWkiaDO6Z6A59TS6V0v6hI+NoxGf7+8eR1p0L0L/2sqH0bcNn0tYDew/2rtl0Ve+New8wEnLWTmHdkhKSxHcMnZek5eQJaR3ULXeAw+Kc7+IO6TmNOCz/g3jdxGRiMbGa2EUcuHzNHYVs/vKsmVfLZ+bbqG8OK292ChRBDynoMit1OOLSh/kw8hrVsaUA2U8bSQ+8k20p7AcVfQ1ud0NfRXASuk4Kom6ExwW0zMI70WWes+uOyVc+dO30fInHFPR7W0XfisbGFX0V6FrgLKBO+GtScXcTMjg3ud2NFVZrRaP4j4T4QeIEtVqKh9x/yW+bt6MDWZhBQkpYWoqRvwETz/4qKgWI4y/DQ3JKxWgBhkbbt2d29dir7pkjt3dDa+a76EpTM2rIefBj7uyPi3tOnJCI1ZChn3eH2jZOqaxfsv8t8Jz4lMVsrx6XteYxSLQRG2Hrn8qMUF9mfjoay+JdmckAZIPCyxoQtUElGq85I9Njkc7MIUSG4Qs93C2GYcCDhykre2hnj2F5wlxBIKHa3Kzsuer2qch1BCoevZjcgnnzb//FSuR/QZJLnzvYl0z037JxYh641x3SaMbOXNusaN98UvxHcPq40vKxE8aWm1zFeeEJAVOJv9RSNqO7Aj/UO92q+pmVC0k3Ws3iHTurBo7m91jYz+TVGev/xP1LGgCo6G0qy22lBCTf+Sk3Lm9APiywp+VOWHHm+gnIDQQ+6L3+DHVT3aKDk2BOA1R83cyxmlIfKnkyrC3riEY7Kh1QF+IhuLVYbuVyOEpX1lEdHlvpsjmNWkMe5Xed8IvnEKXVLu6vyzvlDjmdqN+BkJkNaViyf2KuIdfY3DcrbCHS9sIaLsG9QuRDyVNM+IkyohLbZjNcQO/hPXogYy6s6ENS9+BJycxiTN7FyMpqpos4AUEWMZ4UaEG8o3awrcqpSlsEa9dSd2bkKKRebEICwtAmrUdXPS6g4QPjolqPliO8liGYySu/Yi789pXkquKG/lnzK2UrYOoLJpeXEkgZI+OpOAMzqCPJ8vZpZaWzJ4YBQH40I3UyEeWwPlm2NVgbnnGzJOclfYiLufhvlh1WysdnV0D61V22Goe7vfiu9++hnxDjgfUt9UsmlJdPWFLfsj5AJqRHPmdhcVMQrElXofJKNbsOSH8/cD1Q7xWVVLt0PlyDIqNENWHpPPjgRul3srznkI2pBHLdBqKPmCt7Nrhd38KYYmhOEyrteh0aL0pgDCPhpgRadwbPDY+JjOznXSqG08NxgGx/Uj/bu+v+WZPv2DFNLXXhMfAoawb7zW43OrPgUch4ndJp50XIhINi0aV7A1P9JZMCDyTJcKcwJxaauqEV5vIRH5+2nLpDonLDrZ3xKkXvkfW9BcyDqb+7Q7NPbm6rW3iwX6ZpNY/zNUsbzG5eHQInYNYh9zMgmLqBPLH1y21bv9qKOHtsjtDZumVOPSPd4g7VzBrrBQkykRtp7WosoxRU46J9E+S58bQPpQNi3GxMhD0ptW59WIscZajh8R/OmtqxgTCV2P2v8z/d3ta2/afn/7V7JPz1LwRBobL5xjd4qqdvGjt20/TqG2yhVq+3NWTz1rbUem9QEJel2SOHhwQBlHhabL72CTPGoJQoB5QQZVASH1PfMdgQJzCeycyb5kBqdEFaHAPRzFRiHrEUSqtNxA7k049W++Ilv8i3//K1KHTMbWe0yGbgcyPjjQcyuDCiCtj7eO1lOMho0QoVLoznqysAJAk7MHogcYSjFAzBezhEcXw80U4Pkh4RimGaQN76QmbRWuaqd5r5PI78C8nla0yOIwBQQxQlbVcovqKorxQKktDaTZo8BfknUqHSGO2fUQB8iRZkRkqv7tUbOalnwq7AK/nnA8IEvZ4Fz/ZsD/yS0SPXPvG9Qbx22SO+l/09dE0Ktoq62qoCVai2rsIOBGfc2dTc3BSPo1A83tTsjIMP7JUwiiq/qnZMpV0SmpvgK/lf6F7trF5V8zvn6q5V4pHO1c7wqtg7zlUd4Q1If6cEAg5k7jvXgV/W5qPwAz16HfgPXcFlq8ApYvQT8rInBPYBzNjckV6DEBkBwrAfkY8GmgvAzg7etE+cA2DrA+QMCOQyLg8PKOBiuJ0A6DVJpcWu9xXyn7IFCpPDYVIUsJ/yhT693UJf0GqHXgQ85RvaB84dpKtTv5f+SRN6b27qHb6g0GMAL93N0MVG6npjMc3cDX5h8FgL+NTv8rzk25L6OVHcCxpELfnQc4Tsm0WwAiMQSkKDyoq9VdCyEKhx4SXTLCEMyT7uaJXdQwPkJGmQxEtNhKQAdUYBnBIfHiD7BTRI0ngUrf2xQq2uk5hEzCAWyB4xsXDEPbpnqNH47DuxqxYDDVQweW4LLSTg01MtTByKoriQSMzJcPbM1VVXZjaX1bnSV7D0coxbilArwrO9kggMUs+dzGMpASuHcZQnSGTnh64gkZUjvoL4tyFhCeVyE5lInd53aJ84B5DiBChtbkI6YzZ2z8FU0gy1/35ZzskqHxjdDGNAWitC7qCoKSC6RSznG2okVprCeK5Jj/AtDz5Pq3rs6pA7Casv3oTKCetN3ewOfZouKfbfSV3KVh+lXSR8k0gl0CrMkHsZnVHyxD9IgdFVTc9j6UPgSykONo1ojOAFmBQkkGNzKa44withKNvPQW7aRHQTVxILoU64MSM79bDEGLdXy0ZYvPEKRJF4ixW8bwEt24HgOECuD6ieYb0bH4gcZGs7CAM5oNW7IhnTEmKw6J5LZJABmbB4k9d7alpqPE4Lo6ArWt22Bqc+oCuJlxqKI42R4qCzqs9mLAkECxdtoKMiNpSQCTHOllaWMLkKFkwTpLdZndGo4PKZFyFjNNkDZYW2QKBbEtgEQkDnQA6zF+Sc86a2jemt8XkCDqclh7Tan8jPpWlFaWO3v6Yn5vcEbJ7C2uJn1bp8dpPURxJCHP7IE+QH4m8Yb4lLzUo3ASdnsehYRnw/Hif/HLDDr9hspalZ8fg3caAjPR/ZTAxCfRu1K4fGFD5BihiGhIiSYKsAnkOzgUa0T0rGmOSOYCYg/3gfFAl6NXDrfVzEXQEivlikCYRjxrCRG6V5QzwE/7yWOGzhBG5hCKrgf/LFG6Q/H10HwvRtcfgniAmQ9oIn4wu93pAtb+5MlS1UXByy1YVCdbbrtMWWggJLsVZXbC0osBazMKZGpdJkzhZvBlrCQPILUlKIEviSERtZkhX/Ln2Gc09kzhBkwtZMUIlXYOa1ttAnU6Z8ErLVog+hT37MW4u1WrdFrba4tdpiKw/HZqYt3en1ilPwmv7slkRjdFRTQi2G53QFxm9rzRjEcphuGwDny2pbxhgbFlxy6/FWF1+U3X5FvMvKJ188AkY1IdSl46g5ElmNKRGCYA+U5ueXBuyo0QrgX+ZsMOfTI81G55uTX8OG23WJ2PU9TSet6xEsv1RpNKqHenqksNyOJ8PhmVqTmmXVJi2R9omVeVkAz7QaNMMAj8/ogq4QbYzJo5CjquXFxfJMWTjkAMBbDHmdHm9mwqdNxNzUyVOzrVOFpaHSQr0nVEg9fR+o2r6+ECrGhX1jW8QuGCqUXiqEmnLhBXLLMunSoVSHglxX7IvNP/DgS0uXvvTggfkxVrVO+r/D2WY08BtnuDwQrHYVhjz6Das24AzETRt+PwdmWQjq8QdghrPmKJh1xbPCUkTOCecq1xvJ+oVcIaGHow55YirlmTwE9pUA18xA8TG84Y2L5xYqUrvFo8rcG3PU6lxwjHwql8/LvUv1F+GiwFTNTz7Gbs/LSe4mjyvVBbn7cnKlHmq7SrE1b2gdFbon+QCLfEEhvkgQt3Bx2NZ5REFa09O7MiJVtuXAxueCTATPY8tO1EifcGdGqg24eRqqbmiFA7I8QN4vkETLhuPP/Gbhol8/c3xDS/feHduaO49dMe1YV3zbjj3SfiGzhBxK/UQivTxCNCGpS30ste3+29nH79rf2Lj/rsfP/m03OJNTGC4JlpYFS0KFOcn3yHgiswo9ISYwrxKIpyFGihNqqLOiOkyDtXoFtWDa/1tuQ4Mv6x5XZHQEaiSIt8hhgbwMNbNyPe0ro5OJTXYdBfJa8NH3Xp/sbzfsdTcyMy5f1CAzXwcFTMYdDS1vM4CYnAV1p+lFk9tdKZ/PmQ6biuDNoVxngbsSTDefxu8eM7uKQsth4FozfKvK3WuiTgQnLKoRT0vv2P0ltTbwX13PLV723P4+6fNKd5FJOsfl5RYoQK+5Ct09Au/U8M5U6bY4+Ry9u9KK8KeFUTIUjdzF9FCDLKqwmis1O+uXTgz2H3xuydzTHdI8KKR8EZstogNKstkkPrNKUenWUEQRLGyF2w3PlW1u0yEcPpybXymddcECo7vT5iqpsRIG9ppD7gJ77rUmete0PWsW1ZF90v8U1paU2MADnT2TDj0v1sFagWpOlZejkB5BtTOBXk6di+5Q1Y0afaG1wq11eOFZB0CuPhd5pqny0K1WIzQsWbdvBrKxtDVLC3URm73aZzTogEJ8ziT+fJVG464k0Er4vWB3xTn2c4ww0eyBzKGnQ/17I3Ed8SPip8RzsHtKQDmoAjHQA/rAIfAceBv8DnwCvgYXgUgCEq1wlJeMu2KZxeMIVcpLyqEuh9ZXuyMevJWFfIOYNtrmQuuCaF5euxKDmhnS3uED+O9rpGIwF5B+qMWPQAxmE0bGRcgBgmB4uUAwPR/GfQP/ejmkE7h9kBjdsEThENIJY9XeCCRVBHJCUY+dMiKtkEO6oYvz2Bl06wsyyEcFfhXt2RNDqqIrhvbwgQFYHLStD37HoE3oIOnCJJCsKTcqYySmdcdcHBNzc0Y3F4Z1gLUDsLQsCT8AmyfmwpnCyssH5VIxNmCnxgCZv8RQkShUEXcRVnJ8sMBoHjOmRY3hACzN4c9yRTQuItRjobIPM02XDiC1F3gol9ZNwS/C4hi1RiqsDeMDqkPhGIgWp8vNojyQro07jYfwzsWXkLIlCy2Ir7hveupoD63zSvcPSF+Pl34Cpo0HuQPgitQbA+Qj0yUKiBJFThVnTqemTBdnkieTF8VryO3jpYnlg9F5L80rilibmldXj1eZ8zZ+ulFXrPMW1UcqDF9S+pSzfFp5T9nEwM5AizPs7/Ye+Lh88zjysFfc3X+t1JtnNZfGIFv06MfH3aEphqDHaPKW65F/Y6eDYRhzngViRIs5HDagtey5rMWSqxOvNwZKyy3+ad6zFumOnCItuMUr/chq0ZnCUzvKJvm1wZZQsaOQL1++/WCPKWCcs3/51ID0Ey9YkOdRSfeb381RF+jUVbMqNRUmm8fuNIHGghJdYdDvF6O3OltsCqYgN9dWWxg/O371H1ZNPz3dQv7TIv3c+4L3ttPenzWZT4fDC1J/TF0YIFfPPDEBvBO++HyY2tIj9tUuW7KsRpoRZvYkbwT3TJc2JuvEJ31U0W3i+7TWXGhU84GyMu3aaGtFkY6kyIKyyiq9prQyWmgoLSszuMcHqpctnu0DVA44TRaLAVPUFN4nXbh2yetLTaWGO6Vf/UjB5fYf676kzGGApryyQte+fUz57PCs5+bfW7M8pZNeXSvOXPfCAXpOeOjMC1+Gvxj4YsEL479c+O70LxeCptQf4mebqKL/BtueVxv5fOUJ6aUTOeavD8CCivQ0cBI8Kj0BukUadMPro+i8UHqC9h048O7C8fAvPh3+iU+agUn6mzm+Vnw9Dq6Q7gem26iO6dI1fXePz+UUgYGgt/v45LihzMjxKjIH9LgnT59RNg0siK6INkVWRFNHnb0lC+3NTrBjumSLNkzPradPm6ps9lip2VIWtcXHazmNI2DUl3tMiD/X1u6nleGwgomfCusMipBSoWSYsHazyqgpYCNzorflj1lTe29+dGB8S13YXNzjVxdFKkLxKfXj1s7scnh6vKrWhXsm3ps/ZtWY2/IdkXDYroJq8YZKjsvValVaprC+ofGEOFaRq1U7eFO1pSBH+i3I5YuNp/Ip/W333nbvvTsPSL899YJCQ27beUr66UOnzx6YeM/Jk72nxaWnQfdp8cGc1oFFg215NOoSnb8hQHM0b9Zqcj31kbCVU3IAQkbItUGuI5chyZOgCtJj3pI3l2iMuSX9gYDBN95bsjyK6YJ3OBx84+4uqy93yn0TKwelJ/OlGeBR8ZOfkedP54MF+XBYor6Bx6lLX4r/0nVWqL1GbYXR2+2vmEodPpvaE49TW89K70l/AyZxE+opdGD7CgcI7iOIf2yEB2KHOnkFjAqkVxTFlPLGE+llMB7gkteLuJRAAbBzFaiugPwNe0995BEf1Nc7kyfRMkgPuCQBD1oMSc901uvJKZ6hO0h1Kl+ZxxSA31OPS19I74tPSe8xeezrzO9Td4PzSo6cytDxmoA4xWRFayNrAmQH2RGoQUsurSZxSqCEnJ2vZLmhk3QpiEqPiHOlRzlWmU8mOC6VinLkg1zaZgSQzYjA+kYt3uHm29aNNiKeayeNHjzvEqTcYHjlKKj2QmUfzZCxGXjmHxKG17G2sKGeK2NC7MqeECtdWVgdsLHgWdYWqC4Ec5IJZCun4yC9vJUlUBJxeBEshUPRWW0+X9usqKAtqigsrCjSXiKgkkJYvMjJIQWTyr4taT8bvOcrJJm0hyla85TEa57lVdBoNXRSQKtGkcd12j4s2/bQThGbiP3EceIx+OiH9ne8bC/O/3B/yP8w/nDTpq+U/4ceXHz3P04y9IMxLnugILJuvvU6gva/+8kPXcUf/Mroq6wjYdreBHs6jrzrIXam1HhKH+lE2Ewj718pg6DMFql4TS2U9zAe/RfSukm6zRLwlxa+Sw5dJBjdruQ/rC3t7Y6yMbzFYeEN3ogjumiwy7KieO76vV118ztLNDaPtn5NlCWYWaQZpS4PBEwLwJvJMiYuSC+qnFZNKGitqqioijqc1R5d9cRZgbFj1s+q83dcOaa8tX5MMV9rF49Qb6X9BT1Yv80ndHh9Hw/0I/vwyJsAuNAksssYQS4iEl7NJwxBxYohLhHSKXEQbWlKDp6iCOk9QDwJB8F7aN8zgJ4SKUE6BQax5/apU2kfMU96zytV2kds5DscgYbSJViqTN4c2q3nlJwnmhVAuY32A+74Hl9abEHMzL+wHHDLW0SGQXqhKulD3nHIwZb5SHaU/UhKHjyIvKTkO8CQT/J2v0Hcpm2qL0UhvV8tPQxUGjUPwCRHsKKhvL5RQ+5GTsLY7/ayDA6mM08RyBlcW13fWmTwFyIP4YdUXp0xwEsPOZoqHC2N1Rre7kN9Mki8BduoDPvge5HVQS/LgSJ5u9NYWgtP755ojPnQDqBG7q9mc3JXnoN3m8Xd+XlmUGF1uc2Ap7T5jgLekT8U+fKrr0AP3fJV8gWO+Qi9TO6C8chtOA2oNJulf1J4ZV/q6JdffpV6lW75MvkzLuMDlNkbUN6tyZbZrynTh2gdAIUMP3ilBh+mCQrtASWI2AefxVfMNDGfFNDWTim8KBS9prCLP4zDEvJrIGStPaWw9CCAvP1e9pZ97uyt+tA+2WhfUBhmnkhepDmxmyFqrry6a+hs19VX1nALzw6FTYGYExBQnJnpcOp2XkN+DsMmJnxOFKSFKBaKz1pSFso89JgzFjCZoMw7d84/wQ1Tyu3gxmVCLdAA9ftuyMvlaYWMigXxO8B6VXplLCwSS+D9E3HvNcnWExBNb3ELYj4O+GAMqDBECTzEACGgtiKgJIGjTED7ZXEEr3pNWvy6s7TULi1QFzgedZQGHCfIuL1UV6J6RMUnNxy+4TB95IaXpU2vFLcXvwKuZ1A6Jr2DIPbrwqtuxbE6H8xq/qt2O7hd5dOXwqxgRk32AtWjKp/4/OEbbgAnbnhF2vBycUfxy2B/1loLeR6Fz0yk4FU5aCIFMgTcjQLqRkEsHyDfEN9D+4OIMq9AnU96xOAA+SYmowwtqdMrfouwj09VBhsAuXcBUnrQjhhpAlOCbK8etH8E4LAzqkQMpbd7K5UEswZMkW2GzD4gDL3KCEOCfJg1QyclSFBoTmsI8hV0RRu8XJgCYz+oMUNF+gFpKkmgcyqA7YRZT+B5isaMNixBK3emcxe4+yBCW0ocIV7AOC292DftKo+2KIYDNbP3wbC7vJ02GkBI3gcqGsts9UGPbF5sMNqZ7DljljPi6VM8QYCtMj6oJKJ9Q8hivCMUJe8qwsku2jB1OITWfVwImydeua5BX2rRtna26tSNPVP9i86+8NDBJbaScPmd8zVenb4MvusY9S75qcqi2vrO8RklJZHDs7i8HLWGzyMZf6whXAxYavKBhbVajXnGtpvvffRkNNC6Ynxg/O5HFxQ4C5oY+bZnz+kFBXZ1E0lRXVqN574/SkN7UJbvHp8RyM6S9Ucbqt0kQ00+uLCGeu/4sc4jezdV8AU6q1VRHjLSpZM23vzYwqM3n7jpmj/N4ovVBbzOWshlvUktBIBZcO/7W/vuGDdjczmVpyB9dS315Syp1hu1+dTYu58+u7Jlb3za7cLCcR5we2WHzjG47tru+ad395DkPwy8/GBf94LTu8eT5P/maMD61j3x3edvnYQyvk/OeFOQyocZ1+KMC3Qo4/YTT/waUvD/A9h7lUgAAAAAAQAAAASo9jZtQxxfDzz1AAsIAAAAAAC//cGAAAAAAN4wSsz//AAAL80IAQAAAAkAAgAAAAAAAHicY2BkYOBgAAEDhv9/GBj0zzIwMqCCVABIDAOXAAAAeJxj1WJYxsHAwADEbFAahBugmAEJA+UZl3IwMDGjqcPGvozKZ0SWFwbyg4EY3XwYloTiBqg+EFaAqIfxwWwHKN8Bhzkg8zuBarSgaoCYiQGiD8z3AOIDSO46gND7/w8OM/FhBzS3AM1lbkDzB7I6GG6AucOAgaENSLMzNDCAAIRkYIiG0iA+BwANzBmXAAAAAAAAFgBIATgBWgIAAiICdgKcA0IDWgN0A4oDoAR2BRAFbAXYBj4G1AckB4wHogf8CIIIpAjKCOwJWgl8CZwJ3goACqwK3gtiC7gLzgvmDBAMYAyoDNANEg16DfYOaA8GD2wQBBBEEHYQqBEEEcgSjhMWE3QT6BRUFHIUnBUeFW4VwhXoFj4WvhccF2oYPhhOGUYZjBn6GowbDht4G/wcsh0SHdQetB8eH3AgBCBkISYhfCHUIfoikCMMI7gkXiT2JXIlrCYOJywqLCqWKvorFCwELGYsnizCLTAtei20Lf4ueC6gLwAwBHicY2BkYGAoZmJjkGcAAUYwyQXCjJEgJgASewELAAAAeJy1VD+LHDcUf3u79l1wfARDwKWKEM7HMmtfzJnY1WHHla85mwM3Ae2MdkZ4diQkjYcxLlK6yMdIY8inCAmkTJ1PkDpVyrz3pNnb827MJZAdRvPT0/v7e08LALdHX8II4u8rfCMewS3cRbwDu/BNwmOUP0t4gvjbhK/Bp2ATvg6fwduEd+Fr+D7hPfgcfkn4BhzC7wnfHP08miS8D4c7v2KU0eQT3BU7fyY8gi/G5wnvwP74TcJjlL9LeIL4x4Svwe3xbwlfBzH+I+FdcJO9hPfgcDL4uQEvJj8kfHP8bvJXwvvwYu+7n96Lo7v3HohTnTvjzSKIx8ZZ42TQpsnESV2LM11WwYsz5ZV7rYrsqZw7nYvTJ8+OxIn3KvgzVba1dJsHm5Jz5Tx6Fvez4+N4Sofx7LkqjRLaCymCk4VaSvdKmIUIlVrLr3SmtSTOzdLKRiufbU2+CsE+nM26rsuWw3mGNrPQW1M6aat+tjBN8LMLc99aW2tVCDrIxEvTiqXsResVJoGJkVgEI3KnZFBTUWhva9lPhWwKYZ3G0xxVFH6lF1a5pQ4B3c17LqLWuWrIFx54YdwAFhRhulmqdaZo8zAVxDzaTslmCKAb0VU6r9Yy6zCobvK6LbBNq+xNU/fiQN8RajnHXC7U0cPHsmX1QjelcMoH7BSxehGAzFe+HjEDBxqjBLWkFjiNUQvTNbWRxWX2ZKRKOSrHYChc22DbIApFZZJOpWp7mVEcxqZP6tQQdIj8VHquMefs6t2G9yDgCO7CPXiA6BQ05ODAgMd3AQFljxE5vPO0SpRoRA1keHICNT4CzlBWQoVnnncKvwq1X+NaoOZTtJvjnnxTjCf4z3LE9p41yY6sSmjRn0TNq1hcReec8/ApZwH3MZtjfNZtB8t1u+ecjcFVoA5VJfENzECB0iVn+QplxBKdVKy7jb+S9y0yOGjn+F3iXmJOmtnK/gXzxHNA6UOY4dPxk6G/D+2zFGeGuGcvJfux6KFH6YK9UbWzrdE952yxI5r7KFYW1PuXXJNgJnr8tsxdZCIyNmiTzHDVDjWoDgVT3BesZ7njPUuID4pjuTPRNk9eVNpL9m25r1Rz4DOymnMeQydqroishryihecuuA3JYlXD9Epdtbwv0CbH/ZT5ijMf405XcT6sQPMkdsxTjut2zrpUKWnnWE3Lc1ds5Z5sakYHqH8HvzSh88TLNu8xh//K7YX3gj2VKHM8xyHdqWFWt1UwRN/M69HaDFAlsZbA8YZbQP5jrQVKOq7c8K382OzJS1OluC8mrbGqiFu+WS1bUrZDNwc/pFnzTf7nGY3/jE3qzIX34YboxDLND+U7Z6Zjb/+Hu/03hsc4mgB4nGNgZgCD/34M5QyYoBgAKZ0CO3ic28CgzbCJkZNJm3ETF4jcztWaG2qrysChvZ07NdhBTwbE4onwsNCQBLF4nc215YVBLD4dFRkRHhCLX05CmI8DxBLg4+FkZwGxBMEAxBLaMKEgwADIYtjOCDeaCW40M9xoFrjRrHCj2eQkoUazw43mgBvNCTd6kzAju/YGBgXX2kwJFwDEASgaAAAA);
+        font-weight: 400;
+        font-style: normal
+      }
+
+      .o365cs-base .ms-Icon--Settings:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--Ringer:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--Help:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--BusinessCentralLogo:before,
+      .o365cs-base .ms-Icon--ClipchampLogo:before,
+      .o365cs-base .ms-Icon--CloudPCLogo:before,
+      .o365cs-base .ms-Icon--DefenderLogo:before,
+      .o365cs-base .ms-Icon--DesignerLogo:before,
+      .o365cs-base .ms-Icon--EditorLogo:before,
+      .o365cs-base .ms-Icon--FamilySafetyLogo:before,
+      .o365cs-base .ms-Icon--LighthouseLogo:before,
+      .o365cs-base .ms-Icon--LoopLogo:before,
+      .o365cs-base .ms-Icon--MeshLogo:before,
+      .o365cs-base .ms-Icon--Microsoft365Logo:before,
+      .o365cs-base .ms-Icon--MoreAppsDarkLogo:before,
+      .o365cs-base .ms-Icon--MoreAppsLogo:before,
+      .o365cs-base .ms-Icon--PowerPagesLogo:before,
+      .o365cs-base .ms-Icon--PrivacyLogo:before,
+      .o365cs-base .ms-Icon--RewardsLogo:before,
+      .o365cs-base .ms-Icon--VivaAmplifyLogo:before,
+      .o365cs-base .ms-Icon--VivaConnectionsLogo:before,
+      .o365cs-base .ms-Icon--VivaEngageLogo:before,
+      .o365cs-base .ms-Icon--VivaGlintLogo:before,
+      .o365cs-base .ms-Icon--VivaGoalsLogo:before,
+      .o365cs-base .ms-Icon--VivaHomeLogo:before,
+      .o365cs-base .ms-Icon--VivaInsightsLogo:before,
+      .o365cs-base .ms-Icon--VivaLearningLogo:before,
+      .o365cs-base .ms-Icon--VivaPulseLogo:before,
+      .o365cs-base .ms-Icon--VivaTopicsLogo:before,
+      .o365cs-base .ms-Icon--WaffleOffice365:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--Search:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--Contact:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--CustomerVoiceLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--ListsLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--AddIn:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--AdminALogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--AdminPLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--AnalyticsLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--AlarmClock:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--Back:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--BingLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--BookingsLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--BusinessCenterLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--Calendar:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--Camera:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--CaretSolidDown:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--Chart:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--ChatCircleArrow:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--ChatCircleCheck:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--ChatCircleClock:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--ChatCircleMinus:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--CheckMark:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--ChevronDownMed:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--ChevronLeft:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--ChevronRight:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--ChevronUpMed:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--ChromeClose:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--CircleFill:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--ClassNotebookLogo32:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--ClassroomLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--Clear:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--Delete:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--DelveLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--Diamond:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--DocsLogoInverse:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--Download:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--DynamicSMBLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--Dynamics365Logo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--Emoji2:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--ExcelLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--Event:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--EventToDoLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--FeatureFlagsLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--FolderHorizontal:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--FileASPX:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--Forward:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--FullCircleMask:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--GallatinLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--GlobalNavButton:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--Globe:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--HelpMirrored:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--History:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--Info:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--KaizalaLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--Lightbulb:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--MSNLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--Mail:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--MicrosoftFlowLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--MicrosoftStaffhubLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--More:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--MoreVertical:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--M365InvoicingLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--NavigateExternalInline:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--News:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--NonprofitLogo32:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--OfficeAddinsLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--OfficeChat:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--OfficeChatSolid:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--OfficeFormsLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--OfficeLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--OfficeVideoLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--OneDrive:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--OneNoteLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--OutlookLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--Page:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--ParatureLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--People:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--Phone:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--Pinned:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--PlannerLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--PopExpand:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--PowerAppsLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--PowerBILogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--PowerPointLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--ProjectLogo32:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--ProtectionCenterLogo32:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--QuickNote:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--SecurityLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--SharepointLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--SkypeForBusinessLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--SkypeLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--SocialListeningLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--StaffNotebookLogo32:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--StoreLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--StreamLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--SwayLogo32:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--TaskLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--TeamsLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--ToDoLogoInverse:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--ToDoLogoOutline:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--ToggleBorder:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--ToggleThumb:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--UnknownSolid:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--Unpin:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--Video:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--VisioLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--Warning:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--WhiteboardLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--WordLogo:before {
+        content: ""
+      }
+
+      .o365cs-base .ms-Icon--YammerLogo:before {
+        content: ""
+      }
+    </style>
+    <style type="text/css" j2c="">
+      .o365sx-navbar {
+        background-color: #2564cf;
+        background-position: left top;
+        background-repeat-x: repeat;
+        background-image: none;
+      }
+
+      .o365cs-base .o365sx-appName,
+      .o365cs-base .o365sx-appName:visited {
+        color: #FFFFFF;
+        background-color: #2564cf;
+      }
+
+      .o365cs-base .o365sx-appBrandLink {}
+
+      .o365cs-base .o365sx-button {
+        color: #FFFFFF;
+        background-color: #2564cf;
+      }
+
+      .o365cs-base .o365sx-nonInteractiveButton {
+        color: #FFFFFF;
+        background-color: #2564cf;
+      }
+
+      .o365cs-base .o365sx-waffle {
+        color: #FFFFFF;
+        background-color: #2564cf;
+      }
+
+      .o365cs-base .o365sx-badge {
+        color: #FFFFFF;
+        background-color: #1e51a9;
+      }
+
+      .o365cs-base .o365sx-shyHeader {
+        background-color: #FFFFFF;
+      }
+
+      .o365sx-searchBoxInactive {}
+
+      .o365sx-searchBoxActive {}
+
+      .o365cs-base .o365sx-highContrastButton {
+        @media screen and (-ms-high-contrast: black-on-white) {
+          color: black;
+          -ms-high-contrast-adjust: none;
+          background-color: white;
+        }
+
+        @media screen and (-ms-high-contrast: white-on-black) {
+          color: white;
+          -ms-high-contrast-adjust: none;
+          background-color: black;
+        }
+      }
+
+      .o365cs-base .o365sx-activeButton {
+        color: #252423;
+        background-color: #F3F2F1;
+      }
+
+      .o365cs-base .o365sx-accent-link {
+        background-color: #1e51a9;
+      }
+
+      .o365cs-base .o365sx-accent-font {
+        background-color: #1e51a9;
+      }
+
+      .o365cs-base .o365sx-accent-background {
+        background-color: #1e51a9;
+      }
+
+      .o365cs-base .o365sx-accent-border {
+        border-color: #1e51a9;
+      }
+
+      .o365cs-base .o365sx-darker-link,
+      .o365cs-base .o365sx-darker-link:hover,
+      .o365cs-base .o365sx-darker-link:visited,
+      .o365cs-base .o365sx-darker-hover-link:hover {
+        color: #173f85;
+      }
+
+      .o365cs-base .o365sx-darker-font,
+      .o365cs-base .o365sx-darker-hover-font:hover {
+        color: #173f85;
+      }
+
+      .o365cs-base .o365sx-darker-background,
+      .o365cs-base .o365sx-darker-hover-background:hover {
+        background-color: #173f85;
+      }
+
+      .o365cs-base .o365sx-darker-border,
+      .o365cs-base .o365sx-darker-hover-border:hover {
+        border-color: #173f85;
+      }
+
+      .o365cs-base .o365sx-dark-link,
+      .o365cs-base .o365sx-dark-link:hover,
+      .o365cs-base .o365sx-dark-link:visited,
+      .o365cs-base .o365sx-dark-hover-link:hover {
+        color: #1e51a9;
+      }
+
+      .o365cs-base .o365sx-dark-font,
+      .o365cs-base .o365sx-dark-hover-font:hover {
+        color: #1e51a9;
+      }
+
+      .o365cs-base .o365sx-dark-background,
+      .o365cs-base .o365sx-dark-hover-background:hover {
+        background-color: #1e51a9;
+      }
+
+      .o365cs-base .o365sx-dark-border,
+      .o365cs-base .o365sx-dark-hover-border:hover {
+        border-color: #1e51a9;
+      }
+
+      .o365cs-base .o365sx-darkAlt-link,
+      .o365cs-base .o365sx-darkAlt-link:hover,
+      .o365cs-base .o365sx-darkAlt-link:visited,
+      .o365cs-base .o365sx-darkAlt-hover-link:hover {
+        color: #1e51a9;
+      }
+
+      .o365cs-base .o365sx-darkAlt-font,
+      .o365cs-base .o365sx-darkAlt-hover-font:hover {
+        color: #1e51a9;
+      }
+
+      .o365cs-base .o365sx-darkAlt-background,
+      .o365cs-base .o365sx-darkAlt-hover-background:hover {
+        background-color: #1e51a9;
+      }
+
+      .o365cs-base .o365sx-darkAlt-border,
+      .o365cs-base .o365sx-darkAlt-hover-border:hover {
+        border-color: #1e51a9;
+      }
+
+      .o365cs-base .o365sx-primary-link,
+      .o365cs-base .o365sx-primary-link:hover,
+      .o365cs-base .o365sx-primary-link:visited,
+      .o365cs-base .o365sx-primary-hover-link:hover {
+        color: #2564cf;
+      }
+
+      .o365cs-base .o365sx-primary-font,
+      .o365cs-base .o365sx-primary-hover-font:hover {
+        color: #2564cf;
+      }
+
+      .o365cs-base .o365sx-primary-background,
+      .o365cs-base .o365sx-primary-hover-background:hover {
+        background-color: #2564cf;
+      }
+
+      .o365cs-base .o365sx-primary-border,
+      .o365cs-base .o365sx-primary-hover-border:hover {
+        border-color: #2564cf;
+      }
+
+      .o365cs-base .o365sx-secondary-link,
+      .o365cs-base .o365sx-secondary-link:hover,
+      .o365cs-base .o365sx-secondary-link:visited,
+      .o365cs-base .o365sx-secondary-hover-link:hover {
+        color: #658bcd;
+      }
+
+      .o365cs-base .o365sx-secondary-font,
+      .o365cs-base .o365sx-secondary-hover-font:hover {
+        color: #658bcd;
+      }
+
+      .o365cs-base .o365sx-secondary-background,
+      .o365cs-base .o365sx-secondary-hover-background:hover {
+        background-color: #658bcd;
+      }
+
+      .o365cs-base .o365sx-secondary-border,
+      .o365cs-base .o365sx-secondary-hover-border:hover {
+        border-color: #658bcd;
+      }
+
+      .o365cs-base .o365sx-tertiary-link,
+      .o365cs-base .o365sx-tertiary-link:hover,
+      .o365cs-base .o365sx-tertiary-link:visited,
+      .o365cs-base .o365sx-tertiary-hover-link:hover {
+        color: #b2c2dd;
+      }
+
+      .o365cs-base .o365sx-tertiary-font,
+      .o365cs-base .o365sx-tertiary-hover-font:hover {
+        color: #b2c2dd;
+      }
+
+      .o365cs-base .o365sx-tertiary-background,
+      .o365cs-base .o365sx-tertiary-hover-background:hover {
+        background-color: #b2c2dd;
+      }
+
+      .o365cs-base .o365sx-tertiary-border,
+      .o365cs-base .o365sx-tertiary-hover-border:hover {
+        border-color: #b2c2dd;
+      }
+
+      .o365cs-base .o365sx-light-link,
+      .o365cs-base .o365sx-light-link:hover,
+      .o365cs-base .o365sx-light-link:visited,
+      .o365cs-base .o365sx-light-hover-link:hover {
+        color: #e3eaf6;
+      }
+
+      .o365cs-base .o365sx-light-font,
+      .o365cs-base .o365sx-light-hover-font:hover {
+        color: #e3eaf6;
+      }
+
+      .o365cs-base .o365sx-light-background,
+      .o365cs-base .o365sx-light-hover-background:hover {
+        background-color: #e3eaf6;
+      }
+
+      .o365cs-base .o365sx-light-border,
+      .o365cs-base .o365sx-light-hover-border:hover {
+        border-color: #e3eaf6;
+      }
+
+      .o365cs-base .o365sx-lighter-link,
+      .o365cs-base .o365sx-lighter-link:hover,
+      .o365cs-base .o365sx-lighter-link:visited,
+      .o365cs-base .o365sx-lighter-hover-link:hover {
+        color: #f6f8fc;
+      }
+
+      .o365cs-base .o365sx-lighter-font,
+      .o365cs-base .o365sx-lighter-hover-font:hover {
+        color: #f6f8fc;
+      }
+
+      .o365cs-base .o365sx-lighter-background,
+      .o365cs-base .o365sx-lighter-hover-background:hover {
+        background-color: #f6f8fc;
+      }
+
+      .o365cs-base .o365sx-lighter-border,
+      .o365cs-base .o365sx-lighter-hover-border:hover {
+        border-color: #f6f8fc;
+      }
+
+      .o365cs-base .o365sx-lighterAlt-link,
+      .o365cs-base .o365sx-lighterAlt-link:hover,
+      .o365cs-base .o365sx-lighterAlt-link:visited,
+      .o365cs-base .o365sx-lighterAlt-hover-link:hover {
+        color: #f6f8fc;
+      }
+
+      .o365cs-base .o365sx-lighterAlt-font,
+      .o365cs-base .o365sx-lighterAlt-hover-font:hover {
+        color: #f6f8fc;
+      }
+
+      .o365cs-base .o365sx-lighterAlt-background,
+      .o365cs-base .o365sx-lighterAlt-hover-background:hover {
+        background-color: #f6f8fc;
+      }
+
+      .o365cs-base .o365sx-lighterAlt-border,
+      .o365cs-base .o365sx-lighterAlt-hover-border:hover {
+        border-color: #f6f8fc;
+      }
+
+      .o365cs-base .o365sx-neutral-foreground-link,
+      .o365cs-base .o365sx-neutral-foreground-link:hover,
+      .o365cs-base .o365sx-neutral-foreground-link:visited,
+      .o365cs-base .o365sx-neutral-foreground-hover-link:hover {
+        color: #FFFFFF;
+      }
+
+      .o365cs-base .o365sx-neutral-foreground-font,
+      .o365cs-base .o365sx-neutral-foreground-hover-font:hover {
+        color: #FFFFFF;
+      }
+
+      .o365cs-base .o365sx-neutral-foreground-background,
+      .o365cs-base .o365sx-neutral-foreground-hover-background:hover {
+        background-color: #FFFFFF;
+      }
+
+      .o365cs-base .o365sx-neutral-foreground-border,
+      .o365cs-base .o365sx-neutral-foreground-hover-border:hover {
+        border-color: #FFFFFF;
+      }
+
+      .o365cs-base .o365sx-neutral-foregroundAlt-link,
+      .o365cs-base .o365sx-neutral-foregroundAlt-link:hover,
+      .o365cs-base .o365sx-neutral-foregroundAlt-link:visited,
+      .o365cs-base .o365sx-neutral-foregroundAlt-hover-link:hover {
+        color: #FFFFFF;
+      }
+
+      .o365cs-base .o365sx-neutral-foregroundAlt-font,
+      .o365cs-base .o365sx-neutral-foregroundAlt-hover-font:hover {
+        color: #FFFFFF;
+      }
+
+      .o365cs-base .o365sx-neutral-foregroundAlt-background,
+      .o365cs-base .o365sx-neutral-foregroundAlt-hover-background:hover {
+        background-color: #FFFFFF;
+      }
+
+      .o365cs-base .o365sx-neutral-foregroundAlt-border,
+      .o365cs-base .o365sx-neutral-foregroundAlt-hover-border:hover {
+        border-color: #FFFFFF;
+      }
+
+      .o365cs-base .o365sx-neutral-staticAccent-link,
+      .o365cs-base .o365sx-neutral-staticAccent-link:hover,
+      .o365cs-base .o365sx-neutral-staticAccent-link:visited,
+      .o365cs-base .o365sx-neutral-staticAccent-hover-link:hover {
+        color: #1e51a9;
+      }
+
+      .o365cs-base .o365sx-neutral-staticAccent-font,
+      .o365cs-base .o365sx-neutral-staticAccent-hover-font:hover {
+        color: #1e51a9;
+      }
+
+      .o365cs-base .o365sx-neutral-staticAccent-background,
+      .o365cs-base .o365sx-neutral-staticAccent-hover-background:hover {
+        background-color: #1e51a9;
+      }
+
+      .o365cs-base .o365sx-neutral-staticAccent-border,
+      .o365cs-base .o365sx-neutral-staticAccent-hover-border:hover {
+        border-color: #1e51a9;
+      }
+
+      .o365cs-base .o365sx-neutral-accent-link,
+      .o365cs-base .o365sx-neutral-accent-link:hover,
+      .o365cs-base .o365sx-neutral-accent-link:visited,
+      .o365cs-base .o365sx-neutral-accent-hover-link:hover {
+        color: #1e51a9;
+      }
+
+      .o365cs-base .o365sx-neutral-accent-font,
+      .o365cs-base .o365sx-neutral-accent-hover-font:hover {
+        color: #1e51a9;
+      }
+
+      .o365cs-base .o365sx-neutral-accent-background,
+      .o365cs-base .o365sx-neutral-accent-hover-background:hover {
+        background-color: #1e51a9;
+      }
+
+      .o365cs-base .o365sx-neutral-accent-border,
+      .o365cs-base .o365sx-neutral-accent-hover-border:hover {
+        border-color: #1e51a9;
+      }
+
+      .o365cs-base .o365sx-neutral-light-link,
+      .o365cs-base .o365sx-neutral-light-link:hover,
+      .o365cs-base .o365sx-neutral-light-link:visited,
+      .o365cs-base .o365sx-neutral-light-hover-link:hover {
+        color: #E1DFDD;
+      }
+
+      .o365cs-base .o365sx-neutral-light-font,
+      .o365cs-base .o365sx-neutral-light-hover-font:hover {
+        color: #E1DFDD;
+      }
+
+      .o365cs-base .o365sx-neutral-light-background,
+      .o365cs-base .o365sx-neutral-light-hover-background:hover {
+        background-color: #E1DFDD;
+      }
+
+      .o365cs-base .o365sx-neutral-light-border,
+      .o365cs-base .o365sx-neutral-light-hover-border:hover {
+        border-color: #E1DFDD;
+      }
+
+      .o365cs-base .o365sx-neutral-lightAlt-link,
+      .o365cs-base .o365sx-neutral-lightAlt-link:hover,
+      .o365cs-base .o365sx-neutral-lightAlt-link:visited,
+      .o365cs-base .o365sx-neutral-lightAlt-hover-link:hover {
+        color: #EDEBE9;
+      }
+
+      .o365cs-base .o365sx-neutral-lightAlt-font,
+      .o365cs-base .o365sx-neutral-lightAlt-hover-font:hover {
+        color: #EDEBE9;
+      }
+
+      .o365cs-base .o365sx-neutral-lightAlt-background,
+      .o365cs-base .o365sx-neutral-lightAlt-hover-background:hover {
+        background-color: #EDEBE9;
+      }
+
+      .o365cs-base .o365sx-neutral-lightAlt-border,
+      .o365cs-base .o365sx-neutral-lightAlt-hover-border:hover {
+        border-color: #EDEBE9;
+      }
+
+      .o365cs-base .o365sx-neutral-lighter-link,
+      .o365cs-base .o365sx-neutral-lighter-link:hover,
+      .o365cs-base .o365sx-neutral-lighter-link:visited,
+      .o365cs-base .o365sx-neutral-lighter-hover-link:hover {
+        color: #F3F2F1;
+      }
+
+      .o365cs-base .o365sx-neutral-lighter-font,
+      .o365cs-base .o365sx-neutral-lighter-hover-font:hover {
+        color: #F3F2F1;
+      }
+
+      .o365cs-base .o365sx-neutral-lighter-background,
+      .o365cs-base .o365sx-neutral-lighter-hover-background:hover {
+        background-color: #F3F2F1;
+      }
+
+      .o365cs-base .o365sx-neutral-lighter-border,
+      .o365cs-base .o365sx-neutral-lighter-hover-border:hover {
+        border-color: #F3F2F1;
+      }
+
+      .o365cs-base .o365sx-neutral-lighterAlt-link,
+      .o365cs-base .o365sx-neutral-lighterAlt-link:hover,
+      .o365cs-base .o365sx-neutral-lighterAlt-link:visited,
+      .o365cs-base .o365sx-neutral-lighterAlt-hover-link:hover {
+        color: #FAF9F8;
+      }
+
+      .o365cs-base .o365sx-neutral-lighterAlt-font,
+      .o365cs-base .o365sx-neutral-lighterAlt-hover-font:hover {
+        color: #FAF9F8;
+      }
+
+      .o365cs-base .o365sx-neutral-lighterAlt-background,
+      .o365cs-base .o365sx-neutral-lighterAlt-hover-background:hover {
+        background-color: #FAF9F8;
+      }
+
+      .o365cs-base .o365sx-neutral-lighterAlt-border,
+      .o365cs-base .o365sx-neutral-lighterAlt-hover-border:hover {
+        border-color: #FAF9F8;
+      }
+
+      .o365cs-base .o365sx-neutral-dark-link,
+      .o365cs-base .o365sx-neutral-dark-link:hover,
+      .o365cs-base .o365sx-neutral-dark-link:visited,
+      .o365cs-base .o365sx-neutral-dark-hover-link:hover {
+        color: #252423;
+      }
+
+      .o365cs-base .o365sx-neutral-dark-font,
+      .o365cs-base .o365sx-neutral-dark-hover-font:hover {
+        color: #252423;
+      }
+
+      .o365cs-base .o365sx-neutral-dark-background,
+      .o365cs-base .o365sx-neutral-dark-hover-background:hover {
+        background-color: #252423;
+      }
+
+      .o365cs-base .o365sx-neutral-dark-border,
+      .o365cs-base .o365sx-neutral-dark-hover-border:hover {
+        border-color: #252423;
+      }
+
+      .o365cs-base .o365sx-neutral-primary-link,
+      .o365cs-base .o365sx-neutral-primary-link:hover,
+      .o365cs-base .o365sx-neutral-primary-link:visited,
+      .o365cs-base .o365sx-neutral-primary-hover-link:hover {
+        color: #BEBBB8;
+      }
+
+      .o365cs-base .o365sx-neutral-primary-font,
+      .o365cs-base .o365sx-neutral-primary-hover-font:hover {
+        color: #BEBBB8;
+      }
+
+      .o365cs-base .o365sx-neutral-primary-background,
+      .o365cs-base .o365sx-neutral-primary-hover-background:hover {
+        background-color: #BEBBB8;
+      }
+
+      .o365cs-base .o365sx-neutral-primary-border,
+      .o365cs-base .o365sx-neutral-primary-hover-border:hover {
+        border-color: #BEBBB8;
+      }
+
+      .o365cs-base .o365sx-neutral-secondary-link,
+      .o365cs-base .o365sx-neutral-secondary-link:hover,
+      .o365cs-base .o365sx-neutral-secondary-link:visited,
+      .o365cs-base .o365sx-neutral-secondary-hover-link:hover {
+        color: #484644;
+      }
+
+      .o365cs-base .o365sx-neutral-secondary-font,
+      .o365cs-base .o365sx-neutral-secondary-hover-font:hover {
+        color: #484644;
+      }
+
+      .o365cs-base .o365sx-neutral-secondary-background,
+      .o365cs-base .o365sx-neutral-secondary-hover-background:hover {
+        background-color: #484644;
+      }
+
+      .o365cs-base .o365sx-neutral-secondary-border,
+      .o365cs-base .o365sx-neutral-secondary-hover-border:hover {
+        border-color: #484644;
+      }
+
+      .o365cs-base .o365sx-neutral-tertiary-link,
+      .o365cs-base .o365sx-neutral-tertiary-link:hover,
+      .o365cs-base .o365sx-neutral-tertiary-link:visited,
+      .o365cs-base .o365sx-neutral-tertiary-hover-link:hover {
+        color: #605E5C;
+      }
+
+      .o365cs-base .o365sx-neutral-tertiary-font,
+      .o365cs-base .o365sx-neutral-tertiary-hover-font:hover {
+        color: #605E5C;
+      }
+
+      .o365cs-base .o365sx-neutral-tertiary-background,
+      .o365cs-base .o365sx-neutral-tertiary-hover-background:hover {
+        background-color: #605E5C;
+      }
+
+      .o365cs-base .o365sx-neutral-tertiary-border,
+      .o365cs-base .o365sx-neutral-tertiary-hover-border:hover {
+        border-color: #605E5C;
+      }
+
+      .o365cs-base .o365sx-neutral-darkRed-link,
+      .o365cs-base .o365sx-neutral-darkRed-link:hover,
+      .o365cs-base .o365sx-neutral-darkRed-link:visited,
+      .o365cs-base .o365sx-neutral-darkRed-hover-link:hover {
+        color: #A80000;
+      }
+
+      .o365cs-base .o365sx-neutral-darkRed-font,
+      .o365cs-base .o365sx-neutral-darkRed-hover-font:hover {
+        color: #A80000;
+      }
+
+      .o365cs-base .o365sx-neutral-darkRed-background,
+      .o365cs-base .o365sx-neutral-darkRed-hover-background:hover {
+        background-color: #A80000;
+      }
+
+      .o365cs-base .o365sx-neutral-darkRed-border,
+      .o365cs-base .o365sx-neutral-darkRed-hover-border:hover {
+        border-color: #A80000;
+      }
+
+      .o365cs-base .o365sx-appBrandLink:focus {
+        outline: #FFFFFF 1px solid;
+      }
+
+      .o365cs-base .o365sx-button:hover {
+        color: #FFFFFF;
+        background-color: #005A9E;
+      }
+
+      .o365cs-base .o365sx-button :focus {
+        color: #FFFFFF;
+        background-color: #005A9E;
+      }
+
+      .o365cs-base .o365sx-button:active {
+        background-color: #173f85;
+      }
+
+      .o365cs-base .o365sx-button:focus {
+        outline: #FFFFFF 1px solid;
+      }
+
+      .o365cs-base .o365sx-nonInteractiveButton:hover {
+        color: #FFFFFF;
+
+        backgroundColor {}
+      }
+
+      .o365cs-base .o365sx-nonInteractiveButton :focus {
+        color: #FFFFFF;
+
+        backgroundColor {}
+      }
+
+      .o365cs-base .o365sx-nonInteractiveButton:active {
+        backgroundColor {}
+      }
+
+      .o365cs-base .o365sx-nonInteractiveButton:focus {
+        outline {}
+      }
+
+      .o365sx-searchBoxInactive:hover {}
+
+      .o365cs-base .o365sx-highContrastButton:hover {
+        @media screen and (-ms-high-contrast: white-on-black) {
+          background-color: #1AEBFF;
+        }
+
+        @media screen and (-ms-high-contrast: black-on-white) {
+          background-color: #37006E;
+        }
+      }
+
+      .o365cs-base .o365sx-highContrastButton :focus {
+        @media screen and (-ms-high-contrast: white-on-black) {
+          background-color: #1AEBFF;
+        }
+
+        @media screen and (-ms-high-contrast: black-on-white) {
+          background-color: #37006E;
+        }
+      }
+
+      .o365cs-base .o365sx-activeButton:focus {
+        outline: #2564cf 1px solid;
+      }
+    </style>
+  
+	<script src="/cas-workflow-public/call-assistant/js/common.js"></script>		
+	<script src="/cas-workflow-public/call-assistant/js/web-components.min.js" type="module" ></script>				
+	<script src="/cas-workflow-public/call-assistant/js/call-list.js" type="module"></script>
+
+    <link rel="stylesheet" href="/cas-workflow-public/call-assistant/css/fabric.min.css">
+    <link rel="stylesheet" href="/cas-workflow-public/call-assistant/css/fabric.components.min.css">		
+    <link rel="stylesheet" href="/cas-workflow-public/call-assistant/css/call-list.css">
+    <link rel="stylesheet" href="/cas-workflow-public/call-assistant/css/index.css">
+	
+  </head>
+  <body class="ms-Fabric--isFocusHidden">
+    <div id="root">
+      <div id="container" aria-hidden="false" class="leftColumn-visible">
+        <div id="O365ShellHeader" class="o365header" style="display: none">
+          <div id="o365header" class="_3GyzBKeNc5SFYaMYNbudM2">
+            <div id="O365_NavHeader" class="dQ8XLMIyNxl8MAYqMsUZFQ== o365cs-base o365sx-navbar o365sx-search" role="banner" style="height: 48px; line-height: 48px;">
+              <div id="O365_HeaderLeftRegion" class="ieRo/OqPYB7kffRFKx2c9w==">
+                <div class="Bh46b1rd8BrU4zolL9RzUg==">
+                  <button id="O365_MainLink_NavMenu" class="clgiLVKPzugZZns0LiPTqw== o365sx-button o365sx-waffle " aria-haspopup="dialog" aria-expanded="false" type="button" role="button" aria-label="App launcher" title="App launcher">
+                    <span class="ms-Icon--WaffleOffice365 ms-icon-font-size-16" role="presentation" style="display: inline-block; font-size: 16px;"></span>
+                  </button>
+                </div>
+              </div>
+              <div id="CenterRegion" class="_25CqRVKwE38X5RHExD4IyA==" style="flex: 1 1 0px; justify-content: flex-start; align-items: center; width: calc(100% - 96px);">
+                <div style="width: 100%;">
+                  <div>
+                    <div style="position: relative;">
+                      <div data-automation-id="visibleContent" style="">
+                        <div id="Region_0" class="_1QSK5lUhw5Gkh7SDz97ZPQ==" style="flex: 1 1 0px; align-items: center; justify-content: flex-start;">
+                          <div id="owaBranding_container" class="M3pcB5evSAtYMozck1WU7A==">
+                            <div class="e/Vl0j0zHQMhZT1vQ6J+SQ== o365sx-appName">
+                              <a href="/" role="link" id="O365_AppName" aria-label="Go to Outlook" class="AzzTpbJF15SioND4vylW8A== o365sx-appBrandLink">
+                                <span class="hpyHhmSe9hmk5gopLr9a5Q==">Outlook</span>
+                              </a>
+                            </div>
+                          </div>
+                          <div id="toDoSearchBox_container" class="M3pcB5evSAtYMozck1WU7A==" style="flex: 1 0 auto; justify-content: center;">
+                            <div class="siUMOJwnumycxvszBe3uzQ==">
+                              <div id="toDoSearchBox" class="siUMOJwnumycxvszBe3uzQ==">
+                                <div class="searchToolbar" role="search">
+                                  <span class="searchToolbar-iconWrapper">
+                                    <div>
+                                      <div class="ms-TooltipHost root-110" role="none">
+                                        <button class="searchToolbar-icon search" aria-label="Enter search">
+                                          <i class="icon fontIcon ms-Icon ms-Icon--Search iconSize-24" aria-hidden="true"></i>
+                                        </button>
+                                        <div hidden="" id="tooltip16" style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;">Search</div>
+                                      </div>
+                                    </div>
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div id="Region_3" class="_1QSK5lUhw5Gkh7SDz97ZPQ==" style="flex: 0 0 auto; align-items: center; justify-content: flex-end;">
+                            <div id="SettingsIcon_container" class="M3pcB5evSAtYMozck1WU7A==">
+                              <div class="rSDngy50C4hLvjN77R3dbA==">
+                                <button class="clgiLVKPzugZZns0LiPTqw== o365sx-button" id="O365_MainLink_Settings" aria-label="Settings" role="button" type="button" title="Settings" aria-expanded="false">
+                                  <div class="o365cs-base" aria-hidden="true">
+                                    <span class="ms-Icon--Settings RGSb/1c4ex9CM0as0oaLQA==" role="presentation" style="display: inline-block; font-size: 16px;"></span>
+                                  </div>
+                                </button>
+                              </div>
+                            </div>
+                            <div id="HelpIcon_container" class="M3pcB5evSAtYMozck1WU7A==">
+                              <div class="rSDngy50C4hLvjN77R3dbA==">
+                                <button class="clgiLVKPzugZZns0LiPTqw== o365sx-button" id="O365_MainLink_Help" aria-label="Help" role="button" type="button" title="Help" aria-expanded="false">
+                                  <div class="o365cs-base" aria-hidden="true">
+                                    <span class="ms-Icon--Help RGSb/1c4ex9CM0as0oaLQA==" role="presentation" style="display: inline-block; font-size: 16px;"></span>
+                                  </div>
+                                </button>
+                              </div>
+                            </div>
+                            <div id="todoWhatsNewBtn_container" class="M3pcB5evSAtYMozck1WU7A==">
+                              <div class="siUMOJwnumycxvszBe3uzQ==">
+                                <div id="todoWhatsNewBtn" class="siUMOJwnumycxvszBe3uzQ==">
+                                  <button class="whatsNewCharm o365sx-button" id="whatsnew" role="menuitem" title="What's new">
+                                    <i class="icon fontIcon ms-Icon ms-Icon--Megaphone iconSize-24" aria-hidden="true"></i>
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="M3pcB5evSAtYMozck1WU7A== FdC5CgNe2qQBXGbOKlNuew==">
+                            <div></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="O365_HeaderRightRegion" class="HV6lC9J8OUFpKJjfAr1Asw== o365sx-button">
+                <div class="Bh46b1rd8BrU4zolL9RzUg==">
+                  <button id="O365_MainLink_Me" class="clgiLVKPzugZZns0LiPTqw== H7wt1/T7kbyfSRNZ2JzVLA== o365sx-button o365sx-highContrastButton" role="button" aria-expanded="false" type="button" title="Account manager for Dele Olajide" aria-label="Account manager for Dele Olajide">
+                    <div class="/B1n/h6ibI5wVz7jdDIP0A==">
+                      <div class="U6Cnfo0RjXJ8UEwXhZV8mQ== undefined">
+                        <span style="display: none;">Dele Olajide</span>
+                      </div>
+                      <div class="clgiLVKPzugZZns0LiPTqw== NK6YQ060InuEH1W1LbFJ4Q==">
+                        <div id="O365_MainLink_MePhoto" class="x03Rvs3MQ7Id948TyiIkCQ==">
+                          <div>
+                            <div class="rSDngy50C4hLvjN77R3dbA==">
+                              <div>
+                                <div class="ohcfXYh6LUBy5DS5kNUjRQ==" style="width: 32px; height: 32px;">
+                                  <div id="meInitialsButton" class="Mc+fiAdJTuKKS+yJLN3rDQ== OLlo7WBYb7HJTGfGyVkiWQ== o365sx-button o365sx-highContrastButton" aria-hidden="true" style="font-size: 16px;">DO</div>
+                                  <div class="_8ZYZKvxC8bvw1xgQGSkvvA==">
+                                    <img alt="DO" src="data:image/jpeg;base64,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" style="">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                </div>
+                <div class="Bh46b1rd8BrU4zolL9RzUg==">
+                  <a id="O365_MainLink_Signin" class="clgiLVKPzugZZns0LiPTqw== H7wt1/T7kbyfSRNZ2JzVLA== o365sx-button o365sx-highContrastButton" role="button" type="button" aria-label="Sign in" style="display: none;">
+                    <div class="/B1n/h6ibI5wVz7jdDIP0A==">
+                      <div class="HcKMEYhmL4uLyG+K4hy8pg== undefined">
+                        <span style="display: inline;">Sign in</span>
+                      </div>
+                      <div class="clgiLVKPzugZZns0LiPTqw== NK6YQ060InuEH1W1LbFJ4Q==">
+                        <div id="O365_MainLink_SigninLink" class="+gKDxCURR5euwhVW2NK21g==">
+                          <span class="ms-Icon--Contact ms-icon-font-size-18 u85SIhgERLuqcMUbt2s66A==" role="presentation" style="display: inline-block; font-size: 18px;"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+                <div id="O365_UniversalMeContainer"></div>
+              </div>
+            </div>
+            <div id="o365cs-flexpane-overlay"></div>
+          </div>
+        </div>
+        <div role="status" aria-live="assertive" class="screenreader-only"></div>
+        <span role="status" class="screenreader-only" aria-live="assertive"></span>
+        <span role="alert" class="screenreader-only" aria-live="polite"></span>
+        <span role="alert" class="screenreader-only" aria-live="polite"></span>
+        <span role="alert" class="screenreader-only" aria-live="polite"></span>
+        <span role="alert" class="screenreader-only" aria-live="polite"></span>
+        <span role="alert" class="screenreader-only" aria-live="polite"></span>
+        <span role="alert" class="screenreader-only" aria-live="polite"></span>
+        <span role="alert" class="screenreader-only" aria-live="polite"></span>
+        <div id="app" class="theme-blue">
+          <div class="leftColumn leftColumn-entered" aria-label="Lists menu">
+            <div class="sidebar">
+              <div class="sidebar-header">
+                <div class="sidebarNavButton">
+                  <button class="menu" aria-label="Toggle sidebar" aria-haspopup="true">
+                    <svg class="fluentIcon ___12fm75w f1w7gpdv fez10in fg4l7m0" fill="currentColor" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2 4.5c0-.28.22-.5.5-.5h15a.5.5 0 010 1h-15a.5.5 0 01-.5-.5zm0 5c0-.28.22-.5.5-.5h15a.5.5 0 010 1h-15a.5.5 0 01-.5-.5zm.5 4.5a.5.5 0 000 1h15a.5.5 0 000-1h-15z" fill="currentColor"></path>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="sidebar-content">
+                <nav aria-label="Lists" role="navigation" class="sidebar-scroll">
+                  <ul role="listbox" class="ms-FocusZone css-109 lists" data-focuszone-id="FocusZone33">
+                    <div class="">
+                      <li class="todayToolbar todayToolbar-item" tabindex="0" role="option" aria-selected="false" data-is-focusable="true" aria-label="My Day, 0 tasks">
+                        <div class="todayToolbar-inner">
+                          <div aria-hidden="true" class="todayToolbar-icon">
+                            <svg class="fluentIcon ___12fm75w f1w7gpdv fez10in fg4l7m0" fill="currentColor" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" focusable="false">
+                              <path d="M10 2c.28 0 .5.22.5.5v1a.5.5 0 01-1 0v-1c0-.28.22-.5.5-.5zm0 12a4 4 0 100-8 4 4 0 000 8zm0-1a3 3 0 110-6 3 3 0 010 6zm7.5-2.5a.5.5 0 000-1h-1a.5.5 0 000 1h1zM10 16c.28 0 .5.22.5.5v1a.5.5 0 01-1 0v-1c0-.28.22-.5.5-.5zm-6.5-5.5a.5.5 0 000-1H2.46a.5.5 0 000 1H3.5zm.65-6.35c.2-.2.5-.2.7 0l1 1a.5.5 0 11-.7.7l-1-1a.5.5 0 010-.7zm.7 11.7a.5.5 0 01-.7-.7l1-1a.5.5 0 01.7.7l-1 1zm11-11.7a.5.5 0 00-.7 0l-1 1a.5.5 0 00.7.7l1-1a.5.5 0 000-.7zm-.7 11.7a.5.5 0 00.7-.7l-1-1a.5.5 0 00-.7.7l1 1z" fill="currentColor"></path>
+                            </svg>
+                          </div>
+                          <div class="todayToolbar-title">
+                            <span>My Day</span>
+                          </div>
+                          <div class="todayToolbar-count" aria-hidden="true"></div>
+                        </div>
+                      </li>
+                    </div>
+                    <div class="">
+                      <li class="listItem-container" role="option" aria-selected="false" aria-label="Important, 2 tasks" tabindex="-1" data-is-focusable="true">
+                        <div id="important" class="listItem">
+                          <div class="listItem-inner">
+                            <span class="listItem-icon">
+                              <svg class="fluentIcon ___12fm75w f1w7gpdv fez10in fg4l7m0" fill="currentColor" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" focusable="false">
+                                <path d="M9.1 2.9a1 1 0 011.8 0l1.93 3.91 4.31.63a1 1 0 01.56 1.7l-3.12 3.05.73 4.3a1 1 0 01-1.45 1.05L10 15.51l-3.86 2.03a1 1 0 01-1.45-1.05l.74-4.3L2.3 9.14a1 1 0 01.56-1.7l4.31-.63L9.1 2.9zm.9.44L8.07 7.25a1 1 0 01-.75.55L3 8.43l3.12 3.04a1 1 0 01.3.89l-.75 4.3 3.87-2.03a1 1 0 01.93 0l3.86 2.03-.74-4.3a1 1 0 01.29-.89L17 8.43l-4.32-.63a1 1 0 01-.75-.55L10 3.35z" fill="currentColor"></path>
+                              </svg>
+                            </span>
+                            <span class="listItem-title listItem-titleParsed">
+                              <span>Important</span>
+                            </span>
+                            <span class="listItem-count" aria-hidden="true">2</span>
+                          </div>
+                        </div>
+                      </li>
+                    </div>
+                    <div class="">
+                      <li class="listItem-container" role="option" aria-selected="false" aria-label="Planned, 1 tasks" tabindex="-1" data-is-focusable="true">
+                        <div id="planned" class="listItem">
+                          <div class="listItem-inner">
+                            <span class="listItem-icon">
+                              <svg class="fluentIcon ___12fm75w f1w7gpdv fez10in fg4l7m0" fill="currentColor" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" focusable="false">
+                                <path d="M7 11a1 1 0 100-2 1 1 0 000 2zm1 2a1 1 0 11-2 0 1 1 0 012 0zm2-2a1 1 0 100-2 1 1 0 000 2zm1 2a1 1 0 11-2 0 1 1 0 012 0zm2-2a1 1 0 100-2 1 1 0 000 2zm4-5.5A2.5 2.5 0 0014.5 3h-9A2.5 2.5 0 003 5.5v9A2.5 2.5 0 005.5 17h9a2.5 2.5 0 002.5-2.5v-9zM4 7h12v7.5c0 .83-.67 1.5-1.5 1.5h-9A1.5 1.5 0 014 14.5V7zm1.5-3h9c.83 0 1.5.67 1.5 1.5V6H4v-.5C4 4.67 4.67 4 5.5 4z" fill="currentColor"></path>
+                              </svg>
+                            </span>
+                            <span class="listItem-title listItem-titleParsed">
+                              <span>My Call Lists</span>
+                            </span>
+                            <span class="listItem-count" aria-hidden="true">1</span>
+                          </div>
+                        </div>
+                      </li>
+                    </div>
+                    <li class="listItem-container" role="option" aria-selected="false" aria-label="Assigned to me, 0 tasks" tabindex="-1" data-is-focusable="true">
+                      <div id="assigned_to_me" class="listItem">
+                        <div class="listItem-inner">
+                          <span class="listItem-icon">
+                            <svg class="fluentIcon ___12fm75w f1w7gpdv fez10in fg4l7m0" fill="currentColor" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" focusable="false">
+                              <path d="M10 2a4 4 0 100 8 4 4 0 000-8zM7 6a3 3 0 116 0 3 3 0 01-6 0zm-2 5a2 2 0 00-2 2c0 1.7.83 2.97 2.13 3.8A9.14 9.14 0 0010 18c1.85 0 3.58-.39 4.87-1.2A4.35 4.35 0 0017 13a2 2 0 00-2-2H5zm-1 2a1 1 0 011-1h10a1 1 0 011 1c0 1.3-.62 2.28-1.67 2.95A8.16 8.16 0 0110 17a8.16 8.16 0 01-4.33-1.05A3.36 3.36 0 014 13z" fill="currentColor"></path>
+                            </svg>
+                          </span>
+                          <span class="listItem-title listItem-titleParsed">
+                            <span>Shared Call Lists</span>
+                          </span>
+                        </div>
+                      </div>
+                    </li>
+                    <div class="">
+                      <li class="listItem-container" role="option" aria-selected="false" aria-label="Tasks, 3 tasks" tabindex="-1" data-is-focusable="true">
+                        <div id="inbox" class="listItem">
+                          <div class="listItem-inner">
+                            <span class="listItem-icon">
+							  <svg class="fluentIcon ___12fm75w f1w7gpdv fez10in fg4l7m0" fill="currentColor" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" focusable="false">
+								<path d="M3 6.5a1 1 0 100-2 1 1 0 000 2zm3-1c0-.28.22-.5.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0 5c0-.28.22-.5.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm.5 4.5a.5.5 0 000 1h11a.5.5 0 000-1h-11zm-2.5.5a1 1 0 11-2 0 1 1 0 012 0zm-1-4a1 1 0 100-2 1 1 0 000 2z" fill="currentColor"></path>
+							  </svg>
+                            </span>
+                            <span class="listItem-title listItem-titleParsed">
+                              <span>New Alternative</span>
+                              <span>Investment Campaign</span>							  
+                            </span>
+                            <span class="listItem-count" aria-hidden="true">3</span>
+                          </div>						
+                        </div>
+                      </li>
+                    </div>
+                    <div class="sidebar-lastStaticList" role="none"></div>
+                    <div class="sortable-lists">
+                    </div>
+                  </ul>
+                </nav>
+                <div></div>
+                <div class="sidebar-addList">
+                  <div class="baseAdd addList">
+                    <button class="baseAdd-icon addList" type="button" aria-label="New list" tabindex="-1">
+                      <svg class="fluentIcon ___12fm75w f1w7gpdv fez10in fg4l7m0" fill="currentColor" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 2.5a.5.5 0 00-1 0V9H2.5a.5.5 0 000 1H9v6.5a.5.5 0 001 0V10h6.5a.5.5 0 000-1H10V2.5z" fill="currentColor"></path>
+                      </svg>
+                    </button>
+                    <span id="baseAddInput-addList-description" class="screenreader-only">Name this list, then select enter to create it.</span>
+                    <input id="baseAddInput-addList" class="baseAdd-input chromeless" aria-label="List name" aria-describedby="baseAddInput-addList-description" type="text" maxlength="255" placeholder="New list" tabindex="0" autocomplete="off" value="">
+                  </div>
+                  <div class="addGroupButtonWrapper">
+                    <div>
+                      <div class="ms-TooltipHost root-110" role="none">
+                        <button class="addGroup-icon" tabindex="0" type="button" aria-label="Create group">
+                          <i class="icon svgIcon ms-Icon group-add-20">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M14.5 3C15.8807 3 17 4.11929 17 5.5V9.59971C16.6832 9.43777 16.3486 9.30564 16 9.20703V5.5C16 4.67157 15.3284 4 14.5 4H5.5C4.67157 4 4 4.67157 4 5.5V14.5C4 15.3284 4.67157 16 5.5 16H9.20703C9.30564 16.3486 9.43777 16.6832 9.59971 17H5.5C4.11929 17 3 15.8807 3 14.5V5.5C3 4.11929 4.11929 3 5.5 3H14.5Z" fill="#212121"></path>
+                              <path d="M6.5 6C6.74546 6 6.94961 6.17688 6.99194 6.41012L7 6.5V13.5C7 13.7761 6.77614 14 6.5 14C6.25454 14 6.05039 13.8231 6.00806 13.5899L6 13.5V6.5C6 6.22386 6.22386 6 6.5 6Z" fill="#212121"></path>
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M19 14.5C19 16.9853 16.9853 19 14.5 19C12.0147 19 10 16.9853 10 14.5C10 12.0147 12.0147 10 14.5 10C16.9853 10 19 12.0147 19 14.5ZM15 12.5C15 12.2239 14.7761 12 14.5 12C14.2239 12 14 12.2239 14 12.5V14H12.5C12.2239 14 12 14.2239 12 14.5C12 14.7761 12.2239 15 12.5 15H14V16.5C14 16.7761 14.2239 17 14.5 17C14.7761 17 15 16.7761 15 16.5V15H16.5C16.7761 15 17 14.7761 17 14.5C17 14.2239 16.7761 14 16.5 14H15V12.5Z" fill="#212121"></path>
+                            </svg>
+                          </i>
+                        </button>
+                        <div hidden="" id="tooltip34" style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;">Create group</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div aria-live="polite"></div>
+              <div class="sidebar-footer">
+                <div class="officeApps" role="group">
+                  <a href="https://outlook.office.com/owa/?realm=olajide.net&amp;exsvurl=1&amp;ll-cc=1033&amp;modurl=0&amp;login_hint=dele@olajide.net" title="Outlook">
+                    <svg class="fluentIcon ___12fm75w f1w7gpdv fez10in fg4l7m0" fill="currentColor" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M15.5 4A2.5 2.5 0 0118 6.5v8a2.5 2.5 0 01-2.5 2.5h-11A2.5 2.5 0 012 14.5v-8A2.5 2.5 0 014.5 4h11zM17 7.96l-6.75 3.97a.5.5 0 01-.42.04l-.08-.04L3 7.96v6.54c0 .83.67 1.5 1.5 1.5h11c.83 0 1.5-.67 1.5-1.5V7.96zM15.5 5h-11C3.67 5 3 5.67 3 6.5v.3l7 4.12 7-4.12v-.3c0-.83-.67-1.5-1.5-1.5z" fill="currentColor"></path>
+                    </svg>
+                  </a>
+                  <a href="https://outlook.office.com/owa/?realm=olajide.net&amp;exsvurl=1&amp;ll-cc=1033&amp;modurl=1&amp;login_hint=dele@olajide.net" title="Calendar">
+                    <svg class="fluentIcon ___12fm75w f1w7gpdv fez10in fg4l7m0" fill="currentColor" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M7 11a1 1 0 100-2 1 1 0 000 2zm1 2a1 1 0 11-2 0 1 1 0 012 0zm2-2a1 1 0 100-2 1 1 0 000 2zm1 2a1 1 0 11-2 0 1 1 0 012 0zm2-2a1 1 0 100-2 1 1 0 000 2zm4-5.5A2.5 2.5 0 0014.5 3h-9A2.5 2.5 0 003 5.5v9A2.5 2.5 0 005.5 17h9a2.5 2.5 0 002.5-2.5v-9zM4 7h12v7.5c0 .83-.67 1.5-1.5 1.5h-9A1.5 1.5 0 014 14.5V7zm1.5-3h9c.83 0 1.5.67 1.5 1.5V6H4v-.5C4 4.67 4.67 4 5.5 4z" fill="currentColor"></path>
+                    </svg>
+                  </a>
+                  <a href="https://outlook.office.com/owa/?realm=olajide.net&amp;exsvurl=1&amp;ll-cc=1033&amp;modurl=2&amp;login_hint=dele@olajide.net" title="People">
+                    <svg class="fluentIcon ___12fm75w f1w7gpdv fez10in fg4l7m0" fill="currentColor" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M4.5 6.75a2.25 2.25 0 114.5 0 2.25 2.25 0 01-4.5 0zM6.75 3.5a3.25 3.25 0 100 6.5 3.25 3.25 0 000-6.5zm5.69 11.65c.53.21 1.21.35 2.06.35 1.88 0 2.92-.67 3.47-1.43a2.92 2.92 0 00.53-1.5v-.07c0-.83-.67-1.5-1.5-1.5h-4.63c.24.29.42.63.53 1H17c.28 0 .5.22.5.5v.1l-.04.22c-.04.18-.13.42-.3.66-.33.46-1.04 1.02-2.66 1.02-.73 0-1.28-.11-1.69-.28-.08.28-.2.6-.37.93zM1.5 13c0-1.1.9-2 2-2H10a2 2 0 012 2V13.08a1.43 1.43 0 01-.01.18 3.95 3.95 0 01-.67 1.8C10.62 16.09 9.26 17 6.75 17c-2.51 0-3.87-.92-4.57-1.93a3.95 3.95 0 01-.68-1.99V13zm1 .06v.1l.06.33c.07.27.2.64.45 1C3.49 15.2 4.5 16 6.75 16s3.26-.8 3.74-1.5a2.95 2.95 0 00.5-1.42l.01-.02V13a1 1 0 00-1-1H3.5a1 1 0 00-1 1v.06zM13 7.5a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM14.5 5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z" fill="currentColor"></path>
+                    </svg>
+                  </a>
+                  <a href="" title="To Do">
+                    <i class="icon fontIcon ms-Icon ms-Icon--ToDoLogoOutline iconSize-20" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <span id="centerColumn">
+            <div id="main" role="main">
+              <div class="tasksToolbar centerColumn-item">
+                <div class="tasksToolbar-top">
+                  <div class="tasksToolbar-headline">
+                    <div class="tasksToolbar-titleContainer">
+                      <div class="tasksToolbar-titleItem">
+                        <h2 class="listTitle" tabindex="0">
+                          <svg class="fluentIcon listTitle-icon ___12fm75w f1w7gpdv fez10in fg4l7m0" fill="currentColor" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3.25 17.5a1.25 1.25 0 110 2.5 1.25 1.25 0 010-2.5zm3.5.5h14.5a.75.75 0 01.1 1.5H6.75a.75.75 0 01-.1-1.5h14.6-14.5zm-3.5-7a1.25 1.25 0 110 2.5 1.25 1.25 0 010-2.5zm3.5.5h14.5a.75.75 0 01.1 1.5H6.75a.75.75 0 01-.1-1.5h14.6-14.5zm-3.5-7a1.25 1.25 0 110 2.5 1.25 1.25 0 010-2.5zm3.5.5h14.5a.75.75 0 01.1 1.5H6.75a.75.75 0 01-.1-1.5h14.6-14.5z" fill="currentColor"></path>
+                          </svg>
+                          <span id="task-name">Call List
+                          </span>
+                        </h2>
+                      </div>
+                      <div class="tasksToolbar-titleItem">
+                        <div class="listOptions">
+                          <div>
+                            <div class="ms-TooltipHost root-110" role="none">
+                              <button class="button loadingButton button toolbarButton more" title="" aria-label="List options menu" aria-describedby="moreHint" aria-live="assertive" tabindex="0" aria-haspopup="true">
+                                <div class="toolbarButton-inner">
+                                  <div class="toolbarButton-icon">
+                                    <i class="icon fontIcon ms-Icon ms-Icon--More iconSize-24" aria-hidden="true"></i>
+                                  </div>
+                                  <p id="moreHint" class="hidden">Opens a menu with list options.</p>
+                                </div>
+                              </button>
+                              <div hidden="" id="tooltip2" style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;">List options menu</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tasksToolbar-subline"></div>
+                  </div>
+                  <div class="taskToolbar-right">
+                    <div class="tasksToolbar-meta">
+                      <div class="tasksToolbar-actions">
+                        <div class="tasksToolbar-actionsItem">
+                          <div class="sortingOptions">
+                            <div>
+                              <div class="ms-TooltipHost root-110" role="none">
+                                <button class="button loadingButton button toolbarButton" title="" aria-label="Sort" aria-describedby="sortHint" aria-live="assertive" tabindex="0" aria-haspopup="true">
+                                  <div class="toolbarButton-inner">
+                                    <div class="toolbarButton-icon">
+                                      <svg class="fluentIcon ___12fm75w f1w7gpdv fez10in fg4l7m0" fill="currentColor" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M2.35 7.35L5 4.71V16.5a.5.5 0 001 0V4.7l2.65 2.65a.5.5 0 00.7-.7l-3.49-3.5A.5.5 0 005.5 3a.5.5 0 00-.39.18L1.65 6.65a.5.5 0 10.7.7zm15.3 5.3L15 15.29V3.5a.5.5 0 00-1 0v11.8l-2.65-2.65a.5.5 0 00-.7.7l3.49 3.5a.5.5 0 00.36.15.5.5 0 00.39-.18l3.46-3.47a.5.5 0 10-.7-.7z" fill="currentColor"></path>
+                                      </svg>
+                                    </div>
+                                    <span>Sort</span>
+                                    <p id="sortHint" class="hidden">Opens a menu with sort options</p>
+                                  </div>
+                                </button>
+                                <div hidden="" id="tooltip3" style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;">Sort</div>
+                              </div>
+                            </div>
+                            <div aria-live="assertive" class="screenreader-only">
+                              <span>Sorting turned off</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="tasksToolbar-actionsItem">
+                          <div class="groupingOptions">
+                            <div>
+                              <div class="ms-TooltipHost root-110" role="none">
+                                <button class="button loadingButton button toolbarButton" title="" aria-label="Group" aria-describedby="groupHint" aria-live="assertive" tabindex="0" aria-haspopup="true">
+                                  <div class="toolbarButton-inner">
+                                    <div class="toolbarButton-icon">
+                                      <svg class="fluentIcon ___12fm75w f1w7gpdv fez10in fg4l7m0" fill="currentColor" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M14.5 3A2.5 2.5 0 0117 5.5v9a2.5 2.5 0 01-2.5 2.5h-9A2.5 2.5 0 013 14.5v-9A2.5 2.5 0 015.5 3h9zm0 1h-9C4.67 4 4 4.67 4 5.5v9c0 .83.67 1.5 1.5 1.5h9c.83 0 1.5-.67 1.5-1.5v-9c0-.83-.67-1.5-1.5-1.5zm-8 2a.5.5 0 01.5.41v7.09a.5.5 0 01-1 .09V6.5c0-.28.22-.5.5-.5z" fill="currentColor"></path>
+                                      </svg>
+                                    </div>
+                                    <span>Group</span>
+                                    <p id="groupHint" class="hidden">NOT TRANSLATED: screenreader_group_list_hint</p>
+                                  </div>
+                                </button>
+                                <div hidden="" id="tooltip4" style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;">Group</div>
+                              </div>
+                            </div>
+                            <div aria-live="assertive" class="screenreader-only">
+                              <span>NOT TRANSLATED: grouping_indicator_no_grouping</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="tasksToolbar-actionsItem">
+                          <div>
+                            <div class="ms-TooltipHost root-110" role="none">
+                              <button class="button loadingButton button toolbarButton sharingButton" title="" aria-label="Share" aria-describedby="sharingHint" aria-live="assertive" tabindex="0" aria-haspopup="true">
+                                <div class="toolbarButton-inner">
+                                  <div class="toolbarButton-icon">
+                                    <svg class="fluentIcon ___12fm75w f1w7gpdv fez10in fg4l7m0" fill="currentColor" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M9 2a4 4 0 100 8 4 4 0 000-8zM6 6a3 3 0 116 0 3 3 0 01-6 0zm-2 5a2 2 0 00-2 2c0 1.7.83 2.97 2.13 3.8A9.14 9.14 0 009 18c.41 0 .82-.02 1.21-.06A5.5 5.5 0 019.6 17 12 12 0 019 17a8.16 8.16 0 01-4.33-1.05A3.36 3.36 0 013 13a1 1 0 011-1h5.6c.18-.36.4-.7.66-1H4zm10.5 8a4.5 4.5 0 100-9 4.5 4.5 0 000 9zm0-7c.28 0 .5.22.5.5V14h1.5a.5.5 0 010 1H15v1.5a.5.5 0 01-1 0V15h-1.5a.5.5 0 010-1H14v-1.5c0-.28.22-.5.5-.5z" fill="currentColor"></path>
+                                    </svg>
+                                  </div>
+                                  <span>Share</span>
+                                  <p id="sharingHint" class="hidden">Opens a menu with more details about the members and sharing options</p>
+                                </div>
+                              </button>
+                              <div hidden="" id="tooltip5" style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;">Share</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tasksToolbar-children"></div>
+              </div>
+              <div class="flex-container" style="display:none">
+                <div class="flexBoxFix">
+                  <div class="indicatorComponent-container"></div>
+                  <div class="nudgeComponent-wrapper" id="nudgeComponent-wrapper"></div>
+                  <div class="main-background">
+                    <span class="addToTop centerColumn-item">
+                      <div class="baseAddParent addTask taskCreation">
+                        <div class="baseAdd addTask taskCreation">
+						  <div style="width: 100%" >
+							<mgt-people-picker person-card="hover" selection-mode="single" autofocus id="people-picker" placeholder="Add Contact" show-max=10></mgt-people-picker>						
+						  </div>
+                        </div>
+                      </div>
+                    </span>				
+                    <div class="tasks">
+                      <div class="ms-FocusZone css-109 tasks focus-wrapper" role="tree" data-focuszone-id="FocusZone9">
+                        <div class="chunkedComponentList sticky">
+                          <div class="chunkedScrollContainer">
+                            <div class="slice componentList centerColumn-item">
+                              <div class="">
+                                <div role="none" draggable="true">
+                                  <div>
+                                    <div role="treeitem" tabindex="-1" data-is-focusable="true" class="ms-FocusZone css-109 taskItem" aria-label=" task Call JJ Gartland Press the tab key for more options." data-focuszone-id="FocusZone14">
+                                      <div class="taskItem-body" aria-live="off">
+                                        <button tabindex="-1" class="taskItem-titleWrapper">
+                                          <div class="metaDataInfo">
+											<fluent-data-grid id="call-list"></fluent-data-grid>	
+                                          </div>
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="toast-container" aria-live="assertive"></div>
+                </div>
+              </div>
+            </div>
+          </span>
+          <div id="notifications"></div>
+          <div class="body-111"></div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
