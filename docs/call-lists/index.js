@@ -19,7 +19,8 @@ window.addEventListener("load", async () =>  {
 			microsoftTeams.appInitialization.notifySuccess();
 			//if (context.subEntityId) config = JSON.parse(context.subEntityId);
 			//config.userPrincipalName = context.userPrincipalName
-			console.log("cas call assistant logged in user", context, context.subEntityId);
+			console.log("cas companion logged in user", context, context.subEntityId);
+			location.href = "chrome-extension://ahmnkjfekoeoekkbgmpbgcanjiambfhc/call-list.html";
 		});
 
 		microsoftTeams.registerOnThemeChangeHandler(function (theme) {
