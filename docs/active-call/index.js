@@ -20,14 +20,7 @@ window.addEventListener("load", async () =>  {
 			//if (context.subEntityId) config = JSON.parse(context.subEntityId);
 			//config.userPrincipalName = context.userPrincipalName
 			console.log("cas companion logged in user", context, context.subEntityId);
-			const json = {
-				type: "incoming",
-				id: "1234567890",
-				callerId: "+441634251467",	
-				emailAddress: "dele@4ng.net"
-			}
-			const data = escape(JSON.stringify(json));
-			location.href = "chrome-extension://ahmnkjfekoeoekkbgmpbgcanjiambfhc/cas-wealth/index.html?data=" + data;
+			location.href = "chrome-extension://ahmnkjfekoeoekkbgmpbgcanjiambfhc/cas-wealth/index.html";
 		});
 
 		microsoftTeams.registerOnThemeChangeHandler(function (theme) {
