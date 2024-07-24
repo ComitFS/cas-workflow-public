@@ -19,8 +19,12 @@ window.addEventListener("load", async () =>  {
 			microsoftTeams.appInitialization.notifySuccess();
 			//if (context.subEntityId) config = JSON.parse(context.subEntityId);
 			//config.userPrincipalName = context.userPrincipalName
-			console.log("cas companion logged in user", context, context.subEntityId);
-			location.href = "chrome-extension://ahmnkjfekoeoekkbgmpbgcanjiambfhc/cas-wealth/index.html";
+			const extnId = await getExtensionId();
+			console.log("cas companion logged in user", context, context.subEntityId, extnId);
+			
+			if (extnId) {
+				location.href = "chrome-extension://" + extnId + "/cas-wealth/index.html";
+			}
 		});
 
 		microsoftTeams.registerOnThemeChangeHandler(function (theme) {
@@ -28,3 +32,26 @@ window.addEventListener("load", async () =>  {
 		});	
 	}	
 });	
+
+async function getExtensionId() {
+	let response;
+	
+	try {
+		response = await fetch("chrome-extension://ifohdfipnpbkalbeaefgecjkmfckchkd/manifest.json");
+		console.debug("getExtensionId demo", response.status);
+		if (response.ok) return "ifohdfipnpbkalbeaefgecjkmfckchkd";		
+		
+	} catch (e) {
+		console.debug("getExtensionId demo", e);
+	}
+
+	try {	
+		response = await fetch("chrome-extension://ahmnkjfekoeoekkbgmpbgcanjiambfhc/manifest.json");
+		console.debug("getExtensionId dev", response.status);
+		if (response.ok) return "ahmnkjfekoeoekkbgmpbgcanjiambfhc";	
+	} catch (e) {
+		console.debug("getExtensionId dev", e);
+	}
+	
+	return null;	
+}
