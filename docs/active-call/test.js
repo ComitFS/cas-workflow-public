@@ -35,7 +35,7 @@ window.addEventListener("load", async () =>  {
 			const response3 = await fetch(url2, {method: "POST", headers: {authorization}});
 			const joinWebUrl = await response3.text();
 			
-			meeting.joinMeeting({joinWebUrl});
+			microsoftTeams.executeDeepLink(joinWebUrl);
 		})
 	}	
 });	
