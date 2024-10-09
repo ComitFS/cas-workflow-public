@@ -31,7 +31,7 @@ window.addEventListener("load", async () =>  {
 			let origin = urlParam("origin");	
 			if (!origin) origin = "http://localhost"
 			const authorization = btoa("dele:Welcome123");			
-			const url2 = origin + "/plugins/casapi/v1/companion/meeting/client/jjgartland?subject=FA calling JJ Gartland";			
+			const url2 = origin + "/plugins/casapi/v1/companion/meeting/client/jjgartland?subject=FA calling JJ Gartland&destination=+441634251467";			
 			const response3 = await fetch(url2, {method: "POST", headers: {authorization}});
 			const joinWebUrl = await response3.text();
 			
