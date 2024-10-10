@@ -31,14 +31,14 @@ window.addEventListener("load", async () =>  {
 		});	
 	}
 
-	function setup() {
+	async function setup() {
 		console.log("setup", origin, authorization);
 		
 		const url2 = origin + "/plugins/casapi/v1/companion/meeting/client/jjgartland?subject=Call%20Dect%20Phone&destination=%2B441634251467";			
 		const response3 = await fetch(url2, {method: "POST", headers: {authorization}});
 		joinWebUrl = await response3.text();
 					
-		document.querySelector("button").addEventListener("click", async (evt) => {			
+		document.querySelector("button").addEventListener("click", (evt) => {			
 			microsoftTeams.executeDeepLink(joinWebUrl);
 		})
 	}	
