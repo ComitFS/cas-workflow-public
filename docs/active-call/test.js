@@ -27,6 +27,8 @@ window.addEventListener("load", async () =>  {
 	}
 
 	function setup() {
+		console.log("setup", localStorage);
+			
 		document.querySelector("button").addEventListener("click", async (evt) => {
 			let origin = urlParam("origin");	
 			if (!origin) origin = "http://localhost"
