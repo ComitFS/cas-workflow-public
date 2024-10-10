@@ -3,7 +3,7 @@ window.addEventListener("unload", () => {
 });
 
 window.addEventListener("load", async () =>  {
-	console.debug("window.load", window.location.hostname, window.location.origin);
+	console.debug("window.load", window.location.hostname, window.location.origin, localStorage);
 	
 	const urlParam = (name) => {
 		var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
@@ -27,7 +27,7 @@ window.addEventListener("load", async () =>  {
 	}
 
 	function setup() {
-		console.log("setup", localStorage);
+		console.log("setup");
 			
 		document.querySelector("button").addEventListener("click", async (evt) => {
 			let origin = urlParam("origin");	
