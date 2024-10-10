@@ -1,9 +1,14 @@
+let joinWebUrl;
+
 window.addEventListener("unload", () => {
 	console.debug("unload");
 });
 
 window.addEventListener("load", async () =>  {
-	console.debug("window.load", window.location.hostname, window.location.origin, localStorage);
+	const origin = JSON.parse(localStorage.getItem("configuration.cas_server_url"));
+	const authorization = JSON.parse(localStorage.getItem("configuration.cas_server_token"));
+ 
+	console.debug("window.load", window.location.hostname, origin, authorization);
 	
 	const urlParam = (name) => {
 		var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
@@ -27,16 +32,13 @@ window.addEventListener("load", async () =>  {
 	}
 
 	function setup() {
-		console.log("setup");
-			
-		document.querySelector("button").addEventListener("click", async (evt) => {
-			let origin = urlParam("origin");	
-			if (!origin) origin = "http://localhost"
-			const authorization = btoa("dele:Welcome123");			
-			const url2 = origin + "/plugins/casapi/v1/companion/meeting/client/jjgartland?subject=Call%20Dect%20Phone&destination=%2B441634251467";			
-			const response3 = await fetch(url2, {method: "POST", headers: {authorization}});
-			const joinWebUrl = await response3.text();
-			
+		console.log("setup", origin, authorization);
+		
+		const url2 = origin + "/plugins/casapi/v1/companion/meeting/client/jjgartland?subject=Call%20Dect%20Phone&destination=%2B441634251467";			
+		const response3 = await fetch(url2, {method: "POST", headers: {authorization}});
+		joinWebUrl = await response3.text();
+					
+		document.querySelector("button").addEventListener("click", async (evt) => {			
 			microsoftTeams.executeDeepLink(joinWebUrl);
 		})
 	}	
