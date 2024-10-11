@@ -24,8 +24,6 @@ window.addEventListener("load", async () =>  {
 			
 			if (extnId) {
 				location.href = "chrome-extension://" + extnId + "/cas-wealth/index.html";
-			} else {
-				location.href = "test.html";
 			}
 		});
 
